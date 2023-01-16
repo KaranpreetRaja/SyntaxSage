@@ -1,4 +1,4 @@
-package src.CustomComponents;
+package CustomComponents;
 
 // imports
 import java.awt.Color;
