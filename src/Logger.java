@@ -9,8 +9,12 @@ public class Logger {
 
     private static final String LOG_FILE_NAME = "application.log"; //log file name, change if needed
 
+    // Following block sets location of application.log to same directory as jar file
+    /* 
+    private static final String jarPath = Logger.class.getProtectionDomain().getCodeSource().getLocation().getPath();
+    private static final String LOG_FILE_NAME = jarPath.substring(0, jarPath.lastIndexOf("/")) + "/application.log";
+    */
     
-
     public static void log(String methodName, String message) {
         try {
             FileWriter fw = new FileWriter(LOG_FILE_NAME, true);
