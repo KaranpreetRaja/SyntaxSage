@@ -13,9 +13,9 @@ SyntaxSage is a program that aims to help users learn and master programming lan
   - Save Notes: Allow the user to save specified elements of the documentation to look at later. Store saved notes in a seperate tab. Priority: low. Cost: 1 day.
 - **Badges and Awards: insert user story here. Priority: low. Cost: 2 days.**
   - Badges: Create a reward system to celebrate progress, by awarding the user badges to display on their profile. Assign users badges based on their current fluency in a programming languages syntax. Priority: low. Cost: 1 day.
-  - Awards: Give the user a "Hot Streak" award appropriate to how many questions they've solved in a row.
+  - Awards: Give the user a "Hot Streak" award appropriate to how many questions they've solved in a row. Priority: low. Cost: 1 day.
 - **Progress Bar: insert user story here. Priority: low. Cost: 1 day.**
-  - Progress Bar: Implement a progress bar on the home screen of the application to supplement the progress section, by giving the user a quick way to view their completion in the course at a glance.
+  - Progress Bar: Implement a progress bar on the home screen of the application to supplement the progress section, by giving the user a quick way to view their completion in the course at a glance. Priority: low. Cost: 1 day.
 
 ## Iteration 2
 - **User Database: insert user story here. Priority: medium. Cost: 5 days.**
