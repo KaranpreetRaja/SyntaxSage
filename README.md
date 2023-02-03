@@ -4,15 +4,15 @@ SyntaxSage is a program that aims to help users learn and master programming lan
 # Planning Document
 
 ## Iteration 1
-- **Syntax Testing**
+- **Syntax Testing. Priority: high. Cost: 8 days.**
   - test
-- **View Progress**
+- **View Progress. Priority: high. Cost: 7 days.**
   - test
-- **User Database**
+- **User Database. Priority: medium. Cost: 5 days.**
   - test
-- **Learning Pages**
+- **Learning Pages. Priority: medium. Cost: 3 days.**
   - test
-- **Badges and Awards**
+- **Badges and Awards. Priority: low. Cost: 2 days.**
   - test
-- **Progress Bar**
+- **Progress Bar. Priority: low. Cost: 1 day.**
   - test
