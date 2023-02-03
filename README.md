@@ -17,3 +17,7 @@ SyntaxSage is a program that aims to help users learn and master programming lan
   - Badges: Create a reward system to celebrate progress, by awarding the user badges to display on their profile. Assign users badges based on their current fluency in a programming languages syntax.
 - **Progress Bar: insert user story here. Priority: low. Cost: 1 day.**
   - Progress Bar: Implement a progress bar on the home screen of the application to supplement the progress section, by giving the user a quick way to view their completion in the course at a glance.
+
+## Iteration 2
+- **Fill in itr2 details here.**
+  - Fill in itr2 details here.
