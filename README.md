@@ -5,13 +5,15 @@ SyntaxSage is a program that aims to help users learn and master programming lan
 
 ## Iteration 1
 - **Syntax Testing: insert user story here. Priority: high. Cost: 8 days.**
-  - Test Syntax: Implement the main functionality of the app, test users knowledge of a given language's syntax by offering multiple types of problems (fill in the blank, drag and drop, etc). Utilize inheritance, have a question ancestor that splits off into different forms of questions.
+  - Test Syntax: Implement the main functionality of the app, test users knowledge of a given language's syntax by offering multiple types of problems (fill in the blank, drag and drop, etc). Utilize inheritance, have a question ancestor that splits off into different forms of questions. Priority: high. Cost: 8 days.
 - **View Progress: insert user story here. Priority: high. Cost: 7 days.**
-  - Show Progress Screen: Implement functionality that allows user to view syntax learning progress in Swing-based GUI, avoid clutter and ensure the best visual experience for the user.
+  - Show Progress Screen: Implement functionality that allows user to view syntax learning progress in Swing-based GUI, avoid clutter and ensure the best visual experience for the user. Priority: high. Cost: 7 days.
 - **Learning Pages: insert user story here. Priority: medium. Cost: 3 days.**
-  - Display "Learning Pages": Give the user important documentation pertinent to the language they are learning. Show this information in a seperate window.
+  - Display "Learning Pages": Give the user important documentation pertinent to the language they are learning. Show this information in a seperate window. Priority: medium. Cost: 2 days.
+  - Save Notes: Allow the user to save specified elements of the documentation to look at later. Store saved notes in a seperate tab. Priority: low. Cost: 1 day.
 - **Badges and Awards: insert user story here. Priority: low. Cost: 2 days.**
-  - Badges: Create a reward system to celebrate progress, by awarding the user badges to display on their profile. Assign users badges based on their current fluency in a programming languages syntax.
+  - Badges: Create a reward system to celebrate progress, by awarding the user badges to display on their profile. Assign users badges based on their current fluency in a programming languages syntax. Priority: low. Cost: 1 day.
+  - Awards: Give the user a "Hot Streak" award appropriate to how many questions they've solved in a row.
 - **Progress Bar: insert user story here. Priority: low. Cost: 1 day.**
   - Progress Bar: Implement a progress bar on the home screen of the application to supplement the progress section, by giving the user a quick way to view their completion in the course at a glance.
 
