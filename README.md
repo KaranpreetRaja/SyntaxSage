@@ -6,6 +6,5 @@ SyntaxSage is a program that aims to help users learn and master programming lan
 ## Iteration 1
 - Syntax Testing
   - test
-
 - Syntax Testing
   - test
