@@ -4,7 +4,15 @@ SyntaxSage is a program that aims to help users learn and master programming lan
 # Planning Document
 
 ## Iteration 1
-- Syntax Testing
+- **Syntax Testing**
   - test
-- Syntax Testing
+- **View Progress**
+  - test
+- **User Database**
+  - test
+- **Learning Pages**
+  - test
+- **Badges and Awards**
+  - test
+- **Progress Bar**
   - test
