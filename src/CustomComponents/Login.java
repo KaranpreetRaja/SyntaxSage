@@ -1,7 +1,10 @@
 package CustomComponents;
 
+import java.awt.Dimension;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
+
 import java.awt.FlowLayout;
 
 import javax.swing.BoxLayout;
@@ -17,6 +20,7 @@ public class Login {
         // Panels:
         JPanel loginBox = new JPanel();
         JPanel buttonsPanel = new JPanel();
+        JPanel inputPanel = new JPanel();
 
         // Buttons:
         JButton signInBut = new JButton();
@@ -25,9 +29,13 @@ public class Login {
         // Labels:
         JLabel label = new JLabel("LOG IN");
 
-        // Button Style
-        signInBut.setText("Sign In");
-        goBackBut.setText("Back");
+        // JTextField
+        JTextField inputEmail = new JTextField("Email");
+        JTextField inputPassword = new JTextField("Password");
+
+        // Set Up Label
+        Dimension labelSize = new Dimension(100, 50);
+        label.setPreferredSize(labelSize);
 
         // Set Up Frame
         loginFrame.setLayout(new FlowLayout(FlowLayout.CENTER));
@@ -36,20 +44,27 @@ public class Login {
         loginFrame.setSize(500, 500);
 
         // Set Up ButtonsFrame
+        signInBut.setText("Sign In");
+        goBackBut.setText("Back");
         buttonsPanel.add(signInBut);
         buttonsPanel.add(goBackBut);
         buttonsPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
-        signInBut.setSize(10, 10);
-        goBackBut.setSize(10, 10);
+        Dimension buttonSize = new Dimension(100, 50);
+        signInBut.setPreferredSize(buttonSize);
+        goBackBut.setPreferredSize(buttonSize);
 
         // Set Up LoginBox
         loginBox.add(label);
+        loginBox.add(inputPanel);
         loginBox.add(buttonsPanel);
         loginBox.setLayout(new BoxLayout(loginBox, BoxLayout.PAGE_AXIS));
-        loginBox.setBounds(100, 100, 100, 100);
 
-        // Sizing & Positioning
-
+        // Set Up Inputs
+        inputPanel.add(inputEmail);
+        inputPanel.add(inputPassword);
+        inputPanel.setLayout(new BoxLayout(inputPanel, BoxLayout.PAGE_AXIS));
+        inputEmail.setToolTipText("Enter Email:");
+        inputPassword.setToolTipText("Enter Password");
     }
 
 }
