@@ -1,6 +1,6 @@
 package CustomComponents;
-
 import javax.swing.*;
+
 
 public class Tabs {
     public String name;
@@ -17,3 +17,4 @@ public class Tabs {
     }
 
 }
+
