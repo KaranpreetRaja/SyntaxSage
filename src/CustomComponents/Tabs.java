@@ -1,19 +1,20 @@
 package CustomComponents;
+import javax.swing.*;
 
-import javax.swing.ImageIcon;
-import javax.swing.JComponent;
 
 public class Tabs {
     public String name;
     public ImageIcon icon;
-    public JComponent pannel;
-    public String discription;
+    public JComponent panel;
+    public String description;
 
-    public Tabs(String name, ImageIcon icon, JComponent pannel, String discription) {
+
+    public Tabs(String name, ImageIcon icon, JComponent panel, String description){
         this.name = name;
         this.icon = icon;
-        this.pannel = pannel;
-        this.discription = discription;
+        this.panel = panel;
+        this.description = description;
     }
 
 }
+
