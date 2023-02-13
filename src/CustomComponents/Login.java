@@ -1,15 +1,19 @@
 package CustomComponents;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.FlowLayout;
-
+import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 
 public class Login {
     public static void main(String args[]) {
@@ -27,7 +31,7 @@ public class Login {
         JButton goBackBut = new JButton();
 
         // Labels:
-        JLabel label = new JLabel("LOG IN");
+        JLabel label = new JLabel("LOG IN   ");
 
         // JTextField
         JTextField inputEmail = new JTextField("Email");
@@ -38,10 +42,15 @@ public class Login {
         label.setPreferredSize(labelSize);
 
         // Set Up Frame
-        loginFrame.setLayout(new FlowLayout(FlowLayout.CENTER));
         loginFrame.setVisible(true);
-        loginFrame.add(loginBox);
         loginFrame.setSize(500, 500);
+        loginFrame.setLayout(new GridBagLayout());
+        GridBagConstraints constraints = new GridBagConstraints();
+        constraints.gridx = 0;
+        constraints.gridy = 0;
+        constraints.weightx = 1;
+        constraints.weighty = 1;
+        loginFrame.add(loginBox, constraints);
 
         // Set Up ButtonsFrame
         signInBut.setText("Sign In");
@@ -52,12 +61,15 @@ public class Login {
         Dimension buttonSize = new Dimension(100, 50);
         signInBut.setPreferredSize(buttonSize);
         goBackBut.setPreferredSize(buttonSize);
+        signInBut.setBackground(Color.BLUE);
+        goBackBut.setBackground(Color.BLUE);
 
         // Set Up LoginBox
         loginBox.add(label);
         loginBox.add(inputPanel);
         loginBox.add(buttonsPanel);
         loginBox.setLayout(new BoxLayout(loginBox, BoxLayout.PAGE_AXIS));
+        loginBox.setBorder(BorderFactory.createLineBorder(Color.black));
 
         // Set Up Inputs
         inputPanel.add(inputEmail);
@@ -65,6 +77,39 @@ public class Login {
         inputPanel.setLayout(new BoxLayout(inputPanel, BoxLayout.PAGE_AXIS));
         inputEmail.setToolTipText("Enter Email:");
         inputPassword.setToolTipText("Enter Password");
-    }
 
+        // Event Listener for Inputs
+        inputEmail.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (inputEmail.getText().equals("Email")) {
+                    inputEmail.setText("");
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (inputEmail.getText().isEmpty()) {
+                    inputEmail.setText("Email");
+                }
+            }
+        });
+
+        inputPassword.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (inputPassword.getText().equals("Password")) {
+                    inputPassword.setText("");
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (inputPassword.getText().isEmpty()) {
+                    inputPassword.setText("Password");
+                }
+            }
+        });
+
+    }
 }
