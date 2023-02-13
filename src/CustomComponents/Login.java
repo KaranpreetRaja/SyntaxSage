@@ -1,19 +1,8 @@
 package CustomComponents;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.FlowLayout;
-import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
+import java.awt.*;
+import javax.swing.*;
+import java.awt.event.*;
 
 public class Login {
     public static void main(String args[]) {
@@ -28,7 +17,7 @@ public class Login {
 
         // Buttons:
         JButton signInBut = new JButton();
-        JButton goBackBut = new JButton();
+        JButton registerBut = new JButton();
 
         // Labels:
         JLabel label = new JLabel("LOG IN   ");
@@ -54,15 +43,15 @@ public class Login {
 
         // Set Up ButtonsFrame
         signInBut.setText("Sign In");
-        goBackBut.setText("Back");
+        registerBut.setText("Register ");
         buttonsPanel.add(signInBut);
-        buttonsPanel.add(goBackBut);
+        buttonsPanel.add(registerBut);
         buttonsPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
         Dimension buttonSize = new Dimension(100, 50);
         signInBut.setPreferredSize(buttonSize);
-        goBackBut.setPreferredSize(buttonSize);
+        registerBut.setPreferredSize(buttonSize);
         signInBut.setBackground(Color.BLUE);
-        goBackBut.setBackground(Color.BLUE);
+        registerBut.setBackground(Color.BLUE);
 
         // Set Up LoginBox
         loginBox.add(label);
