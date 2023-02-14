@@ -1,32 +1,19 @@
 package GUI;
 
+import CustomComponents.SelectionButton;
 import java.awt.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 
-public class MultipleSelect {
+public class MultipleSelect extends JPanel {
 
-    public static void main(String[] args) {
-        JFrame frame = new JFrame();
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(800, 800);
-
-        JPanel panel = new JPanel();
-        panel.setBorder(new EmptyBorder(10, 50, 10, 50));
-        panel.setLayout(new GridLayout(2, 1, 0, 0));
-        frame.add(panel);
-
-        // TODO: fix title (set rows to 3 first)
-        /*
-        JLabel title = new JLabel("Title");
-        title.setHorizontalAlignment(JLabel.CENTER);
-        title.setFont(title.getFont().deriveFont(20.0f));
-        panel.add(title, BorderLayout.NORTH);*/
+    public MultipleSelect() {
+        setLayout(new BorderLayout());
+        setBorder(new EmptyBorder(10, 50, 10, 50));
 
         JTextArea textArea = new JTextArea();
         textArea.setEditable(false);
@@ -42,63 +29,66 @@ public class MultipleSelect {
                 text.append(line).append(System.lineSeparator());
             }
         } catch (IOException e) {
-            System.out.println("Error reading text file");
+            System.out.println("Error reading question code");
             e.printStackTrace();
         }
         textArea.setText(text.toString());
-        panel.add(textArea);
+        add(textArea, BorderLayout.NORTH);
 
         JPanel buttonPanel = new JPanel();
-        buttonPanel.setLayout(new GridLayout(3, 2, 0, 0));
-        panel.add(buttonPanel);
+        buttonPanel.setLayout(new GridLayout(2, 2, 0, 0));
+        add(buttonPanel, BorderLayout.CENTER);
 
-        Font font = new Font("Arial", Font.PLAIN, 18);
-        Border border = BorderFactory.createEmptyBorder(0, 130, 0, 0);
+        Font font = new Font("Arial", Font.PLAIN, 20);
+        Border border = BorderFactory.createEmptyBorder(50, 0, 50, 0);
         buttonPanel.setBorder(border);
 
-        JCheckBox button1 = new JCheckBox("Option 1");
+        SelectionButton button1 = new SelectionButton("Option 1");
         button1.setFont(font);
         buttonPanel.add(button1);
 
-        JCheckBox button2 = new JCheckBox("Option 2");
+        SelectionButton button2 = new SelectionButton("Option 2");
         button2.setFont(font);
         buttonPanel.add(button2);
 
-        JCheckBox button3 = new JCheckBox("Option 3");
+        SelectionButton button3 = new SelectionButton("Option 3");
         button3.setFont(font);
         buttonPanel.add(button3);
 
-        JCheckBox button4 = new JCheckBox("Option 4");
+        SelectionButton button4 = new SelectionButton("Option 4");
         button4.setFont(font);
         buttonPanel.add(button4);
 
-        // TODO: center submit button
         JButton submitButton = new JButton("Submit");
-        submitButton.setPreferredSize(new Dimension(200, 50));
-        submitButton.setBorder(new EmptyBorder(10, 10, 10, 10));
-        submitButton.setFont(font);
         submitButton.setAlignmentX(SwingConstants.CENTER);
         submitButton.setAlignmentY(SwingConstants.CENTER);
         submitButton.addActionListener(e -> {
-            String selected = "";
+            StringBuilder selectedButtons = new StringBuilder();
             if (button1.isSelected()) {
-                selected += "Option 1 ";
+                selectedButtons.append("Option 1 ");
             }
             if (button2.isSelected()) {
-                selected += "Option 2 ";
+                selectedButtons.append("Option 2 ");
             }
             if (button3.isSelected()) {
-                selected += "Option 3 ";
+                selectedButtons.append("Option 3 ");
             }
             if (button4.isSelected()) {
-                selected += "Option 4 ";
+                selectedButtons.append("Option 4 ");
             }
-            System.out.println(selected + "selected");
+            System.out.println("Selected buttons: " + selectedButtons);
         });
-        buttonPanel.add(submitButton);
+        add(submitButton, BorderLayout.SOUTH);
+    }
+
+    public static void main(String[] args) {
+        JFrame frame = new JFrame();
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(800, 800);
+
+        MultipleSelect panel = new MultipleSelect();
+        frame.add(panel);
 
         frame.setVisible(true);
-        frame.setResizable(true);
-        frame.pack();
     }
 }
