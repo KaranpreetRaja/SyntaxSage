@@ -127,4 +127,27 @@ public class DataBase {
         return  retString;
 
     }
+    public String getAccountInfo(String Username){
+        String retString="";
+        try {
+            String url = "jdbc:mysql://localhost:3306/project";
+            String uname = "rajendra";
+            String passwordForDB = "rajendra";
+            Connection connection = DriverManager.getConnection(url, uname, passwordForDB);
+            Statement statement = connection.createStatement();
+            String query = String.format("select *  from syntaxsage where username='%s'", Username);
+           ResultSet resultSet = statement.executeQuery(query);
+            if(resultSet==null) {
+                System.out.println(" ResultSet null");
+            }
+
+            while(resultSet.next()){
+                retString=String.valueOf(resultSet.getInt(1))+", "+resultSet.getString(2)+", "+resultSet.getString(3)+", "+resultSet.getString(4)+", "+resultSet.getString(5)+", "+resultSet.getString(6);
+            }
+        } catch (SQLException exception) {
+            System.out.println("SQL Exception in getID(Argument Username) method");
+        }
+        return retString;
+    }
+
 }
