@@ -1,59 +1,49 @@
-package SyntaxSage;
+package CustomComponents;
 
-public class Question
-{
+public class Question {
     private int id;
-    private  static int CUR_ID;
+    private static int CUR_ID = 0;
     private int noAns;
     private String prompt;
 
+    // Constructor
 
-    //Constructor
-
-    public Question(int id, int noAns, String prompt)
-    {
-        this.id = id;
+    public Question(int noAns, String prompt) {
+        this.id = CUR_ID;
+        CUR_ID++;
         this.noAns = noAns;
         this.prompt = prompt;
     }
 
-    public int getId()
-    {
+    public int getId() {
         return this.id;
     }
 
-    public void setId(int id)
-    {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public static int getCurId()
-    {
+    public static int getCurId() {
         return Question.CUR_ID;
     }
 
-    public static void setCurId(int CUR_ID)
-    {
+    public static void setCurId(int CUR_ID) {
         Question.CUR_ID = CUR_ID;
     }
 
-    public int getNoAns()
-    {
+    public int getNoAns() {
         return this.noAns;
     }
 
-    public void setNoAns(int noAns)
-    {
+    public void setNoAns(int noAns) {
         this.noAns = noAns;
     }
 
-    public String getPrompt()
-    {
+    public String getPrompt() {
         return this.prompt;
     }
 
-    public void setPrompt(String prompt)
-    {
+    public void setPrompt(String prompt) {
         this.prompt = prompt;
     }
 }
