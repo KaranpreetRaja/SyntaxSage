@@ -152,7 +152,7 @@ public class DataBase {
         return  retString;
 
     }
-    
+
     public String getAccountInfo(String Username){
         String retString="";
         try {
@@ -172,6 +172,33 @@ public class DataBase {
             }
         } catch (SQLException exception) {
             System.out.println("SQL Exception in getID(Argument Username) method");
+        }
+        return retString;
+    }
+
+    public String getAllUsernames(){
+        String retString="";
+        try {
+            String url = "jdbc:mysql://localhost:3306/project";
+            String uname = "rajendra";
+            String passwordForDB = "rajendra";
+            Connection connection = DriverManager.getConnection(url, uname, passwordForDB);
+            Statement statement = connection.createStatement();
+            String query = String.format("select username  from syntaxsage");
+            ResultSet resultSet = statement.executeQuery(query);
+            if(resultSet==null) {
+                System.out.println(" ResultSet null");
+            }
+            int i=1;
+            while(resultSet.next()){
+
+
+                retString+=resultSet.getString(1)+", ";
+//                System.out.println(resultSet.getString(1));
+            }
+            retString=retString.substring(0,retString.length()-2);
+        } catch (SQLException exception) {
+            System.out.println("SQL Exception in getAllUsernames() method");
         }
         return retString;
     }
