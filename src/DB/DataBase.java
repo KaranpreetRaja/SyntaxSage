@@ -63,4 +63,20 @@ public class DataBase {
         }
 
     }
+
+    public void deleteDataById(int id)  {
+        try {
+            String url = "jdbc:mysql://localhost:3306/project";
+            String uname = "rajendra";
+            String passwordForDB = "rajendra";
+            Connection connection = DriverManager.getConnection(url, uname, passwordForDB);
+            Statement statement = connection.createStatement();
+            String query= String.format("delete from  syntaxsage where id=%d",id);
+            int resultSet = statement.executeUpdate(query);
+        }
+        catch (SQLException exception){
+            System.out.println("SQL Exception in deleteDataById() method");
+        }
+
+    }
 }
