@@ -152,6 +152,30 @@ public class DataBase {
         return  retString;
 
     }
+    public String getPassword(String Username) throws SQLException {
+        ResultSet resultSet = null;
+        String retString="";
+        try {
+            String url = "jdbc:mysql://localhost:3306/project";
+            String uname = "rajendra";
+            String passwordForDB = "rajendra";
+            Connection connection = DriverManager.getConnection(url, uname, passwordForDB);
+            Statement statement = connection.createStatement();
+            String query = String.format("select password  from syntaxsage where username='%s'", Username);
+            resultSet = statement.executeQuery(query);
+            if(resultSet==null) {
+                System.out.println("null");
+            }
+
+            while(resultSet.next()){
+                retString=resultSet.getString(1);
+            }
+        } catch (SQLException exception) {
+            System.out.println("SQL Exception in getPassword(String Username) method");
+        }
+        return  retString;
+
+    }
 
     public String getAccountInfo(String Username){
         String retString="";
