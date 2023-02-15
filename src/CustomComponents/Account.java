@@ -1,5 +1,8 @@
 //Imports
 import java.util.ArrayList;
+import java.io.File;
+import java.io.FileWriter;
+import java.util.Scanner;
 
 /**
 * Account Class
@@ -13,7 +16,6 @@ class Account {
     private String accountPass;
     private int ID;
     private ArrayList<codeLang> langList;
-    public static int curID = 0;
 
     /**
     * Default Constructor for Account Object
@@ -21,8 +23,7 @@ class Account {
     public Account() {
         this.accountName = "";
         this.accountPass = "";
-        this.ID = curID;
-        curID++;
+        this.ID = currentID();
         this.langList = new ArrayList<codeLang>();
     }
 
@@ -34,8 +35,7 @@ class Account {
     public Account(String accountName, String accountPass) {
         this.accountName = accountName;
         this.accountPass = accountPass;
-        this.ID = curID;
-        curID++;
+        this.ID = currentID();
         this.langList = new ArrayList<codeLang>();
     }
 
@@ -137,6 +137,36 @@ class Account {
             }
         }
         return false;
+    }
+
+    /**
+    * Reads the currentID from file and increments it in file
+    * @return int curID
+    */
+    private int currentID() {
+        try {
+            //Read Current ID and Delete curID.txt
+            File curIDFile = new File("curID.txt");
+            Scanner scannerID = new Scanner(curIDFile);
+            while (scannerID.hasNextLine()) {
+                String ID = Integer.parseInt(scannerID.nextLine());
+            }
+            scannerID.close();
+            curIDFile.delete();
+
+            //Create curID.txt and write CurrentID+1
+            File newIDFile = new File("curID.txt");
+            newIDFile.createNewFile();
+            int newID = ID + 1;
+            FileWriter IDWriter = new FileWriter("curID.txt");
+            IDWriter.write(newID);
+            IDWriter.close();
+
+            return ID;
+        }
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
 }
