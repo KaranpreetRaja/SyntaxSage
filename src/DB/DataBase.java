@@ -21,6 +21,13 @@ public class DataBase {
 
     //Constructor
 
+    public DataBase() {
+        this.username = "";
+        this.password = "";
+        this.classes = "";
+        this.experience = "";
+        this.accountCreateDate = "";
+    }
 
     public DataBase( String username, String password, String classes, String experience, String accountCreateDate) {
         this.username = username;
