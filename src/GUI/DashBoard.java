@@ -2,7 +2,12 @@ package GUI;
 import CustomComponents.*;
 
 public class DashBoard extends javax.swing.JFrame {
+    private Account acc;
 
+    public DashBoard(Account acc) {
+        this.acc = acc;
+        initComponents();
+    }
     public DashBoard() {
         initComponents();
     }
@@ -87,13 +92,13 @@ public class DashBoard extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Learning", jPanel1);
 
-        jLabel2.setText("Username: ");
+        jLabel2.setText(String.format("Username: %s", acc.getUsername()));
 
-        jLabel3.setText("Account Creation Date: ");
+        jLabel3.setText(String.format("Account Creation Date: %s", acc.getCreationDate()));
 
-        jLabel4.setText("Account ID:");
+        jLabel4.setText(String.format("Account ID: %d", acc.getID()));
 
-        jLabel5.setText("Courses: ");
+        jLabel5.setText(String.format("Courses: %s", acc.getCourses()));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
