@@ -2,6 +2,9 @@ package GUI;
 
 import java.awt.*;
 import javax.swing.*;
+
+import CustomComponents.*;
+
 import java.awt.event.*;
 import java.util.ArrayList;
 
@@ -106,7 +109,7 @@ public class Login {
             public void actionPerformed(ActionEvent e) {
                 String username = inputUser.getText();
                 String password = inputPassword.getText();
-                int check = signIn(username, password);
+                int check = Account.signIn(username, password);
 
                 if (check == -1) {
                     JLabel message = new JLabel("Wrong Username or Password");
