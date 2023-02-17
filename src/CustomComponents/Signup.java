@@ -4,23 +4,23 @@ import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
 
-public class Login {
+public class Signup {
     public static void main(String args[]) {
         // Frame:
-        JFrame loginFrame = new JFrame("Login Page");
-        loginFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        JFrame signUpFrame = new JFrame("Login Page");
+        signUpFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // Panels:
-        JPanel loginBox = new JPanel();
+        JPanel signupBox = new JPanel();
         JPanel buttonsPanel = new JPanel();
         JPanel inputPanel = new JPanel();
 
         // Buttons:
-        JButton signInBut = new JButton();
-        JButton registerBut = new JButton();
+        JButton signUpBut = new JButton();
+        JButton backBut = new JButton();
 
         // Labels:
-        JLabel label = new JLabel("LOG IN");
+        JLabel label = new JLabel("Sign Up");
 
         // JTextField
         JTextField inputUser = new JTextField("Username");
@@ -32,34 +32,34 @@ public class Login {
         label.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         // Set Up Frame
-        loginFrame.setVisible(true);
-        loginFrame.setSize(500, 500);
-        loginFrame.setLayout(new GridBagLayout());
+        signUpFrame.setVisible(true);
+        signUpFrame.setSize(500, 500);
+        signUpFrame.setLayout(new GridBagLayout());
         GridBagConstraints constraints = new GridBagConstraints();
         constraints.gridx = 0;
         constraints.gridy = 0;
         constraints.weightx = 1;
         constraints.weighty = 1;
-        loginFrame.add(loginBox, constraints);
+        signUpFrame.add(signupBox, constraints);
 
         // Set Up ButtonsFrame
-        signInBut.setText("Sign In");
-        registerBut.setText("Register");
-        buttonsPanel.add(signInBut);
-        buttonsPanel.add(registerBut);
+        signUpBut.setText("Sign Up");
+        backBut.setText("Back");
+        buttonsPanel.add(signUpBut);
+        buttonsPanel.add(backBut);
         buttonsPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
         Dimension buttonSize = new Dimension(100, 50);
-        signInBut.setPreferredSize(buttonSize);
-        registerBut.setPreferredSize(buttonSize);
-        signInBut.setBackground(Color.yellow);
-        registerBut.setBackground(Color.yellow);
+        signUpBut.setPreferredSize(buttonSize);
+        backBut.setPreferredSize(buttonSize);
+        signUpBut.setBackground(Color.pink);
+        backBut.setBackground(Color.pink);
 
-        // Set Up LoginBox
-        loginBox.add(label);
-        loginBox.add(inputPanel);
-        loginBox.add(buttonsPanel);
-        loginBox.setLayout(new BoxLayout(loginBox, BoxLayout.PAGE_AXIS));
-        loginBox.setBorder(BorderFactory.createLineBorder(Color.black));
+        // Set Up SignUpBox
+        signupBox.add(label);
+        signupBox.add(inputPanel);
+        signupBox.add(buttonsPanel);
+        signupBox.setLayout(new BoxLayout(signupBox, BoxLayout.PAGE_AXIS));
+        signupBox.setBorder(BorderFactory.createLineBorder(Color.black));
 
         // Set Up Inputs
         inputPanel.add(inputUser);
