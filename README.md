@@ -3,7 +3,7 @@ SyntaxSage is a program that aims to help users learn and master programming lan
 
 # Planning Documents
 ## :blush: [Iteration 1 Planning Document](Planning%20Documents/Iteration1.md)
-
+## :open_book: [Wiki](https://github.com/KaranpreetRaja/SyntaxSage/wiki)
 ## :computer: [Development Guidelines](Planning%20Documents/DevGuidelines.md)
 
 # Contributors
