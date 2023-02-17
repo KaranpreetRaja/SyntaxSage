@@ -124,7 +124,7 @@ public class SignUpPage extends Login {
                     loginFrame.add(message);
                 }
                 else {
-                    //TODO: Karan Add Link
+                    Account account = Account.getAccount(accountID);
                 }
             }
         });

@@ -114,6 +114,7 @@ public class Login {
                 }
 
                 else {
+                    Account account = Acount.getAccount(check);
                     // TODO: Add code that transfer the user to the next frame after loging in.
                 }
             }
