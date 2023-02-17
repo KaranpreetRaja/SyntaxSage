@@ -135,10 +135,16 @@ class Account {
             if (this.langList.contains("Java")) {
                 this.langList = "Java,";
             }
+            else {
+                this.langList = ",";
+            }
         }
         else if (Object.equals(oldLang, "Java,")) {
             if (this.langList.contains("Python,")) {
                 this.langList = "Python";
+            }
+            else {
+                this.langList = ",";
             }
         }
     }
