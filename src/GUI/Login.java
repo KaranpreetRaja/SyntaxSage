@@ -117,6 +117,7 @@ public class Login {
                 }
 
                 else {
+                    Account accPass = Account.getAccount(check);
                     DashBoard db = new DashBoard(Account acc);
                     loginFrame.setVisible(false);
                     db.setVisible(true);

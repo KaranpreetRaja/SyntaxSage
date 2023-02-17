@@ -124,8 +124,10 @@ public class SignUpPage extends Login {
                     JLabel message = new JLabel("Invalid Registration");
                     loginFrame.add(message);
                 } else {
-                    // TODO: Karan Add Link
-
+                    Account accPass = Account.getAccount(accountID);
+                    DashBoard db = new DashBoard(Account acc);
+                    loginFrame.setVisible(false);
+                    db.setVisible(true);
                 }
             }
         });
