@@ -85,7 +85,7 @@ class Account {
     * Getter method for ID
     * @return ID int
     */
-    public int ID() {
+    public int getID() {
         return this.ID;
     }
 
@@ -211,5 +211,32 @@ class Account {
             }
         }
         return -1;
+    }
+
+    /**
+    * Account Creation Method
+    * @param username Account Username
+    * @param password Account Password
+    * @param accountList List of Existing Accounts
+    * @return boolean -1 if account exists, 0 if error, 1 if account creation success
+    */
+    public int accountSignUp(String username, String password, ArrayList<Account> accountList) {
+        try {
+        for (int i = 0; i < accountList.size(), i++) {
+            if (Objects.equals(account.get(i).getName(), username)) {
+                return -1;
+            }
+        Account newAccount = createAccount(username, password);
+        accountList.add(newAccount);
+        FileWriter accountFile = new FileWriter("Account.txt");
+        accountFile.newLine();
+        String fileString = username + "!" + password + "!" + newAccount.getID() + "!,";
+        accountFile.write(fileString);
+        return 1;
+        }
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
+            return 0;
+        }
     }
 }
