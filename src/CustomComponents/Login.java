@@ -114,8 +114,10 @@ public class Login {
                 }
 
                 else {
-                    Account account = Acount.getAccount(check);
-                    // TODO: Add code that transfer the user to the next frame after loging in.
+                    DashBoard db = new DashBoard(Account acc);
+                    loginFrame.setVisible(false);
+                    db.setVisible(true);
+
                 }
             }
         });
@@ -126,8 +128,7 @@ public class Login {
             public void actionPerformed(ActionEvent e) {
                 SignUpPage RegisterPage = new SignUpPage();
                 loginFrame.setVisible(false);
-
-                // TODO: Add code that switches to Sign Up pages.
+                RegisterPage.setVisible(true);
             }
 
         });
