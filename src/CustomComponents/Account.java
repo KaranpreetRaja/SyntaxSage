@@ -10,7 +10,7 @@ import java.util.Objects;
 * Keeps track of personal details relating to the account
 * @author Ryan Lyn
 */
-class Account {
+public class Account {
 
     //Class Attributes
     private String accountName;
@@ -232,6 +232,7 @@ class Account {
             if (Objects.equals(account.get(i).getName(), username)) {
                 return -1;
             }
+        }
         Account newAccount = createAccount(username, password);
         accountList.add(newAccount);
         FileWriter accountFile = new FileWriter("Account.txt");
