@@ -117,6 +117,7 @@ public class Login {
                     DashBoard db = new DashBoard(Account acc);
                     loginFrame.setVisible(false);
                     db.setVisible(true);
+
                 }
             }
         });
