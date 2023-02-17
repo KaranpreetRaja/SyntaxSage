@@ -106,11 +106,12 @@ public class Login {
             public void actionPerformed(ActionEvent e) {
                 String username = inputUser.getText();
                 String password = inputPassword.getText();
-                int check = signIn(username, password);
-
+                ArrayList<Account> accountList = extractAccount();
+                int check = accountLogIn(username, password, accountList);
+                // TODO: Fixed these errors cuz Account.java is acting up
                 if (check == -1) {
                     JLabel message = new JLabel("Wrong Username or Password");
-                    loginFrame.add(message);
+                    loginBox.add(message);
                 }
 
                 else {
@@ -123,9 +124,8 @@ public class Login {
         registerBut.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                SignUpPage RegisterPage = new SignUpPage();
                 loginFrame.setVisible(false);
-
+                SignUpPage.setVisible(true);
                 // TODO: Add code that switches to Sign Up pages.
             }
 

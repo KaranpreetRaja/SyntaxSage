@@ -3,9 +3,9 @@ package CustomComponents;
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
+import java.util.ArrayList;
 
-public class SignUpPage extends Login {
-
+class SignUpPage {
     public static void main(String args[]) {
         // Frame:
         JFrame signUpFrame = new JFrame("Signup Page");
@@ -121,10 +121,9 @@ public class SignUpPage extends Login {
                 int accountID = signUp(username, password, courses);
                 if (accountID == -1) {
                     JLabel message = new JLabel("Invalid Registration");
-                    loginFrame.add(message);
-                }
-                else {
-                    //TODO: Karan Add Link
+                    signupBox.add(message);
+                } else {
+                    // TODO: Karan Add Link
                 }
             }
         });
