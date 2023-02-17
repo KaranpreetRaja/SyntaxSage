@@ -99,5 +99,28 @@ public class Login {
             }
         });
 
+        // Check Account Details and Sign In
+        signInBut.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String username = inputUser.getText();
+                String password = inputPassword.getText();
+
+                // test
+                System.out.println(username + " " + password);
+            }
+        });
+
+        // Swwitch to Register Panel
+        registerBut.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                SignUpPage RegisterPage = new SignUpPage();
+                loginFrame.setVisible(false);
+
+            }
+
+        });
     }
+
 }

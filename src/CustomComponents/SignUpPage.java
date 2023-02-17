@@ -4,10 +4,11 @@ import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
 
-public class Signup {
-    public static void main(String args[]) {
+public class SignUpPage extends Login {
+
+    public SignUpPage() {
         // Frame:
-        JFrame signUpFrame = new JFrame("Login Page");
+        JFrame signUpFrame = new JFrame("Signup Page");
         signUpFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // Panels:
@@ -99,5 +100,21 @@ public class Signup {
             }
         });
 
+        // Add Account Details and Register User
+        signUpBut.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String username = inputUser.getText();
+                String password = inputPassword.getText();
+
+                // test
+                System.out.println(username + " " + password);
+            }
+        });
     }
+
+    public static void main(String args[]) {
+        SignUpPage signUpPage = new SignUpPage();
+    }
+    ]
 }
