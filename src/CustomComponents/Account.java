@@ -3,6 +3,7 @@ package CustomComponents;
 import java.util.ArrayList;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import DB.DataBase;
 
 
 public class Account{
@@ -24,9 +25,9 @@ public class Account{
 
     public Account(int ID) {
         DataBase database = new DataBase();
-        database.connectToDatabase();
+        database.connectToDataBase();
         String username = database.getUsername(ID);
-        String[5] accountInfo = database.getAccountInfo(username).split(", ");
+        String[] accountInfo = database.getAccountInfo(username).split(", ");
 
         this.ID = ID;
         this.username = accountInfo[0];
@@ -44,13 +45,13 @@ public class Account{
     public static void createAccount(String username, String password, String courses) {
         String accountCreationDate = (LocalDateTime.now()).format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
         DataBase database = new DataBase(username, password, courses, "", accountCreationDate);
-        database.connectToDatabase();
+        database.connectToDataBase();
         database.addData();
     }
 
     public int signIn(String username, String password) {
         DataBase database = new DataBase();
-        database.connectToDatabase();
+        database.connectToDataBase();
         String[] usernameList = database.getAllUsernames().split(", ");
         for (int i = 0; i < usernameList.length(); i++) {
             if (username.equals(usernameList[i])) {
@@ -67,9 +68,9 @@ public class Account{
 
     public int signUp(String username, String password, ArrayList<String> courses) {
         DataBase database = new DataBase();
-        database.connectToDatabase();
+        database.connectToDataBase();
         String[] usernameList = database.getAllUsernames().split(", ");
-        for (int i = 0; i < usernameList.length(); i++) {
+        for (int i = 0; i < usernameList.length; i++) {
             if (username.equals(usernameList[i])) {
                 return -1;
             }
