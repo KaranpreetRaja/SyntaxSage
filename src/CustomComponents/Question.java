@@ -66,7 +66,7 @@ public class Question {
     public void setAnswers(String[] answers) {
         this.answers = answers;
     }
-    /*
+    
     public boolean isAnswer(String str) {
         // Check if the given string is present in the answers array
         for (String answer : answers) {
@@ -88,5 +88,5 @@ public class Question {
         }
         return sb.toString();
     }
-    */
+    
 }
