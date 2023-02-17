@@ -6,7 +6,7 @@ import java.awt.event.*;
 
 public class SignUpPage extends Login {
 
-    public SignUpPage() {
+    public static void main(String args[]) {
         // Frame:
         JFrame signUpFrame = new JFrame("Signup Page");
         signUpFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -20,8 +20,15 @@ public class SignUpPage extends Login {
         JButton signUpBut = new JButton();
         JButton backBut = new JButton();
 
+        // DropDown Menu
+        String[] options = { "Python", "Java", "Javascript", "Ruby", "C++" };
+        JList<String> dropdownMenu = new JList<>(options);
+        dropdownMenu.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+        JScrollPane selectCoures = new JScrollPane(dropdownMenu);
+
         // Labels:
         JLabel label = new JLabel("Sign Up");
+        JLabel label2 = new JLabel("Select Courses:");
 
         // JTextField
         JTextField inputUser = new JTextField("Username");
@@ -31,6 +38,8 @@ public class SignUpPage extends Login {
         Dimension labelSize = new Dimension(100, 50);
         label.setPreferredSize(labelSize);
         label.setAlignmentX(Component.CENTER_ALIGNMENT);
+        label2.setPreferredSize(labelSize);
+        label2.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         // Set Up Frame
         signUpFrame.setVisible(true);
@@ -58,6 +67,8 @@ public class SignUpPage extends Login {
         // Set Up SignUpBox
         signupBox.add(label);
         signupBox.add(inputPanel);
+        signupBox.add(label2);
+        signupBox.add(selectCoures);
         signupBox.add(buttonsPanel);
         signupBox.setLayout(new BoxLayout(signupBox, BoxLayout.PAGE_AXIS));
         signupBox.setBorder(BorderFactory.createLineBorder(Color.black));
