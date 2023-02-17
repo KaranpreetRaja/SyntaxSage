@@ -118,9 +118,10 @@ public class SignUpPage extends Login {
                 String username = inputUser.getText();
                 String password = inputPassword.getText();
                 ArrayList<String> courses = dropdownMenu.getSelectedValuesList();
-                int accountID = accountSignUp(username, password, courses);
+                int accountID = signUp(username, password, courses);
                 if (accountID == -1) {
-                    //TODO: Prompt Fail Message
+                    JLabel message = new JLabel("Invalid Registration");
+                    loginFrame.add(message);
                 }
                 else {
                     //TODO: Karan Add Link
