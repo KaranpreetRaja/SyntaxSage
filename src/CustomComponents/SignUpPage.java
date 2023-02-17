@@ -117,10 +117,15 @@ public class SignUpPage extends Login {
             public void actionPerformed(ActionEvent e) {
                 String username = inputUser.getText();
                 String password = inputPassword.getText();
-                ArrayList<Account> accountList = extractAccount();
-                accountSignUp(username, password, accountList);
-
-                // TODO: add code to go back to the login Page.
+                ArrayList<String> courses = dropdownMenu.getSelectedValuesList();
+                int accountID = signUp(username, password, courses);
+                if (accountID == -1) {
+                    JLabel message = new JLabel("Invalid Registration");
+                    loginFrame.add(message);
+                }
+                else {
+                    //TODO: Karan Add Link
+                }
             }
         });
 

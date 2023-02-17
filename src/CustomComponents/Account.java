@@ -1,64 +1,87 @@
 import java.util.ArrayList;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
-class Account {
 
-    private String accountName;
-    private String accountPass;
-    private int ID;
-    private ArrayList<String> classes;
-    public static int curID = 0;
+public class Account{
+    public String username;
+    public String password;
+    public String courses;
+    public String experience;
+    public String creationDate;
 
-    //
     public Account() {
-        this.accountName = "";
-        this.accountPass = "";
-        this.ID = curID;
-        curID++;
-        this.classes = new ArrayList<String>();
+        this.username = "";
+        this.password = "";
+        this.courses = "";
+        this.experience = "";
+        this.creationDate = "";
     }
 
-    public Account(String accountName, String accountPass) {
-        this.accountName = accountName;
-        this.accountPass = accountPass;
-        this.ID = curID;
-        curID++;
-        this.classes = new ArrayList<String>();
+    public Account(int ID) {
+        DataBase database = new DataBase();
+        database.connectToDatabase();
+        String username = database.getUsername(ID);
+        String[5] accountInfo = database.getAccountInfo(username).split(", ");
+
+        this.username = accountInfo[0];
+        this.password = accountInfo[1];
+        this.courses = accountInfo[2];
+        this.experience = accountInfo[3];
+        this.creationDate = accountInfo[4];
     }
 
-    public static Account createAccount(String accountName, String accountPass) {
-        Account newAccount = new Account(accountName, accountPass);
-        return newAccount;
+    public Account(String username, String password, String courses, String experience, String creationDate) {
+        this.username = username;
+        this.password = password;
+        this.courses = courses;
+        this.experience = experience;
+        this.creationDate = creationDate;
     }
 
-    public String getUsername() {
-        return this.accountName;
+    public static Account getAccount(int ID) {
+        Account accountObject = new Account(ID);
+        return accountObject;
     }
 
-    public int ID() {
-        return this.ID;
+    public static void createAccount(String username, String password, String courses) {
+        String accountCreationDate = (LocalDateTime.now()).format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        DataBase database = new DataBase(username, password, courses, "", accountCreationDate);
+        database.connectToDatabase();
+        database.addData();
     }
 
-    private void setUsername(String newUsername) {
-        this.accountName = newUsername;
-    }
-
-    private void setPassword(String newPassword) {
-        this.accountPass = newPassword;
-    }
-
-    public ArrayList<String> getClasses() {
-        return this.classes;
-    }
-
-    private void enrollClasses(String newClass) {
-        // Check if Language exists in database first
-        this.classes.add(newClass);
-    }
-
-    private void unenrollClasses(String oldClass) {
-        if (this.classes.contains(oldClass)) {
-            this.classes.remove(oldClass);
+    public int signIn(String username, String password) {
+        DataBase database = new DataBase();
+        database.connectToDatabase();
+        String[] usernameList = database.getAllUsernames().split(", ");
+        for (int i = 0; i < usernameList.length(); i++) {
+            if (username.equals(usernameList[i])) {
+                if (password.equals(database.getPassword(usernameList[i]))) {
+                    return database.getID(username);
+                }
+                else {
+                    return -1;
+                }
+            }
         }
+        return -1;
     }
 
+    public int signUp(String username, String password, ArrayList<String> courses) {
+        DataBase database = new DataBase();
+        database.connectToDatabase();
+        String[] usernameList = database.getAllUsernames().split(", ");
+        for (int i = 0; i < usernameList.length(); i++) {
+            if (username.equals(usernameList[i])) {
+                return -1;
+            }
+        }
+        String courseString = ""
+        for (int j = 0; j < courses.size(); j++){
+            courseString = courseString + courses.get(j);
+        }
+        createAccount(username, password, courseString);
+        return database.getID(username);
+    }
 }
