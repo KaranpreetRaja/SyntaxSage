@@ -6,7 +6,7 @@ import java.awt.event.*;
 
 public class SignUpPage extends Login {
 
-    public static void main(String args[]) {
+    public SignUpPage() {
         // Frame:
         JFrame signUpFrame = new JFrame("Signup Page");
         signUpFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -122,9 +122,8 @@ public class SignUpPage extends Login {
                 if (accountID == -1) {
                     JLabel message = new JLabel("Invalid Registration");
                     loginFrame.add(message);
-                }
-                else {
-                    //TODO: Karan Add Link
+                } else {
+                    // TODO: Karan Add Link
                 }
             }
         });
