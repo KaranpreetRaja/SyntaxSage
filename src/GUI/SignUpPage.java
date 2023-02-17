@@ -4,6 +4,10 @@ import java.awt.*;
 import javax.swing.*;
 
 import java.awt.event.*;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import CustomComponents.*;
 
 public class SignUpPage extends Login {
 
@@ -26,6 +30,7 @@ public class SignUpPage extends Login {
         JList<String> dropdownMenu = new JList<>(options);
         dropdownMenu.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
         JScrollPane selectCoures = new JScrollPane(dropdownMenu);
+        JScrollPane selectCourses = new JScrollPane(dropdownMenu);
 
         // Labels:
         JLabel label = new JLabel("Sign Up");
@@ -70,6 +75,7 @@ public class SignUpPage extends Login {
         signupBox.add(inputPanel);
         signupBox.add(label2);
         signupBox.add(selectCoures);
+        signupBox.add(selectCourses);
         signupBox.add(buttonsPanel);
         signupBox.setLayout(new BoxLayout(signupBox, BoxLayout.PAGE_AXIS));
         signupBox.setBorder(BorderFactory.createLineBorder(Color.black));
@@ -118,14 +124,24 @@ public class SignUpPage extends Login {
             public void actionPerformed(ActionEvent e) {
                 String username = inputUser.getText();
                 String password = inputPassword.getText();
-                ArrayList<String> courses = dropdownMenu.getSelectedValuesList();
-                int accountID = signUp(username, password, courses);
+                ArrayList courses = (ArrayList) dropdownMenu.getSelectedValuesList();
+                Account account = new Account();
+                int accountID = 0;
+                try {
+                    accountID = account.signUp(username, password, courses);
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
+                }
                 if (accountID == -1) {
                     JLabel message = new JLabel("Invalid Registration");
                     loginFrame.add(message);
                 } else {
-                    Account accPass = Account.getAccount(accountID);
-                    DashBoard db = new DashBoard(Account acc);
+                    try {
+                        Account accPass = Account.getAccount(accountID);
+                    } catch (SQLException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                    DashBoard db = new DashBoard(account);
                     loginFrame.setVisible(false);
                     db.setVisible(true);
                 }
@@ -135,3 +151,4 @@ public class SignUpPage extends Login {
     }
 
 }
+

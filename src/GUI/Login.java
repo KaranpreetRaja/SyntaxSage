@@ -6,10 +6,14 @@ import javax.swing.*;
 import CustomComponents.*;
 
 import java.awt.event.*;
-import java.util.ArrayList;
+import java.sql.SQLException;
 
-public class Login {
-    public static void main(String args[]) {
+import CustomComponents.Account;
+import DB.Database;
+
+public class Login extends JFrame{
+    public JFrame loginFrame;
+    public static void main(String[] args) {
         // Frame:
         JFrame loginFrame = new JFrame("Login Page");
         loginFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -109,33 +113,37 @@ public class Login {
             public void actionPerformed(ActionEvent e) {
                 String username = inputUser.getText();
                 String password = inputPassword.getText();
-                int check = Account.signIn(username, password);
+                int check = 0;
+                try {
+                    check = Account.signIn(username, password);
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
+                }
 
                 if (check == -1) {
                     JLabel message = new JLabel("Wrong Username or Password");
                     loginFrame.add(message);
-                }
-
-                else {
-                    Account accPass = Account.getAccount(check);
-                    DashBoard db = new DashBoard(Account acc);
+                } else {
+                    Account acc = new Account();
+                    Account myAccount = acc.getAccount();
+                    DashBoard db = new DashBoard(myAccount);
                     loginFrame.setVisible(false);
                     db.setVisible(true);
-
                 }
-            }
-        });
 
-        // Swwitch to Register Panel
-        registerBut.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                SignUpPage RegisterPage = new SignUpPage();
-                loginFrame.setVisible(false);
-                RegisterPage.setVisible(true);
+                // Switch to Register Panel
+                registerBut.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        SignUpPage registerPage = new SignUpPage();
+                        loginFrame.setVisible(false);
+                        registerPage.setVisible(true);
+                    }
+                });
             }
-
         });
     }
-
+    public JFrame getLoginFrame() {
+        return loginFrame;
+    }
 }
