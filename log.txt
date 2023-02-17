@@ -33,3 +33,7 @@ Ensure that all individual components are complete, start working together to in
 
 Thurs, Feb 16 - Discord Call
 Write and run tests for domain-specific and business logic classes using the JUnit test framework. Ensure everyone used the same coding style, and put the finishing touches on the wiki.Executed the test classes and rechecked the work. Ready to submit.
+
+Wed, Mar 1 - Lecture
+Reviewed big ideas to implement and assigned research and design tasks.
+
