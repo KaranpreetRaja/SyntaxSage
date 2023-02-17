@@ -1,12 +1,14 @@
 package CustomComponents;
 
+import DB.Database;
+
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import DB.DataBase;
 
 
-public class Account{
+public class Account {
     private int ID;
     private String username;
     private String password;
@@ -23,9 +25,9 @@ public class Account{
         this.creationDate = "";
     }
 
-    public Account(int ID) {
-        DataBase database = new DataBase();
-        database.connectToDataBase();
+    public Account(int ID) throws SQLException {
+        Database database = new Database();
+        database.connectToDatabase();
         String username = database.getUsername(ID);
         String[] accountInfo = database.getAccountInfo(username).split(", ");
 
@@ -37,28 +39,26 @@ public class Account{
         this.creationDate = accountInfo[4];
     }
 
-    public static Account getAccount(int ID) {
-        Account accountObject = new Account(ID);
-        return accountObject;
+    public static Account getAccount(int ID) throws SQLException {
+        return new Account(ID);
     }
 
     public static void createAccount(String username, String password, String courses) {
         String accountCreationDate = (LocalDateTime.now()).format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-        DataBase database = new DataBase(username, password, courses, "", accountCreationDate);
-        database.connectToDataBase();
+        Database database = new Database(username, password, courses, "", accountCreationDate);
+        database.connectToDatabase();
         database.addData();
     }
 
-    public static int signIn(String username, String password) {
-        DataBase database = new DataBase();
-        database.connectToDataBase();
+    public static int signIn(String username, String password) throws SQLException {
+        Database database = new Database();
+        database.connectToDatabase();
         String[] usernameList = database.getAllUsernames().split(", ");
-        for (int i = 0; i < usernameList.length(); i++) {
-            if (username.equals(usernameList[i])) {
-                if (password.equals(database.getPassword(usernameList[i]))) {
+        for (String s : usernameList) {
+            if (username.equals(s)) {
+                if (password.equals(database.getPassword(s))) {
                     return database.getID(username);
-                }
-                else {
+                } else {
                     return -1;
                 }
             }
@@ -66,21 +66,25 @@ public class Account{
         return -1;
     }
 
-    public int signUp(String username, String password, ArrayList<String> courses) {
-        DataBase database = new DataBase();
-        database.connectToDataBase();
+    public int signUp(String username, String password, ArrayList<String> courses) throws SQLException {
+        Database database = new Database();
+        database.connectToDatabase();
         String[] usernameList = database.getAllUsernames().split(", ");
-        for (int i = 0; i < usernameList.length; i++) {
-            if (username.equals(usernameList[i])) {
+        for (String s : usernameList) {
+            if (username.equals(s)) {
                 return -1;
             }
         }
-        String courseString = ""
-        for (int j = 0; j < courses.size(); j++){
-            courseString = courseString + courses.get(j);
+        String courseString = "";
+        for (String course : courses) {
+            courseString = courseString + course;
         }
         createAccount(username, password, courseString);
         return database.getID(username);
+    }
+
+    public Account getAccount() {
+        return this;
     }
 
     public int getID() {
