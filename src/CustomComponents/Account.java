@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import java.io.File;
 import java.io.FileWriter;
 import java.util.Scanner;
+import java.util.Objects;
 
 /**
 * Account Class
@@ -15,7 +16,7 @@ class Account {
     private String accountName;
     private String accountPass;
     private int ID;
-    private ArrayList<codeLang> langList;
+    private String langList;
 
     /**
     * Default Constructor for Account Object
@@ -24,11 +25,11 @@ class Account {
         this.accountName = "";
         this.accountPass = "";
         this.ID = currentID();
-        this.langList = new ArrayList<codeLang>();
+        this.langList = "";
     }
 
     /**
-    * Overloaded Constructor for Account Object
+    * Constructor for new Account Object
     * @param accountName Account Name String
     * @param accountPass Account Password String
     */
@@ -36,7 +37,21 @@ class Account {
         this.accountName = accountName;
         this.accountPass = accountPass;
         this.ID = currentID();
-        this.langList = new ArrayList<codeLang>();
+        this.langList = ""
+    }
+
+    /**
+    * Constructor for existing Account Object
+    * @param accountName Account Name String
+    * @param accountPass Account Password String
+    * @param accountID Account ID Int
+    * @param langList Account Language List String
+    */
+    public Account(String accountName, String accountPass, String accountID, String langList) {
+        this.accountName = accountName;
+        this.accountPass = accountPass;
+        this.ID = Integer.parseInt(accountID);
+        this.langList = langList;
     }
 
     /**
@@ -94,7 +109,7 @@ class Account {
     * Getter method for langList
     * @return langList ArrayList of codeLang objects
     */
-    public ArrayList<codeLang> getLangList() {
+    public String getLangList() {
         return this.langList;
     }
 
@@ -105,10 +120,10 @@ class Account {
     private void enrollClasses(String newLang) {
         if (this.checkLang(newLang) == false){
             if (newLang == "Python"){
-                this.langList.add(new Python());
+                this.langList = this.langList + "Python,";
             }
             else if (newLang == "Java"){
-                this.langList.add(new Java());
+                this.langList = this.langList + "Java,";
             }
         }
     }
@@ -118,9 +133,14 @@ class Account {
     * @param oldLang name of language to be removed
     */
     private void unenrollClasses(String oldLang) {
-        for (int i = 0; i < this.langList.size(); i++){
-            if (this.langList.get(i).getName() == oldLang){
-                this.langList.remove(i);
+        if (Object.equals(oldLang, "Python,")){
+            if (this.langList.contains("Java")) {
+                this.langList = "Java,";
+            }
+        }
+        else if (Object.equals(oldLang, "Java,")) {
+            if (this.langList.contains("Python,")) {
+                this.langList = "Python";
             }
         }
     }
@@ -169,4 +189,43 @@ class Account {
         }
     }
 
+    /**
+    * Extracts existing account details from file
+    * @return ArrayList<Account> accountList
+    */
+    public ArrayList<Account> extractAccount() {
+        try {
+        ArrayList<Account> accountList = new ArrayList<Account>();
+        File accountFile = new File("Account.txt");
+        Scanner accountScanner = new Scanner(accountFile);
+        while (accountScanner.hasNextLine()) {
+            String accountDetails = accountScanner.nextLine();
+            String[] accountDetailArray = accountDetails.split("!");
+            accountList.add(new Account(accountDetailArray[0], accountDetailArray[1], accountDetailArray[2], accountDetailArray[3]));
+        }
+        accountScanner.close();
+        return accountList;
+        }
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+    * Checks if login is valid
+    * @param username Account Username
+    * @param password Account Password
+    * @param accountList List of Existing Accounts
+    * @return int index of account in list, -1 if no account found
+    */
+    public int accountLogIn(String username, String password, ArrayList<Account> accountList) {
+        for (int i = 0; i < accountList.size(), i++) {
+            if (Objects.equals(account.get(i).getName(), username)) {
+                if (Objects.equals(account.get(i).getPassword(), password)) {
+                    return i;
+                }
+            }
+        }
+        return -1;
+    }
 }
