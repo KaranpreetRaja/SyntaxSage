@@ -1,5 +1,7 @@
 package GUI;
 import CustomComponents.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 public class SessionFrame extends javax.swing.JFrame {
 
 
@@ -19,6 +21,12 @@ public class SessionFrame extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
 
+        addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e) {
+                dispose();
+            }
+        });
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         MultipleChoice q1 = new MultipleChoice(); //question 1
@@ -29,7 +37,7 @@ public class SessionFrame extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Question 2", q2);
 
-    
+        
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
