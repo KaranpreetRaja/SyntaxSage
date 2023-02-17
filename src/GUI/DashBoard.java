@@ -3,7 +3,7 @@ import CustomComponents.*;
 
 public class DashBoard extends javax.swing.JFrame {
 
-    public DashBoard(Account acc) {
+    public DashBoard() {
         initComponents();
     }
 
@@ -145,11 +145,9 @@ public class DashBoard extends javax.swing.JFrame {
     }// </editor-fold>                        
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {                                           
-        // TODO add your handling code here:
     }                                          
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
-        // TODO add your handling code here:
         
         SessionFrame sf = new SessionFrame();
         sf.setVisible(true);
@@ -190,17 +188,13 @@ public class DashBoard extends javax.swing.JFrame {
         });
     }
     
-    public void close(){
-        this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
-    }
     
+    // Ignore for now, this will be used in future iterations
     public void createSession(){
         Question q1 = new Question("prompt 1", new String[]{"Option 1", "Option 2 (ans)", "Option 3", "Option 4 (ans)"}, new String[]{"Option 2 (ans)", "Option 4 (ans)"});
         Question q2 = new Question("prompt 2", new String[]{"Option 1", "Option 2 (ans)", "Option 3 (ans)", "Option 4"}, new String[]{"Option 2 (ans)", "Option 3 (ans)"});
         Question[] qes = new Question[]{q1, q2};
         Session s = new Session("Lecture 1", 2, qes);
-        SessionFrame sf = new SessionFrame(s);
-        sf.setVisible(true);
     }
     
 
