@@ -3,25 +3,25 @@ package CustomComponents;
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
-import java.util.ArrayList;
 
-public class Login {
-    public static void main(String args[]) {
+public class SignUpPage extends Login {
+
+    public SignUpPage() {
         // Frame:
-        JFrame loginFrame = new JFrame("Login Page");
-        loginFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        JFrame signUpFrame = new JFrame("Signup Page");
+        signUpFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // Panels:
-        JPanel loginBox = new JPanel();
+        JPanel signupBox = new JPanel();
         JPanel buttonsPanel = new JPanel();
         JPanel inputPanel = new JPanel();
 
         // Buttons:
-        JButton signInBut = new JButton();
-        JButton registerBut = new JButton();
+        JButton signUpBut = new JButton();
+        JButton backBut = new JButton();
 
         // Labels:
-        JLabel label = new JLabel("LOG IN");
+        JLabel label = new JLabel("Sign Up");
 
         // JTextField
         JTextField inputUser = new JTextField("Username");
@@ -33,34 +33,34 @@ public class Login {
         label.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         // Set Up Frame
-        loginFrame.setVisible(true);
-        loginFrame.setSize(500, 500);
-        loginFrame.setLayout(new GridBagLayout());
+        signUpFrame.setVisible(true);
+        signUpFrame.setSize(500, 500);
+        signUpFrame.setLayout(new GridBagLayout());
         GridBagConstraints constraints = new GridBagConstraints();
         constraints.gridx = 0;
         constraints.gridy = 0;
         constraints.weightx = 1;
         constraints.weighty = 1;
-        loginFrame.add(loginBox, constraints);
+        signUpFrame.add(signupBox, constraints);
 
         // Set Up ButtonsFrame
-        signInBut.setText("Sign In");
-        registerBut.setText("Register");
-        buttonsPanel.add(signInBut);
-        buttonsPanel.add(registerBut);
+        signUpBut.setText("Sign Up");
+        backBut.setText("Back");
+        buttonsPanel.add(signUpBut);
+        buttonsPanel.add(backBut);
         buttonsPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
         Dimension buttonSize = new Dimension(100, 50);
-        signInBut.setPreferredSize(buttonSize);
-        registerBut.setPreferredSize(buttonSize);
-        signInBut.setBackground(Color.yellow);
-        registerBut.setBackground(Color.yellow);
+        signUpBut.setPreferredSize(buttonSize);
+        backBut.setPreferredSize(buttonSize);
+        signUpBut.setBackground(Color.pink);
+        backBut.setBackground(Color.pink);
 
-        // Set Up LoginBox
-        loginBox.add(label);
-        loginBox.add(inputPanel);
-        loginBox.add(buttonsPanel);
-        loginBox.setLayout(new BoxLayout(loginBox, BoxLayout.PAGE_AXIS));
-        loginBox.setBorder(BorderFactory.createLineBorder(Color.black));
+        // Set Up SignUpBox
+        signupBox.add(label);
+        signupBox.add(inputPanel);
+        signupBox.add(buttonsPanel);
+        signupBox.setLayout(new BoxLayout(signupBox, BoxLayout.PAGE_AXIS));
+        signupBox.setBorder(BorderFactory.createLineBorder(Color.black));
 
         // Set Up Inputs
         inputPanel.add(inputUser);
@@ -100,37 +100,19 @@ public class Login {
             }
         });
 
-        // Check Account Details and Sign In
-        signInBut.addActionListener(new ActionListener() {
+        // Add Account Details and Register User
+        signUpBut.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String username = inputUser.getText();
                 String password = inputPassword.getText();
                 ArrayList<Account> accountList = extractAccount();
-                int check = accountLogIn(username, password, accountList);
+                accountSignUp(username, password, accountList);
 
-                if (check == -1) {
-                    JLabel message = new JLabel("Wrong Username or Password");
-                    loginFrame.add(message);
-                }
-
-                else {
-                    // TODO: Add code that transfer the user to the next frame after loging in.
-                }
+                // TODO: add code to go back to the login Page.
             }
         });
 
-        // Swwitch to Register Panel
-        registerBut.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                SignUpPage RegisterPage = new SignUpPage();
-                loginFrame.setVisible(false);
-
-                // TODO: Add code that switches to Sign Up pages.
-            }
-
-        });
     }
 
 }
