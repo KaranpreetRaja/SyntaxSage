@@ -3,16 +3,20 @@ package CustomComponents;
 public class Question {
     private int id;
     private static int CUR_ID = 0;
-    private int noAns;
     private String prompt;
+    private String[] options;
+    private String[] answers;
+    public static int noAns = 4;
 
     // Constructor
 
-    public Question(int noAns, String prompt) {
+    public Question(String prompt, String[] options, String[] answers) {
         this.id = CUR_ID;
         CUR_ID++;
-        this.noAns = noAns;
         this.prompt = prompt;
+        this.options = options;
+        this.answers = answers;
+        
     }
 
     public int getId() {
@@ -46,4 +50,43 @@ public class Question {
     public void setPrompt(String prompt) {
         this.prompt = prompt;
     }
+    
+    public String[] getOptions() {
+        return options;
+    }
+
+    public void setOptions(String[] options) {
+        this.options = options;
+    }
+
+    public String[] getAnswers() {
+        return answers;
+    }
+
+    public void setAnswers(String[] answers) {
+        this.answers = answers;
+    }
+    /*
+    public boolean isAnswer(String str) {
+        // Check if the given string is present in the answers array
+        for (String answer : answers) {
+            if (answer.equals(str)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public String getStringOptions() {
+        // Return a comma and space separated list of options
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < options.length; i++) {
+            sb.append(options[i]);
+            if (i < options.length - 1) {
+                sb.append(", ");
+            }
+        }
+        return sb.toString();
+    }
+    */
 }
