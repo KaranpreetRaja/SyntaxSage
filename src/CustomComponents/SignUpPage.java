@@ -106,15 +106,17 @@ public class SignUpPage extends Login {
             public void actionPerformed(ActionEvent e) {
                 String username = inputUser.getText();
                 String password = inputPassword.getText();
+                ArrayList<Account> accountList = extractAccount();
+                accountSignUp(username, password, accountList);
 
-                // test
-                System.out.println(username + " " + password);
+                // add code to go back to the login Page
             }
         });
+
     }
 
     public static void main(String args[]) {
         SignUpPage signUpPage = new SignUpPage();
     }
-    ]
+
 }
