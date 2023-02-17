@@ -115,7 +115,7 @@ public class Login {
                 }
 
                 else {
-                    // ADD it Here Karan
+                    // TODO: Add code that transfer the user to the next frame after loging in.
                 }
             }
         });
@@ -126,7 +126,8 @@ public class Login {
             public void actionPerformed(ActionEvent e) {
                 SignUpPage RegisterPage = new SignUpPage();
                 loginFrame.setVisible(false);
-                // switch to sign up page (add code here)
+
+                // TODO: Add code that switches to Sign Up pages.
             }
 
         });

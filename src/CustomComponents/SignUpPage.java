@@ -109,14 +109,10 @@ public class SignUpPage extends Login {
                 ArrayList<Account> accountList = extractAccount();
                 accountSignUp(username, password, accountList);
 
-                // add code to go back to the login Page
+                // TODO: add code to go back to the login Page.
             }
         });
 
-    }
-
-    public static void main(String args[]) {
-        SignUpPage signUpPage = new SignUpPage();
     }
 
 }
