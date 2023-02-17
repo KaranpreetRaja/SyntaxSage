@@ -1,15 +1,14 @@
 package CustomComponents;
-
 public class Session {
     public String sessionName;
     public int noQuestions;
     public int curQuestion;
     public Question[] questions;
 
-    public Session(String sessionName, int noQuestions, int curQuestion, Question[] questions) {
+    public Session(String sessionName, int noQuestions, Question[] questions) {
         this.sessionName = sessionName;
         this.noQuestions = noQuestions;
-        this.curQuestion = curQuestion;
+        this.curQuestion = 0;
         this.questions = questions;
     }
 
@@ -20,10 +19,12 @@ public class Session {
         this.questions = new Question[0];
     }
 
-    public void getNextQuestion() {
+    public Question getNextQuestion() {
         if (curQuestion < noQuestions) {
             curQuestion++;
+            return questions[curQuestion--];
         }
+        return null;
     }
 
 }
