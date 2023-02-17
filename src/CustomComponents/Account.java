@@ -6,13 +6,15 @@ import java.time.format.DateTimeFormatter;
 
 
 public class Account{
-    public String username;
-    public String password;
-    public String courses;
-    public String experience;
-    public String creationDate;
+    private int ID;
+    private String username;
+    private String password;
+    private String courses;
+    private String experience;
+    private String creationDate;
 
     public Account() {
+        this.ID = -1;
         this.username = "";
         this.password = "";
         this.courses = "";
@@ -26,19 +28,12 @@ public class Account{
         String username = database.getUsername(ID);
         String[5] accountInfo = database.getAccountInfo(username).split(", ");
 
+        this.ID = ID;
         this.username = accountInfo[0];
         this.password = accountInfo[1];
         this.courses = accountInfo[2];
         this.experience = accountInfo[3];
         this.creationDate = accountInfo[4];
-    }
-
-    public Account(String username, String password, String courses, String experience, String creationDate) {
-        this.username = username;
-        this.password = password;
-        this.courses = courses;
-        this.experience = experience;
-        this.creationDate = creationDate;
     }
 
     public static Account getAccount(int ID) {
@@ -85,5 +80,45 @@ public class Account{
         }
         createAccount(username, password, courseString);
         return database.getID(username);
+    }
+
+    public String getUsername() {
+        return this.username;
+    }
+
+    public String getPassword() {
+        return this.password;
+    }
+
+    public String getCourses() {
+        return this.courses;
+    }
+
+    public String getExperience() {
+        return this.experience;
+    }
+
+    public String getCreationDate() {
+        return this.creationDate;
+    }
+
+    public void setUsername(String newUsername) {
+        this.username = newUsername;
+    }
+
+    public void setPassword(String newPassword) {
+        this.password = newPassword;
+    }
+
+    public void setCourses(String newCourses) {
+        this.courses = newCourses;
+    }
+
+    public void setExperience(String newExperience) {
+        this.experience = newExperience;
+    }
+
+    public void setCreationDate(String newDate) {
+        this.creationDate = newDate;
     }
 }
