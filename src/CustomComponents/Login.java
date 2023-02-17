@@ -106,8 +106,7 @@ public class Login {
             public void actionPerformed(ActionEvent e) {
                 String username = inputUser.getText();
                 String password = inputPassword.getText();
-                ArrayList<Account> accountList = extractAccount();
-                int check = accountLogIn(username, password, accountList);
+                int check = signIn(username, password);
 
                 if (check == -1) {
                     JLabel message = new JLabel("Wrong Username or Password");
