@@ -118,13 +118,11 @@ class Account {
     * @param newLang name of language to be added
     */
     private void enrollClasses(String newLang) {
-        if (this.checkLang(newLang) == false){
-            if (newLang == "Python"){
-                this.langList = this.langList + "Python,";
-            }
-            else if (newLang == "Java"){
-                this.langList = this.langList + "Java,";
-            }
+        if (newLang == "Python" && this.langList.contains("Python,") == false){
+            this.langList = this.langList + "Python,";
+        }
+        else if (newLang == "Java" && this.langList.contains("Java,") == false){
+            this.langList = this.langList + "Java,";
         }
     }
 
@@ -143,20 +141,6 @@ class Account {
                 this.langList = "Python";
             }
         }
-    }
-
-    /**
-    * Checks if the language is already in langList
-    * @param langName name of language to be checked
-    * @return boolean if language exists in list
-     */
-    private boolean checkLang(String langName) {
-        for (int i = 0; i < this.langList.size(); i++){
-            if (this.langList.get(i).getName() == langName){
-                return true;
-            }
-        }
-        return false;
     }
 
     /**
