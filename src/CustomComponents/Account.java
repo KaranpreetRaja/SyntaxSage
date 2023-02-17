@@ -82,6 +82,10 @@ public class Account{
         return database.getID(username);
     }
 
+    public int getID() {
+        return this.ID;
+    }
+
     public String getUsername() {
         return this.username;
     }
