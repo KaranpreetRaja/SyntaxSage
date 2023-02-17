@@ -49,7 +49,7 @@ public class Account{
         database.addData();
     }
 
-    public int signIn(String username, String password) {
+    public static int signIn(String username, String password) {
         DataBase database = new DataBase();
         database.connectToDataBase();
         String[] usernameList = database.getAllUsernames().split(", ");
