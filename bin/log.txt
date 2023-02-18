@@ -1,0 +1,35 @@
+Log, Iteration 1 (from Mon, Feb 6 to Fri, Feb 17)
+
+Mon, Feb 6 - Discord Call
+Discussed what could be improved from itr0, how the team could work more efficiently.Planned meetings and distributed work for everyone.
+Brainstormed ideas of excecution and briefd about the features to team members.
+
+Ryan Planned for : Account Class
+Rajendra Planned for: Database using JDBC
+Mohammad Mahfooz planned for: Session Class and implemented multi select properties for GUI
+KaranPreet Raja planned for: Main Outline and boiler plate code
+
+Wed, Feb 8 - Lecture
+Used chalkboard (in lecture hall) to sketch architecture of system, and start conceptualizing how the individual components can be implemented.
+The team members updated their work status with each other and discussed dependencies and requirements for integrating different features.
+
+Fri, Feb 10 - Discord Call
+Started working on dependencies and collaborated with each other, team members almost completed half of planning and desining tasks started to code.
+
+
+Mon, Feb 13 - Discord Call
+Check in on everyone's progress-- ensure that expectations are met, and everyone is on the same page. All concerns with other's work were brought up, 
+and assigned to group members to be dealt with.
+Ryan's Status: Account Class half done
+Rajendra's Status: DB Class half done
+Abdi's Status: Gui Log in form Class half done
+Mohammad's Status: Session Class half done
+Karan's Status: Worked on architecture, main GUI, Development Structure
+
+
+
+Wed, Feb 15 - Lecture
+Ensure that all individual components are complete, start working together to integrate all individual components of the system. Check ITR1 rubric to ensure all requirements are met.Planning to test the deliverables and prepare the test scenarios.
+
+Thurs, Feb 16 - Discord Call
+Write and run tests for domain-specific and business logic classes using the JUnit test framework. Ensure everyone used the same coding style, and put the finishing touches on the wiki.Executed the test classes and rechecked the work. Ready to submit.
