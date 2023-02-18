@@ -80,8 +80,8 @@ public class Login extends JFrame {
 
         // Stub Database
         Login.accountList = new ArrayList<Account>();
-        Login.accountList.add(Account.createAccount("John", "password", "Java,", "", "2022-12-29"));
-        Login.accountList.add(Account.createAccount("Admin", "Admin", "Java,Python,", "", "2020-01-01"));
+        Login.accountList.add(Account.createAccount("John", "password", "Java,", "", "2022-12-29", 0));
+        Login.accountList.add(Account.createAccount("Admin", "Admin", "Java,Python,", "", "2020-01-01", 1));
 
         // Event Listener for Inputs
         inputUser.addFocusListener(new FocusListener() {
