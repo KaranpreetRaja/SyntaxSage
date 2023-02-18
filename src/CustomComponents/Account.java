@@ -13,6 +13,7 @@ import java.time.format.DateTimeFormatter;
 public class Account {
 
     //Class Attributes
+    private int ID;
     private String username;
     private String password;
     private String courses;
@@ -26,18 +27,20 @@ public class Account {
         this.courses = "";
         this.experience = "";
         this.creationDate = "";
+        this.ID = -1;
     }
 
-    public Account(String username, String password, String courses, String experience, String creationDate) {
+    public Account(String username, String password, String courses, String experience, String creationDate, int ID) {
         this.username = username;
         this.password = password;
         this.courses = courses;
         this.experience = experiences;
         this.creationDate = creationDate;
+        this.ID = ID;
     }
 
-    public static Account createAccount(String accountName, String accountPass, String courseString, String experience, String creationDate) {
-        Account newAccount = new Account(accountName, accountPass, courseString, experience, creationDate);
+    public static Account createAccount(String accountName, String accountPass, String courseString, String experience, String creationDate, int ID) {
+        Account newAccount = new Account(accountName, accountPass, courseString, experience, creationDate, ID);
         return newAccount;
     }
 
@@ -63,9 +66,14 @@ public class Account {
             courseString = courseString + courses.get(j);
         }
         String accountCreationDate = (LocalDateTime.now()).format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-        Account newAccount = createAccount(username, password, courses, "", accountCreationDate);
+        int ID = accountList.size() + 1
+        Account newAccount = createAccount(username, password, courses, "", accountCreationDate, ID);
         accountList.add(newAccount);
         return accountList.size();
+    }
+
+    public int getID() {
+        return this.ID;
     }
 
     public String getUsername() {
