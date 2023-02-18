@@ -13,9 +13,10 @@ import java.util.ArrayList;
 import CustomComponents.Account;
 import DB.Database;
 
-public class Login extends JFrame{
+public class Login extends JFrame {
     public JFrame loginFrame;
-    public ArrayList<Account> accountList;
+    public static ArrayList<Account> accountList;
+
     public static void main(String[] args) {
         // Frame:
         JFrame loginFrame = new JFrame("Login Page");
@@ -78,9 +79,9 @@ public class Login extends JFrame{
         inputPanel.setLayout(new BoxLayout(inputPanel, BoxLayout.PAGE_AXIS));
 
         // Stub Database
-        this.accountList = new ArrayList<Account>();
-        this.accountList.add(Account.createAccount("John", "password", "Java,", "", "2022-12-29"));
-        this.accountList.add(Account.createAccount("Admin", "Admin", "Java,Python,", "", "2020-01-01"));
+        Login.accountList = new ArrayList<Account>();
+        Login.accountList.add(Account.createAccount("John", "password", "Java,", "", "2022-12-29"));
+        Login.accountList.add(Account.createAccount("Admin", "Admin", "Java,Python,", "", "2020-01-01"));
 
         // Event Listener for Inputs
         inputUser.addFocusListener(new FocusListener() {
@@ -122,11 +123,7 @@ public class Login extends JFrame{
                 String username = inputUser.getText();
                 String password = inputPassword.getText();
                 int check = 0;
-                try {
-                    check = Account.signIn(username, password, accountList);
-                } catch (SQLException ex) {
-                    throw new RuntimeException(ex);
-                }
+                check = Account.signIn(username, password, accountList);
 
                 if (check == -1) {
                     JLabel message = new JLabel("Wrong Username or Password");
@@ -150,6 +147,7 @@ public class Login extends JFrame{
             }
         });
     }
+
     public JFrame getLoginFrame() {
         return loginFrame;
     }
