@@ -4,7 +4,9 @@ import java.awt.*;
 
 public class MultipleChoiceButton extends SelectionButton {
 
-    public MultipleChoiceButton(String text) {
+    private static final long serialVersionUID = 5372412163416639597L;
+
+	public MultipleChoiceButton(String text) {
         super(text);
     }
 

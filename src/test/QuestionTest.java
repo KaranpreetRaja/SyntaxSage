@@ -1,7 +1,9 @@
-package junit_tests;
+package test;
 
 import static org.junit.jupiter.api.Assertions.*;
-import src.*;
+
+import CustomComponents.Question;
+import CustomComponents.Session;
 
 class QuestionTest{
     String[] options1 = new String[]{"Milk", "Cheese", "Fruit"};
@@ -12,7 +14,7 @@ class QuestionTest{
     String[] answers2 = new String[]{"Prune"};
     Question q2 = new Question("Testing2", options2, questions2);
 
-    Question[] questions = new Questions{q1, q2};
+    Question[] questions = new Question{q1, q2};
     Session session = new Session("Test Session", 2, questions);
 
     @Test

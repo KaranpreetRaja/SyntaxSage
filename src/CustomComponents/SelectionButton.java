@@ -5,7 +5,8 @@ import java.awt.*;
 import javax.swing.JButton;
 
 public class SelectionButton extends JButton {
-    public boolean isSelected;
+    private static final long serialVersionUID = -3768757577958979313L;
+	public boolean isSelected;
     private final Color originalColor; // default color for unselected button
     public final Color selectedColor = Color.YELLOW; // color for button after it is "selected"
 

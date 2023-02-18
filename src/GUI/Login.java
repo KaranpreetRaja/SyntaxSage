@@ -6,15 +6,17 @@ import javax.swing.*;
 import CustomComponents.*;
 
 import java.awt.event.*;
-import java.sql.SQLException;
 
 import java.util.ArrayList;
 
 import CustomComponents.Account;
-import DB.Database;
 
 public class Login extends JFrame {
-    public JFrame loginFrame;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -8231290710635722141L;
+	public JFrame loginFrame;
     public static ArrayList<Account> accountList;
 
     public static void main(String[] args) {
@@ -141,7 +143,6 @@ public class Login extends JFrame {
                     public void actionPerformed(ActionEvent e) {
                         SignUpPage registerPage = new SignUpPage(accountList);
                         loginFrame.setVisible(false);
-                        registerPage.setVisible(true);
                     }
                 });
             }
