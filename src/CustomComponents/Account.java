@@ -37,7 +37,6 @@ public class Account {
     }
 
     public static Account createAccount(String accountName, String accountPass, String courseString, String experience, String creationDate) {
-        
         Account newAccount = new Account(accountName, accountPass, courseString, experience, creationDate);
         return newAccount;
     }

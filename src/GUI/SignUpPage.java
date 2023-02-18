@@ -10,8 +10,9 @@ import java.util.ArrayList;
 import CustomComponents.*;
 
 public class SignUpPage extends Login {
+    public ArrayList<Account>;
 
-    public SignUpPage() {
+    public SignUpPage(ArrayList<Account> accountList) {
         // Frame:
         JFrame signUpFrame = new JFrame("Signup Page");
         signUpFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -124,9 +125,7 @@ public class SignUpPage extends Login {
             public void actionPerformed(ActionEvent e) {
                 String username = inputUser.getText();
                 String password = inputPassword.getText();
-                ArrayList courses = (ArrayList) dropdownMenu.getSelectedValuesList();
-                Account account = new Account();
-                int accountID = 0;
+                ArrayList<String> courses = (ArrayList<String>) dropdownMenu.getSelectedValuesList();
                 try {
                     accountID = account.signUp(username, password, courses);
                 } catch (SQLException ex) {
@@ -137,11 +136,11 @@ public class SignUpPage extends Login {
                     loginFrame.add(message);
                 } else {
                     try {
-                        Account accPass = Account.getAccount(accountID);
+                        Account accPass = accountList.get(accountID);
                     } catch (SQLException ex) {
                         throw new RuntimeException(ex);
                     }
-                    DashBoard db = new DashBoard(account);
+                    DashBoard db = new DashBoard(accPass);
                     loginFrame.setVisible(false);
                     db.setVisible(true);
                 }

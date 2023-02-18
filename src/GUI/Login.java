@@ -13,6 +13,7 @@ import DB.Database;
 
 public class Login extends JFrame{
     public JFrame loginFrame;
+    public ArrayList<Account> accountList;
     public static void main(String[] args) {
         // Frame:
         JFrame loginFrame = new JFrame("Login Page");
@@ -74,6 +75,11 @@ public class Login extends JFrame{
         inputPanel.add(inputPassword);
         inputPanel.setLayout(new BoxLayout(inputPanel, BoxLayout.PAGE_AXIS));
 
+        // Stub Database
+        this.accountList = new ArrayList<Account>();
+        this.accountList.add(Account.createAccount("John", "password", "Java,", "", "2022-12-29"));
+        this.accountList.add(Account.createAccount("Admin", "Admin", "Java,Python,", "", "2020-01-01"));
+
         // Event Listener for Inputs
         inputUser.addFocusListener(new FocusListener() {
             @Override
@@ -115,7 +121,7 @@ public class Login extends JFrame{
                 String password = inputPassword.getText();
                 int check = 0;
                 try {
-                    check = Account.signIn(username, password);
+                    check = Account.signIn(username, password, accountList);
                 } catch (SQLException ex) {
                     throw new RuntimeException(ex);
                 }
@@ -124,8 +130,7 @@ public class Login extends JFrame{
                     JLabel message = new JLabel("Wrong Username or Password");
                     loginFrame.add(message);
                 } else {
-                    Account acc = new Account();
-                    Account myAccount = acc.getAccount();
+                    Account myAccount = accountList.get(check);
                     DashBoard db = new DashBoard(myAccount);
                     loginFrame.setVisible(false);
                     db.setVisible(true);
@@ -135,7 +140,7 @@ public class Login extends JFrame{
                 registerBut.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        SignUpPage registerPage = new SignUpPage();
+                        SignUpPage registerPage = new SignUpPage(accountList);
                         loginFrame.setVisible(false);
                         registerPage.setVisible(true);
                     }
