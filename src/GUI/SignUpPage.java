@@ -4,14 +4,13 @@ import java.awt.*;
 import javax.swing.*;
 
 import java.awt.event.*;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 import CustomComponents.*;
 
 public class SignUpPage extends Login {
 
-    public SignUpPage() {
+    public SignUpPage(ArrayList<Account> accountList) {
         // Frame:
         JFrame signUpFrame = new JFrame("Signup Page");
         signUpFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -124,31 +123,22 @@ public class SignUpPage extends Login {
             public void actionPerformed(ActionEvent e) {
                 String username = inputUser.getText();
                 String password = inputPassword.getText();
-                ArrayList courses = (ArrayList) dropdownMenu.getSelectedValuesList();
-                Account account = new Account();
-                int accountID = 0;
-                try {
-                    accountID = account.signUp(username, password, courses);
-                } catch (SQLException ex) {
-                    throw new RuntimeException(ex);
-                }
+                ArrayList<String> courses = (ArrayList<String>) dropdownMenu.getSelectedValuesList();
+                Account accPass = null;
+                int accountID = Account.signUp(username, password, accountList, courses);
                 if (accountID == -1) {
                     JLabel message = new JLabel("Invalid Registration");
                     loginFrame.add(message);
                 } else {
-                    try {
-                        Account accPass = Account.getAccount(accountID);
-                    } catch (SQLException ex) {
-                        throw new RuntimeException(ex);
-                    }
-                    DashBoard db = new DashBoard(account);
-                    loginFrame.setVisible(false);
-                    db.setVisible(true);
+                    accPass = accountList.get(accountID);
+
                 }
+                DashBoard db = new DashBoard(accPass);
+                loginFrame.setVisible(false);
+                db.setVisible(true);
             }
         });
 
     }
 
 }
-
