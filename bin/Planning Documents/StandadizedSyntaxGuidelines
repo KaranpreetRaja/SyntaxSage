@@ -1,0 +1,10 @@
+Standadized Syntax Guidelines to follow when working on this project:
+
+- camel case (no spaces, the first letter is not capital, all other words have a capital first letter) for variables and methods
+- pascal case for classes
+- when using abbreviations (ex acc for Account), comment full word first-time variable or method is declared
+- use "this." keyword in front of all instance variables
+- space out curly brackets such that they each occupy a single line (thus methods are not to be declared in a single line)
+- instance variables are all declared at the top
+- constructors are the first method/s declared
+- setters and getters have the following prefixes: "set" and "get"

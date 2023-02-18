@@ -1,3 +1,4 @@
+package junit_tests;
 import static org.junit.jupiter.api.Assertions.*;
 import java.util.ArrayList;
 import java.io.File;

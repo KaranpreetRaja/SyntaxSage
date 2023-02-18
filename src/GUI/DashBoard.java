@@ -1,5 +1,7 @@
 package GUI;
 import CustomComponents.*;
+import javax.swing.*;
+import java.awt.*;
 
 public class DashBoard extends javax.swing.JFrame {
     private Account acc;
@@ -21,7 +23,7 @@ public class DashBoard extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
 
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jTabbedPane1 = new JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jComboBox1 = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
