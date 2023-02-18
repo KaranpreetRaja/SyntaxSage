@@ -8,11 +8,15 @@ import CustomComponents.*;
 import java.awt.event.*;
 import java.sql.SQLException;
 
+import java.util.ArrayList;
+
 import CustomComponents.Account;
 import DB.Database;
 
-public class Login extends JFrame{
+public class Login extends JFrame {
     public JFrame loginFrame;
+    public static ArrayList<Account> accountList;
+
     public static void main(String[] args) {
         // Frame:
         JFrame loginFrame = new JFrame("Login Page");
@@ -74,6 +78,11 @@ public class Login extends JFrame{
         inputPanel.add(inputPassword);
         inputPanel.setLayout(new BoxLayout(inputPanel, BoxLayout.PAGE_AXIS));
 
+        // Stub Database
+        Login.accountList = new ArrayList<Account>();
+        Login.accountList.add(Account.createAccount("John", "password", "Java,", "", "2022-12-29", 0));
+        Login.accountList.add(Account.createAccount("Admin", "Admin", "Java,Python,", "", "2020-01-01", 1));
+
         // Event Listener for Inputs
         inputUser.addFocusListener(new FocusListener() {
             @Override
@@ -114,18 +123,13 @@ public class Login extends JFrame{
                 String username = inputUser.getText();
                 String password = inputPassword.getText();
                 int check = 0;
-                try {
-                    check = Account.signIn(username, password);
-                } catch (SQLException ex) {
-                    throw new RuntimeException(ex);
-                }
+                check = Account.signIn(username, password, accountList);
 
                 if (check == -1) {
                     JLabel message = new JLabel("Wrong Username or Password");
                     loginFrame.add(message);
                 } else {
-                    Account acc = new Account();
-                    Account myAccount = acc.getAccount();
+                    Account myAccount = accountList.get(check);
                     DashBoard db = new DashBoard(myAccount);
                     loginFrame.setVisible(false);
                     db.setVisible(true);
@@ -135,7 +139,7 @@ public class Login extends JFrame{
                 registerBut.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        SignUpPage registerPage = new SignUpPage();
+                        SignUpPage registerPage = new SignUpPage(accountList);
                         loginFrame.setVisible(false);
                         registerPage.setVisible(true);
                     }
@@ -143,6 +147,7 @@ public class Login extends JFrame{
             }
         });
     }
+
     public JFrame getLoginFrame() {
         return loginFrame;
     }

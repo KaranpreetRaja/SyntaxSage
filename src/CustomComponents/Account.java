@@ -1,14 +1,17 @@
 package CustomComponents;
 
-import DB.Database;
-
-import java.sql.SQLException;
+//Imports
 import java.util.ArrayList;
+import java.io.File;
+import java.io.FileWriter;
+import java.util.Scanner;
+import java.util.Objects;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-
 public class Account {
+
+    // Class Attributes
     private int ID;
     private String username;
     private String password;
@@ -17,74 +20,56 @@ public class Account {
     private String creationDate;
 
     public Account() {
-        this.ID = -1;
         this.username = "";
         this.password = "";
         this.courses = "";
         this.experience = "";
         this.creationDate = "";
+        this.ID = -1;
     }
 
-    public Account(int ID) throws SQLException {
-        Database database = new Database();
-        database.connectToDatabase();
-        String username = database.getUsername(ID);
-        String[] accountInfo = database.getAccountInfo(username).split(", ");
-
+    public Account(String username, String password, String courses, String experience, String creationDate, int ID) {
+        this.username = username;
+        this.password = password;
+        this.courses = courses;
+        this.experience = experience;
+        this.creationDate = creationDate;
         this.ID = ID;
-        this.username = accountInfo[0];
-        this.password = accountInfo[1];
-        this.courses = accountInfo[2];
-        this.experience = accountInfo[3];
-        this.creationDate = accountInfo[4];
     }
 
-    public static Account getAccount(int ID) throws SQLException {
-        return new Account(ID);
+    public static Account createAccount(String accountName, String accountPass, String courseString, String experience,
+            String creationDate, int ID) {
+        Account newAccount = new Account(accountName, accountPass, courseString, experience, creationDate, ID);
+        return newAccount;
     }
 
-    public static void createAccount(String username, String password, String courses) {
-        String accountCreationDate = (LocalDateTime.now()).format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-        Database database = new Database(username, password, courses, "", accountCreationDate);
-        database.connectToDatabase();
-        database.addData();
-    }
-
-    public static int signIn(String username, String password) throws SQLException {
-        Database database = new Database();
-        database.connectToDatabase();
-        String[] usernameList = database.getAllUsernames().split(", ");
-        for (String s : usernameList) {
-            if (username.equals(s)) {
-                if (password.equals(database.getPassword(s))) {
-                    return database.getID(username);
-                } else {
-                    return -1;
+    public static int signIn(String username, String password, ArrayList<Account> accountList) {
+        for (int i = 0; i < accountList.size(); i++) {
+            if (Objects.equals(accountList.get(i).getUsername(), username)) {
+                if (Objects.equals(accountList.get(i).getPassword(), password)) {
+                    return i;
                 }
             }
         }
         return -1;
     }
 
-    public int signUp(String username, String password, ArrayList<String> courses) throws SQLException {
-        Database database = new Database();
-        database.connectToDatabase();
-        String[] usernameList = database.getAllUsernames().split(", ");
-        for (String s : usernameList) {
-            if (username.equals(s)) {
+    public static int signUp(String username, String password, ArrayList<Account> accountList,
+            ArrayList<String> courses) {
+        for (int i = 0; i < accountList.size(); i++) {
+            if (Objects.equals(accountList.get(i).getUsername(), username)) {
                 return -1;
             }
         }
         String courseString = "";
-        for (String course : courses) {
-            courseString = courseString + course;
+        for (int j = 0; j < courses.size(); j++) {
+            courseString = courseString + courses.get(j);
         }
-        createAccount(username, password, courseString);
-        return database.getID(username);
-    }
-
-    public Account getAccount() {
-        return this;
+        String accountCreationDate = (LocalDateTime.now()).format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        int ID = accountList.size() + 1;
+        Account newAccount = Account.createAccount(username, password, courseString, "", accountCreationDate, ID);
+        accountList.add(newAccount);
+        return accountList.size();
     }
 
     public int getID() {

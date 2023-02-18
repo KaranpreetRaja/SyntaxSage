@@ -11,7 +11,7 @@ get information based upon given input usually id
 NOTE: There must be a server hosted locally with a Database named syntaxsage. A table with
 
  */
-public class DataBase {
+public class Database {
     String username;
     String password;
     String classes;
@@ -21,7 +21,7 @@ public class DataBase {
 
     //Constructor
 
-    public DataBase() {
+    public Database() {
         this.username = "";
         this.password = "";
         this.classes = "";
@@ -29,15 +29,16 @@ public class DataBase {
         this.accountCreateDate = "";
     }
 
-    public DataBase( String username, String password, String classes, String experience, String accountCreateDate) {
+    public Database( String username, String password, String classes, String experience, String accountCreateDate) {
         this.username = username;
         this.password = password;
         this.classes = classes;
         this.experience = experience;
         this.accountCreateDate = accountCreateDate;
     }
+
     //connect to database
-    public void connectToDataBase(){
+    public void connectToDatabase(){
         String url="jdbc:mysql://localhost:3306/project";
         String uname="rajendra";
         String passwordForDB="rajendra";
@@ -49,7 +50,7 @@ public class DataBase {
 
         }
         catch (ClassNotFoundException e) {
-            e.printStackTrace();;
+            e.printStackTrace();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -86,7 +87,7 @@ public class DataBase {
         }
 
     }
-    public int getId(String Username) throws SQLException {
+    public int getID(String Username) throws SQLException {
         ResultSet resultSet = null;
         int retID=0;
         try {
@@ -101,7 +102,9 @@ public class DataBase {
                  System.out.println("null");
              }
 
-             while(resultSet.next()){
+             while(true){
+                 assert resultSet != null;
+                 if (!resultSet.next()) break;
                  retID=resultSet.getInt(1);
              }
         } catch (SQLException exception) {
@@ -125,7 +128,9 @@ public class DataBase {
                 System.out.println("null");
             }
 
-            while(resultSet.next()){
+            while(true){
+                assert resultSet != null;
+                if (!resultSet.next()) break;
                 retString=resultSet.getString(1);
             }
         } catch (SQLException exception) {
@@ -150,7 +155,9 @@ public class DataBase {
                 System.out.println("null");
             }
 
-            while(resultSet.next()){
+            while(true){
+                assert resultSet != null;
+                if (!resultSet.next()) break;
                 retString=resultSet.getString(1);
             }
         } catch (SQLException exception) {
@@ -161,7 +168,7 @@ public class DataBase {
     }
     public String getPassword(String Username) throws SQLException {
         ResultSet resultSet = null;
-        String retString="";
+        String retString = "";
         try {
             String url = "jdbc:mysql://localhost:3306/project";
             String uname = "rajendra";
@@ -170,22 +177,24 @@ public class DataBase {
             Statement statement = connection.createStatement();
             String query = String.format("select password  from syntaxsage where username='%s'", Username);
             resultSet = statement.executeQuery(query);
-            if(resultSet==null) {
+            if(resultSet == null) {
                 System.out.println("null");
             }
 
-            while(resultSet.next()){
+            while(true){
+                assert resultSet != null;
+                if (!resultSet.next()) break;
                 retString=resultSet.getString(1);
             }
         } catch (SQLException exception) {
             System.out.println("SQL Exception in getPassword(String Username) method");
         }
-        return  retString;
+        return retString;
 
     }
 
     public String getAccountInfo(String Username){
-        String retString="";
+        String retString = "";
         try {
             String url = "jdbc:mysql://localhost:3306/project";
             String uname = "rajendra";
@@ -198,8 +207,10 @@ public class DataBase {
                 System.out.println(" ResultSet null");
             }
 
-            while(resultSet.next()){
-                retString=String.valueOf(resultSet.getInt(1))+", "+resultSet.getString(2)+", "+resultSet.getString(3)+", "+resultSet.getString(4)+", "+resultSet.getString(5)+", "+resultSet.getString(6);
+            while(true){
+                assert resultSet != null;
+                if (!resultSet.next()) break;
+                retString= resultSet.getInt(1) +", "+resultSet.getString(2)+", "+resultSet.getString(3)+", "+resultSet.getString(4)+", "+resultSet.getString(5)+", "+resultSet.getString(6);
             }
         } catch (SQLException exception) {
             System.out.println("SQL Exception in getID(Argument Username) method");
@@ -208,24 +219,24 @@ public class DataBase {
     }
 
     public String getAllUsernames(){
-        String retString="";
+        String retString = "";
         try {
             String url = "jdbc:mysql://localhost:3306/project";
             String uname = "rajendra";
             String passwordForDB = "rajendra";
             Connection connection = DriverManager.getConnection(url, uname, passwordForDB);
             Statement statement = connection.createStatement();
-            String query = String.format("select username  from syntaxsage");
+            String query = "select username  from syntaxsage";
             ResultSet resultSet = statement.executeQuery(query);
             if(resultSet==null) {
                 System.out.println(" ResultSet null");
             }
             int i=1;
-            while(resultSet.next()){
+            while(true){
+                assert resultSet != null;
+                if (!resultSet.next()) break;
 
-
-                retString+=resultSet.getString(1)+", ";
-//                System.out.println(resultSet.getString(1));
+                retString += resultSet.getString(1)+", ";
             }
             retString=retString.substring(0,retString.length()-2);
         } catch (SQLException exception) {
