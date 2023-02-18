@@ -47,7 +47,7 @@ public class Account {
         for (int i = 0; i < accountList.size(); i++) {
             if (Objects.equals(accountList.get(i).getUsername(), username)) {
                 if (Objects.equals(accountList.get(i).getPassword(), password)) {
-                    return i;
+                    return i+1;
                 }
             }
         }
