@@ -4,13 +4,11 @@ import java.awt.*;
 import javax.swing.*;
 
 import java.awt.event.*;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 import CustomComponents.*;
 
 public class SignUpPage extends Login {
-    public ArrayList<Account>;
 
     public SignUpPage(ArrayList<Account> accountList) {
         // Frame:
@@ -126,28 +124,21 @@ public class SignUpPage extends Login {
                 String username = inputUser.getText();
                 String password = inputPassword.getText();
                 ArrayList<String> courses = (ArrayList<String>) dropdownMenu.getSelectedValuesList();
-                try {
-                    accountID = account.signUp(username, password, courses);
-                } catch (SQLException ex) {
-                    throw new RuntimeException(ex);
-                }
+                Account accPass = null;
+                int accountID = Account.signUp(username, password, accountList, courses);
                 if (accountID == -1) {
                     JLabel message = new JLabel("Invalid Registration");
                     loginFrame.add(message);
                 } else {
-                    try {
-                        Account accPass = accountList.get(accountID);
-                    } catch (SQLException ex) {
-                        throw new RuntimeException(ex);
-                    }
-                    DashBoard db = new DashBoard(accPass);
-                    loginFrame.setVisible(false);
-                    db.setVisible(true);
+                    accPass = accountList.get(accountID);
+
                 }
+                DashBoard db = new DashBoard(accPass);
+                loginFrame.setVisible(false);
+                db.setVisible(true);
             }
         });
 
     }
 
 }
-
