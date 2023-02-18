@@ -8,7 +8,7 @@ SyntaxSage is a program that aims to help users learn and master programming lan
 
 # Run Our Code
 
-**In order to run our Java Swing Application, you must run** [`b`](src/GUI/login.java)
+**In order to run our Java Swing Application, you must run** [`b`](https://github.com/KaranpreetRaja/SyntaxSage/blob/main/src/GUI/Login.java)
 
 ## 📖 [Wiki](https://github.com/KaranpreetRaja/SyntaxSage/wiki)
 
