@@ -12,7 +12,8 @@ import javax.swing.border.EmptyBorder;
 
 public class MultipleChoice extends JPanel {
 
-    private MultipleChoiceButton selectedButton;
+	private static final long serialVersionUID = -7354864831882039913L;
+	private MultipleChoiceButton selectedButton;
 
     public MultipleChoice() {
         setLayout(new BorderLayout());
@@ -26,15 +27,6 @@ public class MultipleChoice extends JPanel {
         textArea.setAlignmentY(SwingConstants.CENTER);
 
         StringBuilder text = new StringBuilder();
-        try (BufferedReader br = new BufferedReader(new FileReader("code.txt"))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                text.append(line).append(System.lineSeparator());
-            }
-        } catch (IOException e) {
-            System.out.println("Error reading question code");
-            e.printStackTrace();
-        }
         textArea.setText(text.toString());
         add(textArea, BorderLayout.NORTH);
 

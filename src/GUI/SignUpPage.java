@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 import CustomComponents.*;
 
-public class SignUpPage extends Login {
+public class SignUpPage {
 
     public SignUpPage(ArrayList<Account> accountList) {
         // Frame:
@@ -128,13 +128,13 @@ public class SignUpPage extends Login {
                 int accountID = Account.signUp(username, password, accountList, courses);
                 if (accountID == -1) {
                     JLabel message = new JLabel("Invalid Registration");
-                    loginFrame.add(message);
+                    signUpFrame.add(message);
                 } else {
                     accPass = accountList.get(accountID);
 
                 }
                 DashBoard db = new DashBoard(accPass);
-                loginFrame.setVisible(false);
+                signUpFrame.setVisible(false);
                 db.setVisible(true);
             }
         });
