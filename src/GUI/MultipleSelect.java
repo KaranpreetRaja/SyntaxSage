@@ -2,6 +2,8 @@ package GUI;
 
 import CustomComponents.SelectionButton;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -39,41 +41,44 @@ public class MultipleSelect extends JPanel {
         Border border = BorderFactory.createEmptyBorder(50, 0, 50, 0);
         buttonPanel.setBorder(border);
 
-        SelectionButton button1 = new SelectionButton("Option 1");
+        final SelectionButton button1 = new SelectionButton("Option 1");
         button1.setFont(font);
         buttonPanel.add(button1);
 
-        SelectionButton button2 = new SelectionButton("Option 2");
+        final SelectionButton button2 = new SelectionButton("Option 2");
         button2.setFont(font);
         buttonPanel.add(button2);
 
-        SelectionButton button3 = new SelectionButton("Option 3");
+        final SelectionButton button3 = new SelectionButton("Option 3");
         button3.setFont(font);
         buttonPanel.add(button3);
 
-        SelectionButton button4 = new SelectionButton("Option 4");
+        final SelectionButton button4 = new SelectionButton("Option 4");
         button4.setFont(font);
         buttonPanel.add(button4);
 
         JButton submitButton = new JButton("Submit");
         submitButton.setAlignmentX(SwingConstants.CENTER);
         submitButton.setAlignmentY(SwingConstants.CENTER);
-        submitButton.addActionListener(e -> {
-            StringBuilder selectedButtons = new StringBuilder();
-            if (button1.isSelected()) {
-                selectedButtons.append("Option 1 ");
-            }
-            if (button2.isSelected()) {
-                selectedButtons.append("Option 2 ");
-            }
-            if (button3.isSelected()) {
-                selectedButtons.append("Option 3 ");
-            }
-            if (button4.isSelected()) {
-                selectedButtons.append("Option 4 ");
-            }
-            System.out.println("Selected buttons: " + selectedButtons);
-        });
+        submitButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+			    StringBuilder selectedButtons = new StringBuilder();
+			    if (button1.isSelected()) {
+			        selectedButtons.append("Option 1 ");
+			    }
+			    if (button2.isSelected()) {
+			        selectedButtons.append("Option 2 ");
+			    }
+			    if (button3.isSelected()) {
+			        selectedButtons.append("Option 3 ");
+			    }
+			    if (button4.isSelected()) {
+			        selectedButtons.append("Option 4 ");
+			    }
+			    System.out.println("Selected buttons: " + selectedButtons);
+			}
+		});
         add(submitButton, BorderLayout.SOUTH);
     }
 

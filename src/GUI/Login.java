@@ -21,7 +21,7 @@ public class Login extends JFrame {
 
     public static void main(String[] args) {
         // Frame:
-        JFrame loginFrame = new JFrame("Login Page");
+        final JFrame loginFrame = new JFrame("Login Page");
         loginFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // Panels:
@@ -31,14 +31,14 @@ public class Login extends JFrame {
 
         // Buttons:
         JButton signInBut = new JButton();
-        JButton registerBut = new JButton();
+        final JButton registerBut = new JButton();
 
         // Labels:
         JLabel label = new JLabel("LOG IN");
 
         // JTextField
-        JTextField inputUser = new JTextField("Username");
-        JTextField inputPassword = new JTextField("Password");
+        final JTextField inputUser = new JTextField("Username");
+        final JTextField inputPassword = new JTextField("Password");
 
         // Set Up Label
         Dimension labelSize = new Dimension(100, 50);
@@ -87,14 +87,12 @@ public class Login extends JFrame {
 
         // Event Listener for Inputs
         inputUser.addFocusListener(new FocusListener() {
-            @Override
             public void focusGained(FocusEvent e) {
                 if (inputUser.getText().equals("Username")) {
                     inputUser.setText("");
                 }
             }
 
-            @Override
             public void focusLost(FocusEvent e) {
                 if (inputUser.getText().isEmpty()) {
                     inputUser.setText("Username");
@@ -120,7 +118,6 @@ public class Login extends JFrame {
 
         // Check Account Details and Sign In
         signInBut.addActionListener(new ActionListener() {
-            @Override
             public void actionPerformed(ActionEvent e) {
                 String username = inputUser.getText();
                 String password = inputPassword.getText();
@@ -131,20 +128,22 @@ public class Login extends JFrame {
                     JLabel message = new JLabel("Wrong Username or Password");
                     loginFrame.add(message);
                 } else {
-                    Account myAccount = accountList.get(check);
+                    Account myAccount = accountList.get(1);
                     DashBoard db = new DashBoard(myAccount);
                     loginFrame.setVisible(false);
                     db.setVisible(true);
                 }
 
-                // Switch to Register Panel
-                registerBut.addActionListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        SignUpPage registerPage = new SignUpPage(accountList);
-                        loginFrame.setVisible(false);
-                    }
-                });
+            }
+        });
+        
+        // Switch to Register Panel
+        registerBut.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            	System.out.print("yeet");
+                SignUpPage registerPage = new SignUpPage(accountList);
+                registerPage.signUpFrame.setVisible(true);
             }
         });
     }

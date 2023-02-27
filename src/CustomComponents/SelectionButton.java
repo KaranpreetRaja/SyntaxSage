@@ -2,6 +2,9 @@ package CustomComponents;
 
 // imports
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 
 public class SelectionButton extends JButton {
@@ -13,9 +16,12 @@ public class SelectionButton extends JButton {
     public SelectionButton(String text) {
         super(text);
         originalColor = getBackground();
-        addActionListener(e -> {
-            switchSelected(); // runs switchSelected() every time button is clicked
-        });
+        addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+			    switchSelected(); // runs switchSelected() every time button is clicked
+			}
+		});
     }
 
     public boolean isSelected() {

@@ -65,7 +65,7 @@ public class Account {
         for (int j = 0; j < courses.size(); j++) {
             courseString = courseString + courses.get(j);
         }
-        String accountCreationDate = (LocalDateTime.now()).format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        String accountCreationDate = (java.time.LocalDateTime.now()).format(java.time.format.DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
         int ID = accountList.size() + 1;
         Account newAccount = Account.createAccount(username, password, courseString, "", accountCreationDate, ID);
         accountList.add(newAccount);
