@@ -130,7 +130,7 @@ public class SignUpPage {
                     JLabel message = new JLabel("Invalid Registration");
                     signUpFrame.add(message);
                 } else {
-                    accPass = accountList.get(accountID);
+                    accPass = accountList.get(accountID-1);
 
                 }
                 DashBoard db = new DashBoard(accPass);

@@ -6,4 +6,5 @@
  *
  */
 module SyntaxSage {
+	requires java.desktop;
 }
