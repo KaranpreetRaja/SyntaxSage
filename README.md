@@ -2,13 +2,13 @@
 
 SyntaxSage is a program that aims to help users learn and master programming language syntax.
 
-# Planning Documents
-
-## 😊 [Iteration 1 Planning Document](Planning%20Documents/Iteration1.md)
-
 # Run Our Code
 
 **In order to run our Java Swing Application, you must run** [login.java](https://github.com/KaranpreetRaja/SyntaxSage/blob/main/src/GUI/Login.java)
+
+# Planning Documents
+
+## 😊 [Iteration 1 Planning Document](Planning%20Documents/Iteration1.md)
 
 ## 📖 [Wiki](https://github.com/KaranpreetRaja/SyntaxSage/wiki)
 
