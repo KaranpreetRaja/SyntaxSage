@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Session {
     private Account user;
     private Lesson lesson;
-    private ArrayList<String> answers;
+    private List<List<String>> allAnswers;
 
     public Session(Lesson lesson, Account user) {
         this.lesson = lesson;
@@ -14,7 +14,7 @@ public class Session {
     }
 
 
-    public void setAnswer(int questionNumber, String answer) {
+    public void setAnswer(int questionNumber, List<String> answers) {
         
     }
 }
