@@ -88,8 +88,28 @@ class CourseCompleted extends Criteria {
     public boolean getCompletetion() {
         return this.completetion;
     }
+}
 
-    // I need a progress class or something
-    // public checkCompleteion(completetion){}
+class FirstLessonCompleted extends Criteria {
+    protected boolean completetion = false;
 
+    public FirstLessonCompleted(String criteriaName, int criteriaID) {
+        super(criteriaName, criteriaID);
+    }
+
+    public boolean getCompletetion() {
+        return this.completetion;
+    }
+}
+
+class NoMistakes extends Criteria {
+    protected boolean completetion = false;
+
+    public NoMistakes(String criteriaName, int criteriaID) {
+        super(criteriaName, criteriaID);
+    }
+
+    public boolean getCompletetion() {
+        return this.completetion;
+    }
 }
