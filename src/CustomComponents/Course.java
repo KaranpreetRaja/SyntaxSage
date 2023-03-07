@@ -5,6 +5,7 @@ import java.io.Serializable;
 import java.io.*;
 
 public class Course implements Serializable {
+	private static String fileName = "Course_curID.ser";
 	private static final long serialVersionUID = 1L;
 	private int courseId; // UUID for class
 	private static int curID = 0; //UUID for Current ID
@@ -17,9 +18,11 @@ public class Course implements Serializable {
 	public Course(String name, ArrayList<Lesson> lessons){
 		this.name = name;
 		this.noLessons = 0;
+		Course.loadCurID(fileName);
 		this.courseId = curID;
 		curID++;
 		this.lessons = lessons;
+		Course.saveCurID(fileName);
 	}
 	
 	public Course(String name){
@@ -37,7 +40,7 @@ public class Course implements Serializable {
 			out.writeObject(curID);
 			out.close();
 			fileOut.close();
-			System.out.println("Serialized data is saved in " + fileName);
+			System.out.println("serialized curID of Course has been saved to " + fileName);
 		} catch(IOException i) {
 			i.printStackTrace();
 		}
@@ -48,20 +51,69 @@ public class Course implements Serializable {
 		try {
 			FileInputStream fileIn = new FileInputStream(fileName);
 			ObjectInputStream in = new ObjectInputStream(fileIn);
-			curID = (int) in.readObject();
+			curID = ((Integer) in.readObject()).intValue();
 			in.close();
 			fileIn.close();
-			System.out.println("Deserialized data is loaded from " + fileName);
+			System.out.println("deserialized curID of Course has been loaded from " + fileName);
 		} catch(IOException i) {
 			i.printStackTrace();
 		} catch(ClassNotFoundException c) {
-			System.out.println("Class not found");
+			System.out.println("curID of Course not found");
 			c.printStackTrace();
 		}
 	}
 
-	// Getter for curID
+	public static String getFileName() {
+		return fileName;
+	}
+
+	public static void setFileName(String fileName) {
+		Course.fileName = fileName;
+	}
+
+	public int getCourseId() {
+		return courseId;
+	}
+
+	public void setCourseId(int courseId) {
+		this.courseId = courseId;
+	}
+
 	public static int getCurID() {
 		return curID;
 	}
+
+	public static void setCurID(int curID) {
+		Course.curID = curID;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public ArrayList<Lesson> getLessons() {
+		return lessons;
+	}
+
+	public void setLessons(ArrayList<Lesson> lessons) {
+		this.lessons = lessons;
+	}
+
+	public int getNoLessons() {
+		return noLessons;
+	}
+
+	public void setNoLessons(int noLessons) {
+		this.noLessons = noLessons;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+
 }
