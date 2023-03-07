@@ -1,7 +1,15 @@
 package CustomComponents;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+
 public class Lesson {
 	public static int curID = 0;
+
+	private static String fileName = "Lesson_curID.ser";
 
 	private int lessonID;
 	private String name;
@@ -11,9 +19,12 @@ public class Lesson {
 	
 	
 	public Lesson(String name, int noQuestions, Question[] questions) {
+		Lesson.loadCurID(fileName);
+		this.lessonID = Lesson.curID;
+		Lesson.curID++;
+	    Lesson.saveCurID(fileName);
+	     
         this.name = name;
-        this.lessonID = curID;
-        curID++;
         
         this.noQuestions = noQuestions;
         this.curQuestion = 0;
@@ -35,6 +46,37 @@ public class Lesson {
         return null;
     }
 
+    public static void saveCurID(String fileName) {
+		try {
+			FileOutputStream fileOut = new FileOutputStream(fileName);
+			ObjectOutputStream out = new ObjectOutputStream(fileOut);
+			out.writeObject(curID);
+			out.close();
+			fileOut.close();
+			System.out.println("serialized curID of Lesson has been saved to " + fileName);
+		} catch(IOException i) {
+			i.printStackTrace();
+		}
+	}
+
+	// Load the curID from file
+	public static void loadCurID(String fileName) {
+		try {
+			FileInputStream fileIn = new FileInputStream(fileName);
+			ObjectInputStream in = new ObjectInputStream(fileIn);
+			curID = ((Integer) in.readObject()).intValue();
+			in.close();
+			fileIn.close();
+			System.out.println("deserialized curID of Lesson has been loaded from " + fileName);
+		} catch(IOException i) {
+			i.printStackTrace();
+		} catch(ClassNotFoundException c) {
+			System.out.println("curID of Lesson not found");
+			c.printStackTrace();
+		}
+	}
+
+	// Getter for curID
 	public static int getCurID() {
 		return curID;
 	}
