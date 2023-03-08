@@ -54,5 +54,22 @@ public class AccountDB {
             throw new RuntimeException(e);
         }
     }
+
+
+    public void addData()  {
+        try {
+            String url = "jdbc:mysql://localhost:3306/project";
+            String uname = "rajendra";
+            String passwordForDB = "rajendra";
+            Connection connection = DriverManager.getConnection(url, uname, passwordForDB);
+            Statement statement = connection.createStatement();
+            String query= String.format("insert into  account  values ('%d','%s','%s','%s','%s','%s')",this.ID,this.username,this.password,this.courses,this.experience,this.creationDate);
+            boolean result = statement.execute(query);
+        }
+        catch (SQLException exception){
+            System.out.println("SQL Exception in addData() method");
+        }
+
+    }
    
 }
