@@ -3,7 +3,19 @@ package DB;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-
+/*
+ * 
+ * +-------------------+--------------+------+-----+---------+----------------+
+| Field             | Type         | Null | Key | Default | Extra          |
++-------------------+--------------+------+-----+---------+----------------+
+| id                | int          | NO   | PRI | NULL    | auto_increment |
+| username          | varchar(50)  | YES  |     | NULL    |                |
+| password          | varchar(50)  | YES  |     | NULL    |                |
+| classes           | varchar(700) | YES  |     | NULL    |                |
+| experience        | varchar(100) | YES  |     | NULL    |                |
+| accountCreateDate | varchar(25)  | YES  |     | NULL    |                |
++-------------------+--------------+------+-----+---------+----------------+
+ */
 public class AccountDB {
     private int ID;
     private String username;
