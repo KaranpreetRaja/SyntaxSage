@@ -48,6 +48,21 @@ public class CourseDB {
         }
 
     }
+    public void deleteDataByCourseId(int id)  {
+        try {
+            String url = "jdbc:mysql://localhost:3306/project";
+            String uname = "rajendra";
+            String passwordForDB = "rajendra";
+            Connection connection = DriverManager.getConnection(url, uname, passwordForDB);
+            Statement statement = connection.createStatement();
+            String query= String.format("delete from  courses where courseId=%d",id);
+            int resultSet = statement.executeUpdate(query);
+        }
+        catch (SQLException exception){
+            System.out.println("SQL Exception in deleteDataById() method");
+        }
+
+    }
 
 
 }
