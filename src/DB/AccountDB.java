@@ -8,7 +8,7 @@ import java.sql.SQLException;
  * +-------------------+--------------+------+-----+---------+----------------+
 | Field             | Type         | Null | Key | Default | Extra          |
 +-------------------+--------------+------+-----+---------+----------------+
-| id                | int          | NO   | PRI | NULL    | auto_increment |
+| id                | int          | NO   | PRI | NULL    | 
 | username          | varchar(50)  | YES  |     | NULL    |                |
 | password          | varchar(50)  | YES  |     | NULL    |                |
 | classes           | varchar(700) | YES  |     | NULL    |                |
