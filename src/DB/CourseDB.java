@@ -102,6 +102,31 @@ public class CourseDB {
         return  retID;
 
     }
+    public int getNoOfLessons(String courseName) throws SQLException {
+        ResultSet resultSet = null;
+        int retID=0;
+        try {
+            String url = "jdbc:mysql://localhost:3306/project";
+            String uname = "rajendra";
+            String passwordForDB = "rajendra";
+            Connection connection = DriverManager.getConnection(url, uname, passwordForDB);
+            Statement statement = connection.createStatement();
+            String query = String.format("select noLessons  from courses where courseName='%s'", courseName);
+            resultSet = statement.executeQuery(query);
+            if(resultSet==null) {
+                System.out.println("null");
+            }
+
+            while(resultSet.next()){
+                retID=resultSet.getInt(1);
+            }
+        } catch (SQLException exception) {
+            System.out.println("SQL Exception in getID(Argument Username) method");
+        }
+        return  retID;
+
+    }
+
 
 
 }
