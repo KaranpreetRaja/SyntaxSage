@@ -1,8 +1,13 @@
 package DB;
 
+import java.beans.Statement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
 /*
  * 
  * +-------------------+--------------+------+-----+---------+----------------+
@@ -68,6 +73,21 @@ public class AccountDB {
         }
         catch (SQLException exception){
             System.out.println("SQL Exception in addData() method");
+        }
+
+    }
+    public void deleteDataById(int id)  {
+        try {
+            String url = "jdbc:mysql://localhost:3306/project";
+            String uname = "rajendra";
+            String passwordForDB = "rajendra";
+            Connection connection = DriverManager.getConnection(url, uname, passwordForDB);
+            Statement statement = connection.createStatement();
+            String query= String.format("delete from  account where id=%d",id);
+            int resultSet = statement.executeUpdate(query);
+        }
+        catch (SQLException exception){
+            System.out.println("SQL Exception in deleteDataById() method");
         }
 
     }
