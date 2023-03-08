@@ -1,7 +1,14 @@
 package DB;
 import java.sql.*;
-
-
+/* 
++------------+--------------+------+-----+---------+-------+
+| Field      | Type         | Null | Key | Default | Extra |
++------------+--------------+------+-----+---------+-------+
+| courseId   | int          | NO   | PRI | NULL    |       |
+| courseName | varchar(100) | YES  |     | NULL    |       |
+| noLessons  | int          | YES  |     | NULL    |       |
++------------+--------------+------+-----+---------+-------+
+*/
 public class CourseDB {
     int courseId;
     String courseName;
