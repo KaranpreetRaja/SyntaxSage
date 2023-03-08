@@ -91,5 +91,21 @@ public class AccountDB {
         }
 
     }
+    
+    public void deleteDataByUsername(String Username)  {
+        try {
+            String url = "jdbc:mysql://localhost:3306/project";
+            String uname = "rajendra";
+            String passwordForDB = "rajendra";
+            Connection connection = DriverManager.getConnection(url, uname, passwordForDB);
+            Statement statement = connection.createStatement();
+            String query= String.format("delete from  account where username='%s'",Username);
+            int resultSet = statement.executeUpdate(query);
+        }
+        catch (SQLException exception){
+            System.out.println("SQL Exception in deleteDataByUsername() method");
+        }
+
+    }
    
 }
