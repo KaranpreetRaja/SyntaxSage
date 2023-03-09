@@ -3,40 +3,66 @@ package GUI;
 import javax.swing.*;
 import javax.swing.border.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class HomePage {
+public class HomePage extends JPanel {
 
     public HomePage() {
-        Box contentPane = Box.createVerticalBox();
-        contentPane.setBackground(new Color(0, 255, 255));
-        contentPane.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
-
-        JLabel lblNewLabel = new JLabel("Syntax Sage");
-        lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        lblNewLabel.setBackground(SystemColor.inactiveCaption);
-        lblNewLabel.setForeground(new Color(255, 0, 0));
-        lblNewLabel.setFont(new Font("Magneto", Font.BOLD, 86));
-        contentPane.add(lblNewLabel, BorderLayout.NORTH);
+        JFrame frame = new JFrame("Syntax Sage");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setForeground(new Color(0, 0, 0));
+        frame.setBackground(new Color(0, 0, 0));
+        frame.pack();
+        frame.setVisible(true);
+        JLabel title = new JLabel("Syntax Sage");
+        title.setAlignmentX(Component.CENTER_ALIGNMENT);
+        title.setHorizontalAlignment(SwingConstants.CENTER);
+        title.setBackground(new Color(0, 0, 0));
+        title.setForeground(new Color(255, 0, 0));
+        title.setFont(new Font("Magneto", Font.BOLD, 86));
+        frame.add(title, BorderLayout.NORTH);
         JPanel panel1 = new JPanel();
-        panel1.setLayout(new BoxLayout(panel1, BoxLayout.X_AXIS));
+        panel1.setBackground(new Color(255, 128, 128));
 
-        JButton btnNewButton_1 = new JButton("Toggle Database");
-        btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 35));
-        btnNewButton_1.setForeground(new Color(255, 128, 128));
-        btnNewButton_1.setBackground(new Color(255, 128, 128));
-        btnNewButton_1.setMaximumSize(new Dimension(400, 60));
+        JButton btnToggleDB = new JButton("Real Database");
+        btnToggleDB.setFont(new Font("Tahoma", Font.PLAIN, 35));
+        btnToggleDB.setForeground(new Color(255, 128, 128));
+        btnToggleDB.setBackground(new Color(255, 128, 128));
+        btnToggleDB.setMaximumSize(new Dimension(400, 60));
+        panel1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
-        JButton btnNewButton = new JButton("Get Started");
-        btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 35));
-        btnNewButton.setForeground(new Color(255, 128, 128));
-        btnNewButton.setBackground(new Color(255, 128, 128));
-        btnNewButton.setMaximumSize(new Dimension(400, 60)); // set maximum width and height
-        panel1.add(btnNewButton);
-        panel1.add(btnNewButton_1);
-        contentPane.add(panel1, BorderLayout.CENTER);
+        JButton btnStart = new JButton("Get Started");
+        btnStart.setFont(new Font("Tahoma", Font.PLAIN, 35));
+        btnStart.setForeground(new Color(255, 128, 128));
+        btnStart.setBackground(new Color(255, 128, 128));
+        btnStart.setMaximumSize(new Dimension(400, 60));
+        panel1.add(btnStart);
+        panel1.add(btnToggleDB);
+        frame.add(panel1, BorderLayout.CENTER);
 
-        JPanel panel = new JPanel();
-        contentPane.add(panel);
+        btnStart.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // SOMEONE I DONT KNOW HOW TO SWITCH TO THE LOGIN PAGE
+                // ADD YOUR CODE HERE, I DONT WANT TO MAKE THE SAME MISTAKE WITH THE SIGN UP
+                // PAGE!!!
+                JFrame homeFrame = (JFrame) SwingUtilities.getWindowAncestor(btnStart);
+                homeFrame.setVisible(false);
+
+            }
+        });
+        btnToggleDB.addActionListener(new ActionListener() {
+            boolean isStubDatabase = false;
+
+            public void actionPerformed(ActionEvent e) {
+                if (isStubDatabase) {
+                    btnToggleDB.setText("Real Database");
+                    isStubDatabase = false;
+                } else {
+                    btnToggleDB.setText("Stub Database");
+                    isStubDatabase = true;
+                }
+            }
+        });
     }
-
 }
