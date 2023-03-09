@@ -4,7 +4,6 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 public class SessionFrame extends javax.swing.JFrame {
 
-
     /**
      * Creates new form SessionFrame
      */
@@ -13,9 +12,8 @@ public class SessionFrame extends javax.swing.JFrame {
         
     }
 
-
     @SuppressWarnings("unchecked")                       
-    private void initComponents() {
+    public void initComponents() {
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
@@ -30,14 +28,7 @@ public class SessionFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         MultipleChoice q1 = new MultipleChoice(); //question 1
-
-        jTabbedPane1.addTab("Question 1", q1);
-
-        MultipleSelect q2 = new MultipleSelect(); //question 1
-
-        jTabbedPane1.addTab("Question 2", q2);
-
-        
+        jTabbedPane1.addTab("Question", q1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
