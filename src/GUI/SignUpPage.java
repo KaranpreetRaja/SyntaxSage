@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 import CustomComponents.*;
 
-public class SignUpPage {
+public class SignUpPage extends JFrame{
 
     public SignUpPage(ArrayList<Account> accountList) {
         // Frame:

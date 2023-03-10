@@ -82,7 +82,7 @@ public class Login extends JFrame {
         inputPanel.setLayout(new BoxLayout(inputPanel, BoxLayout.PAGE_AXIS));
 
         // Stub Database
-        if (databaseExists == false){
+        if (useRealDB == false){
             Login.accountList = Account.extractAccountList();
         }
         else {

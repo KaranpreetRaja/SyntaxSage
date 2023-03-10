@@ -3,9 +3,10 @@ package CustomComponents;
 import java.util.ArrayList;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import DB.*;
-import java.io.Scanner;
+import DB;
+import java.util.Scanner;
 import java.io.File;
+import java.io.FileNotFoundException;
 
 
 public class Account{
@@ -182,7 +183,7 @@ public class Account{
 
 
     //Initialization Functions
-    public ArrayList<Account> extractAccountList() {
+    public static ArrayList<Account> extractAccountList() {
         try {
         ArrayList<Account> accountList = new ArrayList<Account>();
         File accountFile = new File("Account.txt");
