@@ -1,5 +1,7 @@
 package GUI;
 import CustomComponents.*;
+
+import javax.swing.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 public class SessionFrame extends javax.swing.JFrame {
@@ -25,7 +27,7 @@ public class SessionFrame extends javax.swing.JFrame {
             }
         });
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 
         MultipleChoice q1 = new MultipleChoice(); //question 1
         jTabbedPane1.addTab("Question", q1);

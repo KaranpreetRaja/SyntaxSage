@@ -13,9 +13,6 @@ import java.util.Collections;
 
 public class MultipleSelect extends JPanel {
 
-    /**
-	 * 
-	 */
 	private static final long serialVersionUID = -7859316644755253568L;
 
 	public MultipleSelect() {
@@ -35,9 +32,9 @@ public class MultipleSelect extends JPanel {
         ArrayList<String> answers = new ArrayList<>();
         try {
             // Replace the following with your database URL, username, and password
-            String url = "jdbc:mysql://localhost:3306/project";
-            String username = "root";
-            String password = "root";
+            String url = "jdbc:mysql://140.238.154.147:3306/project";
+            String username = "user";
+            String password = "Eecs2311!";
 
             Connection connection = DriverManager.getConnection(url, username, password);
             Statement statement = connection.createStatement();
