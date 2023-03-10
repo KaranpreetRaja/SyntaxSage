@@ -7,14 +7,10 @@ Update information
 Add information
 Delete Information
 get information based upon given input usually id
-
-NOTE: There must be a server hosted locally with a Database named syntaxsage. A table with
-
  */
 
-
-
-public class Database implements DatabaseInterface {
+public class Database {
+    
     String username;
     String password;
     String classes;
@@ -41,11 +37,10 @@ public class Database implements DatabaseInterface {
     }
 
     //connect to database
-    @Override
     public void connectToDatabase(){
-        String url="jdbc:mysql://localhost:3306/project";
-        String uname="rajendra";
-        String passwordForDB="rajendra";
+        String url = "jdbc:mysql://140.238.154.147:3306/project";
+        String uname = "user";
+        String passwordForDB="Eecs2311!";
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
             System.out.println("Driver Found.");
@@ -60,15 +55,14 @@ public class Database implements DatabaseInterface {
         }
 
     }
-    @Override
     public void addData()  {
         try {
-            String url = "jdbc:mysql://localhost:3306/project";
-            String uname = "rajendra";
-            String passwordForDB = "rajendra";
+            String url = "jdbc:mysql://140.238.154.147:3306/project";
+            String uname = "user";
+            String passwordForDB="Eecs2311!";
             Connection connection = DriverManager.getConnection(url, uname, passwordForDB);
             Statement statement = connection.createStatement();
-           String query= String.format("insert into  syntaxsage (username,password,classes,experience,accountCreateDate) values ('%s','%s','%s','%s','%s')",this.username,this.password,this.classes,this.experience,this.accountCreateDate);
+            String query= String.format("insert into account (username,password,classes,experience,accountCreateDate) values ('%s','%s','%s','%s','%s')",this.username,this.password,this.classes,this.experience,this.accountCreateDate);
             boolean result = statement.execute(query);
         }
         catch (SQLException exception){
@@ -77,15 +71,14 @@ public class Database implements DatabaseInterface {
 
     }
 
-    @Override
     public void deleteDataById(int id)  {
         try {
-            String url = "jdbc:mysql://localhost:3306/project";
-            String uname = "rajendra";
-            String passwordForDB = "rajendra";
+            String url = "jdbc:mysql://140.238.154.147:3306/project";
+            String uname = "user";
+            String passwordForDB = "Eecs2311!";
             Connection connection = DriverManager.getConnection(url, uname, passwordForDB);
             Statement statement = connection.createStatement();
-            String query= String.format("delete from  syntaxsage where id=%d",id);
+            String query= String.format("delete from account where id=%d",id);
             int resultSet = statement.executeUpdate(query);
         }
         catch (SQLException exception){
@@ -93,18 +86,16 @@ public class Database implements DatabaseInterface {
         }
 
     }
-
-    @Override
-    public int getID(String username) throws SQLException {
+    public int getID(String Username) throws SQLException {
         ResultSet resultSet = null;
-        int retID=0;
+        int retID = 0;
         try {
-            String url = "jdbc:mysql://localhost:3306/project";
-            String uname = "rajendra";
-            String passwordForDB = "rajendra";
+            String url = "jdbc:mysql://140.238.154.147:3306/project";
+            String uname = "user";
+            String passwordForDB = "Eecs2311!";
             Connection connection = DriverManager.getConnection(url, uname, passwordForDB);
             Statement statement = connection.createStatement();
-            String query = String.format("select id  from syntaxsage where username='%s'", username);
+            String query = String.format("select id from account where username='%s'", username);
              resultSet = statement.executeQuery(query);
              if(resultSet==null) {
                  System.out.println("null");
@@ -116,23 +107,21 @@ public class Database implements DatabaseInterface {
                  retID=resultSet.getInt(1);
              }
         } catch (SQLException exception) {
-            System.out.println("SQL Exception in getID(Argument username) method");
+            System.out.println("SQL Exception in getID(Argument Username) method");
         }
         return  retID;
 
     }
-
-    @Override
     public String getUsername(int id) throws SQLException {
         ResultSet resultSet = null;
-        String retString="";
+        String retString = "";
         try {
-            String url = "jdbc:mysql://localhost:3306/project";
-            String uname = "rajendra";
-            String passwordForDB = "rajendra";
+            String url = "jdbc:mysql://140.238.154.147:3306/project";
+            String uname = "user";
+            String passwordForDB = "Eecs2311!";
             Connection connection = DriverManager.getConnection(url, uname, passwordForDB);
             Statement statement = connection.createStatement();
-            String query = String.format("select username  from syntaxsage where id=%d", id);
+            String query = String.format("select username from account where id=%d", id);
             resultSet = statement.executeQuery(query);
             if(resultSet==null) {
                 System.out.println("null");
@@ -147,19 +136,19 @@ public class Database implements DatabaseInterface {
             System.out.println("SQL Exception in getUsername(Argument Username) method");
         }
         return  retString;
+
     }
 
-    @Override
     public String getPassword(int id) throws SQLException {
         ResultSet resultSet = null;
         String retString="";
         try {
-            String url = "jdbc:mysql://localhost:3306/project";
-            String uname = "rajendra";
-            String passwordForDB = "rajendra";
+            String url = "jdbc:mysql://140.238.154.147:3306/project";
+            String uname = "user";
+            String passwordForDB = "Eecs2311!";
             Connection connection = DriverManager.getConnection(url, uname, passwordForDB);
             Statement statement = connection.createStatement();
-            String query = String.format("select password  from syntaxsage where id=%d", id);
+            String query = String.format("select password from account where id=%d", id);
             resultSet = statement.executeQuery(query);
             if(resultSet==null) {
                 System.out.println("null");
@@ -171,23 +160,21 @@ public class Database implements DatabaseInterface {
                 retString=resultSet.getString(1);
             }
         } catch (SQLException exception) {
-            System.out.println("SQL Exception in getPassword(Argument username) method");
+            System.out.println("SQL Exception in getPassword(Argument Username) method");
         }
         return  retString;
 
     }
-
-    @Override
-    public String getPassword(String username) throws SQLException {
+    public String getPassword(String Username) throws SQLException {
         ResultSet resultSet = null;
         String retString = "";
         try {
-            String url = "jdbc:mysql://localhost:3306/project";
-            String uname = "rajendra";
-            String passwordForDB = "rajendra";
+            String url = "jdbc:mysql://140.238.154.147:3306/project";
+            String uname = "user";
+            String passwordForDB = "Eecs2311!";
             Connection connection = DriverManager.getConnection(url, uname, passwordForDB);
             Statement statement = connection.createStatement();
-            String query = String.format("select password  from syntaxsage where username='%s'", username);
+            String query = String.format("select password from account where username='%s'", username);
             resultSet = statement.executeQuery(query);
             if(resultSet == null) {
                 System.out.println("null");
@@ -205,17 +192,16 @@ public class Database implements DatabaseInterface {
 
     }
 
-    @Override
-    public String getAccountInfo(String username){
+    public String getAccountInfo(String Username){
         String retString = "";
         try {
-            String url = "jdbc:mysql://localhost:3306/project";
-            String uname = "rajendra";
-            String passwordForDB = "rajendra";
+            String url = "jdbc:mysql://140.238.154.147:3306/project";
+            String uname = "user";
+            String passwordForDB = "Eecs2311!";
             Connection connection = DriverManager.getConnection(url, uname, passwordForDB);
             Statement statement = connection.createStatement();
-            String query = String.format("select *  from syntaxsage where username='%s'", username);
-           ResultSet resultSet = statement.executeQuery(query);
+            String query = String.format("select * from account where username='%s'", username);
+            ResultSet resultSet = statement.executeQuery(query);
             if(resultSet==null) {
                 System.out.println(" ResultSet null");
             }
@@ -226,21 +212,20 @@ public class Database implements DatabaseInterface {
                 retString= resultSet.getInt(1) +", "+resultSet.getString(2)+", "+resultSet.getString(3)+", "+resultSet.getString(4)+", "+resultSet.getString(5)+", "+resultSet.getString(6);
             }
         } catch (SQLException exception) {
-            System.out.println("SQL Exception in getID(Argument username) method");
+            System.out.println("SQL Exception in getID(Argument Username) method");
         }
         return retString;
     }
 
-    @Override
     public String getAllUsernames(){
         String retString = "";
         try {
-            String url = "jdbc:mysql://localhost:3306/project";
-            String uname = "rajendra";
-            String passwordForDB = "rajendra";
+            String url = "jdbc:mysql://140.238.154.147:3306/project";
+            String uname = "user";
+            String passwordForDB = "Eecs2311!";
             Connection connection = DriverManager.getConnection(url, uname, passwordForDB);
             Statement statement = connection.createStatement();
-            String query = "select username from syntaxsage";
+            String query = "select username from account";
             ResultSet resultSet = statement.executeQuery(query);
             if(resultSet==null) {
                 System.out.println(" ResultSet null");
