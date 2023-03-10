@@ -1,15 +1,18 @@
 package CustomComponents;
 
+import java.io.FileNotFoundException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import DB;
+import DB.*;
+
+import java.util.Objects;
 import java.util.Scanner;
 import java.io.File;
-import java.io.FileNotFoundException;
 
 
-public class Account{
+public class Account {
     private String username;
     private String password;
     private String courses;
@@ -24,11 +27,12 @@ public class Account{
         this.creationDate = "";
     }
 
-    public Account(int ID) {
-        DataBase database = new DataBase();
+    public Account(int ID) throws SQLException {
+        Database database = new Database();
         database.connectToDatabase();
         String username = database.getUsername(ID);
-        String[5] accountInfo = database.getAccountInfo(username).split(", ");
+        String accountData = database.getAccountInfo(username);
+        String[] accountInfo = accountData.split(",");
 
         this.username = accountInfo[0];
         this.password = accountInfo[1];
@@ -45,36 +49,37 @@ public class Account{
         this.creationDate = creationDate;
     }
 
+    public Account(String accountName, String accountPass, String courseString, String experience, String creationDate, int id) {
+    }
+
     //Static Factory Methods
-    public static Account getAccount(int ID) {
-        Account accountObject = new Account(ID);
-        return accountObject;
+    public static Account getAccount(int ID) throws SQLException {
+        return new Account(ID);
 }
     public static Account createAccount(String accountName, String accountPass, String courseString, String experience,
             String creationDate, int ID) {
         return new Account(accountName, accountPass, courseString, experience, creationDate, ID);
     }
 
-    public static Account createAccount(String username, String password, String courses) {
+    public static Account createAccount(String username, String password, String courses) throws SQLException {
         String accountCreationDate = (LocalDateTime.now()).format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-        DataBase database = new DataBase(username, password, courses, "", accountCreationDate);
+        Database database = new Database(username, password, courses, "", accountCreationDate);
         database.connectToDatabase();
         database.addData();
         return Account.getAccount(database.getID(username));
     }
 
     //Logic Functions
-    public Account signIn(String username, String password) throws AccountNotFoundException {
+    public Account signIn(String username, String password) throws AccountNotFoundException, SQLException {
         //MySQL Database Sign in
-        DataBase database = new DataBase();
+        Database database = new Database();
         database.connectToDatabase();
         String[] usernameList = database.getAllUsernames().split(", ");
-        for (int i = 0; i < usernameList.length(); i++) {
-            if (username.equals(usernameList[i])) {
-                if (password.equals(database.getPassword(usernameList[i]))) {
+        for (String s : usernameList) {
+            if (username.equals(s)) {
+                if (password.equals(database.getPassword(s))) {
                     return Account.getAccount(database.getID(username));
-                }
-                else {
+                } else {
                     throw new AccountNotFoundException("");
                 }
             }
@@ -84,12 +89,11 @@ public class Account{
 
     public Account signIn(String username, String password, ArrayList<Account> accountList) throws AccountNotFoundException {
         //Stub Database Sign in
-        for (int i = 0; i < accountList.size(); i++) {
-            if (accountList.get(i).getUsername.equals(username)) {
-                if (accountList.get(i).getPassword.equals(password)) {
-                    return accountList.get(i);
-                }
-                else {
+        for (Account account : accountList) {
+            if (Objects.equals(account.username, username)) {
+                if (account.username.equals(password)) {
+                    return account;
+                } else {
                     throw new AccountNotFoundException("");
                 }
             }
@@ -97,35 +101,34 @@ public class Account{
         throw new AccountNotFoundException("");
     }
 
-    public Account signUp(String username, String password, ArrayList<String> courses) throws AccountSignUpException {
+    public Account signUp(String username, String password, ArrayList<String> courses) throws AccountSignUpException, SQLException {
         //MySQL Database Sign Up
-        DataBase database = new DataBase();
+        Database database = new Database();
         database.connectToDatabase();
         String[] usernameList = database.getAllUsernames().split(", ");
-        for (int i = 0; i < usernameList.length(); i++) {
-            if (username.equals(usernameList[i])) {
+        for (String s : usernameList) {
+            if (username.equals(s)) {
                 throw new AccountSignUpException("");
             }
         }
         String courseString = "";
-        for (int j = 0; j < courses.size(); j++){
-            courseString = courseString + courses.get(j) + ",";
+        for (String course : courses) {
+            courseString = courseString + course + ",";
         }
-        Account myAccount = createAccount(username, password, courseString);
-        return myAccount;
+        return createAccount(username, password, courseString);
     }
 
-    public Account signUp(String username, String password, ArrayList<String> courses, ArrayList<Account> accountList) throws AccountSignUpException {
+    public Account signUp(String username, String password, ArrayList<String> courses, ArrayList<Account> accountList) throws AccountSignUpException, SQLException {
         //Stub Database Sign Up
-        for (int i = 0; i < accountList.size(); i++){
-            if (accountList.get(i).getUsername == username){
+        for (Account account : accountList) {
+            if (Objects.equals(account.username, username)) {
                 throw new AccountSignUpException("");
             }
         }
 
         String courseString = "";
-        for (int j = 0; j < courses.size(); j++){
-            courseString = courseString + courses.get(j) + ",";
+        for (String course : courses) {
+            courseString = courseString + course + ",";
         }
 
         Account myAccount = createAccount(username, password, courseString);
@@ -158,11 +161,11 @@ public class Account{
 
     //Setters
     public void setUsername(String newUsername) throws AccountUsernameException{
-        DataBase database = new DataBase();
+        Database database = new Database();
         database.connectToDatabase();
         String[] usernameList = database.getAllUsernames().split(", ");
-        for (int i = 0; i < usernameList.length(); i++) {
-            if (username.equals(usernameList[i])) {
+        for (String s : usernameList) {
+            if (username.equals(s)) {
                 throw new AccountUsernameException("");
             }
         }
@@ -183,7 +186,7 @@ public class Account{
 
 
     //Initialization Functions
-    public static ArrayList<Account> extractAccountList() {
+    public ArrayList<Account> extractAccountList() {
         try {
         ArrayList<Account> accountList = new ArrayList<Account>();
         File accountFile = new File("Account.txt");
@@ -201,6 +204,4 @@ public class Account{
             return new ArrayList<Account>();
         }
     }
-
-
 }
