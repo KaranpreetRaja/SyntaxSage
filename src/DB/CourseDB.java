@@ -43,8 +43,8 @@ public class CourseDB {
     public void addData()  {
         try {
             String url = "jdbc:mysql://localhost:3306/project";
-            String uname = "rajendra";
-            String passwordForDB = "rajendra";
+            String uname="user";
+            String passwordForDB="Eecs2311!";
             Connection connection = DriverManager.getConnection(url, uname, passwordForDB);
             Statement statement = connection.createStatement();
             String query= String.format("insert into  courses values ('%d','%s','%d')",this.courseId,this.courseName,this.noLessons);
@@ -58,8 +58,8 @@ public class CourseDB {
     public void deleteDataByCourseId(int id)  {
         try {
             String url = "jdbc:mysql://localhost:3306/project";
-            String uname = "rajendra";
-            String passwordForDB = "rajendra";
+            String uname="user";
+            String passwordForDB="Eecs2311!";
             Connection connection = DriverManager.getConnection(url, uname, passwordForDB);
             Statement statement = connection.createStatement();
             String query= String.format("delete from  courses where courseId=%d",id);
@@ -73,8 +73,8 @@ public class CourseDB {
     public void deleteDataByCourseName(String courseName)  {
         try {
             String url = "jdbc:mysql://localhost:3306/project";
-            String uname = "rajendra";
-            String passwordForDB = "rajendra";
+            String uname="user";
+            String passwordForDB="Eecs2311!";
             Connection connection = DriverManager.getConnection(url, uname, passwordForDB);
             Statement statement = connection.createStatement();
             String query= String.format("delete from  courses where courseName='%s'",courseName);
@@ -90,8 +90,8 @@ public class CourseDB {
         int retID=0;
         try {
             String url = "jdbc:mysql://localhost:3306/project";
-            String uname = "rajendra";
-            String passwordForDB = "rajendra";
+            String uname="user";
+        String passwordForDB="Eecs2311!";
             Connection connection = DriverManager.getConnection(url, uname, passwordForDB);
             Statement statement = connection.createStatement();
             String query = String.format("select courseId  from courses where courseName='%s'", courseName);
@@ -114,8 +114,8 @@ public class CourseDB {
         int retID=0;
         try {
             String url = "jdbc:mysql://localhost:3306/project";
-            String uname = "rajendra";
-            String passwordForDB = "rajendra";
+            String uname="user";
+            String passwordForDB="Eecs2311!";
             Connection connection = DriverManager.getConnection(url, uname, passwordForDB);
             Statement statement = connection.createStatement();
             String query = String.format("select noLessons  from courses where courseName='%s'", courseName);

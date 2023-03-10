@@ -51,8 +51,8 @@ public class DataBase {
     public void addData()  {
         try {
             String url = "jdbc:mysql://localhost:3306/project";
-            String uname = "rajendra";
-            String passwordForDB = "rajendra";
+            String uname="user";
+            String passwordForDB="Eecs2311!";
             Connection connection = DriverManager.getConnection(url, uname, passwordForDB);
             Statement statement = connection.createStatement();
            String query= String.format("insert into  syntaxsage (username,password,classes,experience,accountCreateDate) values ('%s','%s','%s','%s','%s')",this.username,this.password,this.classes,this.experience,this.accountCreateDate);
@@ -67,8 +67,8 @@ public class DataBase {
     public void deleteDataById(int id)  {
         try {
             String url = "jdbc:mysql://localhost:3306/project";
-            String uname = "rajendra";
-            String passwordForDB = "rajendra";
+            String uname="user";
+            String passwordForDB="Eecs2311!";
             Connection connection = DriverManager.getConnection(url, uname, passwordForDB);
             Statement statement = connection.createStatement();
             String query= String.format("delete from  syntaxsage where id=%d",id);
@@ -84,8 +84,8 @@ public class DataBase {
         int retID=0;
         try {
             String url = "jdbc:mysql://localhost:3306/project";
-            String uname = "rajendra";
-            String passwordForDB = "rajendra";
+            String uname="user";
+            String passwordForDB="Eecs2311!";
             Connection connection = DriverManager.getConnection(url, uname, passwordForDB);
             Statement statement = connection.createStatement();
             String query = String.format("select id  from syntaxsage where username='%s'", Username);
@@ -108,8 +108,8 @@ public class DataBase {
         String retString="";
         try {
             String url = "jdbc:mysql://localhost:3306/project";
-            String uname = "rajendra";
-            String passwordForDB = "rajendra";
+            String uname="user";
+            String passwordForDB="Eecs2311!";
             Connection connection = DriverManager.getConnection(url, uname, passwordForDB);
             Statement statement = connection.createStatement();
             String query = String.format("select username  from syntaxsage where id=%d", id);
@@ -133,8 +133,8 @@ public class DataBase {
         String retString="";
         try {
             String url = "jdbc:mysql://localhost:3306/project";
-            String uname = "rajendra";
-            String passwordForDB = "rajendra";
+            String uname="user";
+        String passwordForDB="Eecs2311!";
             Connection connection = DriverManager.getConnection(url, uname, passwordForDB);
             Statement statement = connection.createStatement();
             String query = String.format("select password  from syntaxsage where id=%d", id);
@@ -157,8 +157,8 @@ public class DataBase {
         String retString="";
         try {
             String url = "jdbc:mysql://localhost:3306/project";
-            String uname = "rajendra";
-            String passwordForDB = "rajendra";
+            String uname="user";
+            String passwordForDB="Eecs2311!";
             Connection connection = DriverManager.getConnection(url, uname, passwordForDB);
             Statement statement = connection.createStatement();
             String query = String.format("select password  from syntaxsage where username='%s'", Username);
@@ -181,8 +181,8 @@ public class DataBase {
         String retString="";
         try {
             String url = "jdbc:mysql://localhost:3306/project";
-            String uname = "rajendra";
-            String passwordForDB = "rajendra";
+            String uname="user";
+        String passwordForDB="Eecs2311!";
             Connection connection = DriverManager.getConnection(url, uname, passwordForDB);
             Statement statement = connection.createStatement();
             String query = String.format("select *  from syntaxsage where username='%s'", Username);
@@ -204,8 +204,8 @@ public class DataBase {
         String retString="";
         try {
             String url = "jdbc:mysql://localhost:3306/project";
-            String uname = "rajendra";
-            String passwordForDB = "rajendra";
+            String uname="user";
+        String passwordForDB="Eecs2311!";
             Connection connection = DriverManager.getConnection(url, uname, passwordForDB);
             Statement statement = connection.createStatement();
             String query = String.format("select username  from syntaxsage");

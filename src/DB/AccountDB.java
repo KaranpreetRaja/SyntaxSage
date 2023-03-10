@@ -64,8 +64,8 @@ public class AccountDB {
     public void addData()  {
         try {
             String url = "jdbc:mysql://localhost:3306/project";
-            String uname = "rajendra";
-            String passwordForDB = "rajendra";
+            String uname="user";
+            String passwordForDB="Eecs2311!";
             Connection connection = DriverManager.getConnection(url, uname, passwordForDB);
             Statement statement = connection.createStatement();
             String query= String.format("insert into  account  values ('%d','%s','%s','%s','%s','%s')",this.ID,this.username,this.password,this.courses,this.experience,this.creationDate);
@@ -79,8 +79,8 @@ public class AccountDB {
     public void deleteDataById(int id)  {
         try {
             String url = "jdbc:mysql://localhost:3306/project";
-            String uname = "rajendra";
-            String passwordForDB = "rajendra";
+            String uname="user";
+        String passwordForDB="Eecs2311!";
             Connection connection = DriverManager.getConnection(url, uname, passwordForDB);
             Statement statement = connection.createStatement();
             String query= String.format("delete from  account where id=%d",id);
@@ -95,8 +95,8 @@ public class AccountDB {
     public void deleteDataByUsername(String Username)  {
         try {
             String url = "jdbc:mysql://localhost:3306/project";
-            String uname = "rajendra";
-            String passwordForDB = "rajendra";
+            String uname="user";
+            String passwordForDB="Eecs2311!";
             Connection connection = DriverManager.getConnection(url, uname, passwordForDB);
             Statement statement = connection.createStatement();
             String query= String.format("delete from  account where username='%s'",Username);
@@ -112,8 +112,8 @@ public class AccountDB {
         String retString="";
         try {
             String url = "jdbc:mysql://localhost:3306/project";
-            String uname = "rajendra";
-            String passwordForDB = "rajendra";
+            String uname="user";
+            String passwordForDB="Eecs2311!";
             Connection connection = DriverManager.getConnection(url, uname, passwordForDB);
             Statement statement = connection.createStatement();
             String query = String.format("select password  from account where id=%d", id);
@@ -136,8 +136,8 @@ public class AccountDB {
         String retString="";
         try {
             String url = "jdbc:mysql://localhost:3306/project";
-            String uname = "rajendra";
-            String passwordForDB = "rajendra";
+            String uname="user";
+        String passwordForDB="Eecs2311!";
             Connection connection = DriverManager.getConnection(url, uname, passwordForDB);
             Statement statement = connection.createStatement();
             String query = String.format("select username  from account where id=%d", id);
@@ -160,8 +160,8 @@ public class AccountDB {
         int retID=0;
         try {
             String url = "jdbc:mysql://localhost:3306/project";
-            String uname = "rajendra";
-            String passwordForDB = "rajendra";
+            String uname="user";
+        String passwordForDB="Eecs2311!";
             Connection connection = DriverManager.getConnection(url, uname, passwordForDB);
             Statement statement = connection.createStatement();
             String query = String.format("select id  from account where username='%s'", Username);
