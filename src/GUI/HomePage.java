@@ -7,13 +7,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class HomePage extends JPanel {
+	private static boolean isStubDatabase = false;
 
-    public HomePage() {
+		public static void main(String[] args) {
+			
         JFrame frame = new JFrame("Syntax Sage");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setForeground(new Color(0, 0, 0));
         frame.setBackground(new Color(0, 0, 0));
         frame.pack();
+        frame.setMinimumSize(new Dimension(1300, 600));
         frame.setVisible(true);
         JLabel title = new JLabel("Syntax Sage");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -40,6 +43,8 @@ public class HomePage extends JPanel {
         panel1.add(btnStart);
         panel1.add(btnToggleDB);
         frame.add(panel1, BorderLayout.CENTER);
+        
+        
 
         btnStart.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -48,6 +53,13 @@ public class HomePage extends JPanel {
                 // PAGE!!!
                 JFrame homeFrame = (JFrame) SwingUtilities.getWindowAncestor(btnStart);
                 homeFrame.setVisible(false);
+                try {
+					Login login = new Login(isStubDatabase);
+					login.setVisible(true);
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 
             }
         });
