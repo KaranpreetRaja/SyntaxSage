@@ -1,7 +1,7 @@
 Log, Iteration 1 (from Mon, Feb 6 to Fri, Feb 17)
 
 Mon, Feb 6 - Discord Call
-Discussed what could be improved from itr0, how the team could work more efficiently.Planned meetings and distributed work for everyone.
+Discussed what could be improved from itr0, how the team could work more efficiently. Planned meetings and distributed work for everyone.
 Brainstormed ideas of excecution and briefd about the features to team members.
 
 Ryan Planned for : Account Class
@@ -14,8 +14,7 @@ Used chalkboard (in lecture hall) to sketch architecture of system, and start co
 The team members updated their work status with each other and discussed dependencies and requirements for integrating different features.
 
 Fri, Feb 10 - Discord Call
-Started working on dependencies and collaborated with each other, team members almost completed half of planning and desining tasks started to code.
-
+Started working on dependencies and collaborated with each other, team members almost completed half of planning and designing tasks, started to code.
 
 Mon, Feb 13 - Discord Call
 Check in on everyone's progress-- ensure that expectations are met, and everyone is on the same page. All concerns with other's work were brought up, 
@@ -26,10 +25,28 @@ Abdi's Status: Gui Log in form Class half done
 Mohammad's Status: Session Class half done
 Karan's Status: Worked on architecture, main GUI, Development Structure
 
-
-
 Wed, Feb 15 - Lecture
 Ensure that all individual components are complete, start working together to integrate all individual components of the system. Check ITR1 rubric to ensure all requirements are met.Planning to test the deliverables and prepare the test scenarios.
 
 Thurs, Feb 16 - Discord Call
-Write and run tests for domain-specific and business logic classes using the JUnit test framework. Ensure everyone used the same coding style, and put the finishing touches on the wiki.Executed the test classes and rechecked the work. Ready to submit.
+Write and run tests for domain-specific and business logic classes using the JUnit test framework. Ensure everyone used the same coding style, and put the finishing touches on the wiki. Executed the test classes and rechecked the work. Ready to submit.
+
+Mon, Feb 27 - In Person Meet (after EECS2311 Lab)
+Discussed what we could improve on in Iteration 2, and what we did well. Set expectations for this iteration.
+
+Wed, Mar 1 - Lecture
+Initial discussion as to how the DB might be implemented (discussed various options like SQLite, PostgreSQL, and MySQL). Eventually settled on MySQL as group members had the most familiarity with it, as a result of the lectures/labs provided by the course.
+
+Mon, Mar 6 - Discord Call
+Delegated user stories to group members (playing to everyones strengths) while still ensuring work is distrubted evenly among all group members.
+
+Wed, Mar 8 - Lecture
+Check in on everyone's progress-- ensure that expectations are met, and everyone is on the same page. All concerns with other's work were brought up, and assigned to group members to be dealt with.
+Ryan's Status: Finished updating account class, working on badges and awards system
+Rajendra's Status: MySQL integration/testing nearly complete
+Abdi's Status: Initial page and login 70% complete
+Mohammad's Status: Session GUI (multiple choice and multiple select questions being fed from DB) complete, working on testing
+Karan's Status: Completed course and session java classes, working on resolving previous errors and making sure no bugs are present
+
+Thurs, Mar 9 - Discord Call
+Ensure that all individual components are complete, start working together to integrate all individual components of the system. Check ITR2 rubric to ensure all requirements are met. Planning to test the deliverables and prepare the test scenarios.
