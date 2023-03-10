@@ -4,7 +4,7 @@ import java.util.ArrayList;
 public class Enrollment {
 	private Account account;
 	private Course course;
-	private ArrayList<int> lessonsCompleted;
+	private int lessonsCompleted;
 	private boolean completed;
 	
 	
