@@ -1,43 +1,30 @@
 package GUI;
-import CustomComponents.*;
+
+import javax.swing.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-public class SessionFrame extends javax.swing.JFrame {
 
+public class SessionFrame extends javax.swing.JFrame {
 
     /**
      * Creates new form SessionFrame
      */
     public SessionFrame() {
         initComponents();
-        
     }
 
+    public void initComponents() {
 
-    @SuppressWarnings("unchecked")                       
-    private void initComponents() {
-
-        jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanel2 = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
-
+        JTabbedPane jTabbedPane1 = new JTabbedPane();
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
                 dispose();
             }
         });
+        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        MultipleChoice q1 = new MultipleChoice(); //question 1
-
-        jTabbedPane1.addTab("Question 1", q1);
-
-        MultipleSelect q2 = new MultipleSelect(); //question 1
-
-        jTabbedPane1.addTab("Question 2", q2);
-
-        
+        MultipleChoice q = new MultipleChoice(); // show question
+        jTabbedPane1.addTab("Question", q);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -54,13 +41,17 @@ public class SessionFrame extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        // start session in the center of the screen
+        setLocationRelativeTo(null);
+
         pack();
+        setMinimumSize(new java.awt.Dimension(700, 450));
     }// </editor-fold>                        
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String[] args) {
 
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -69,18 +60,11 @@ public class SessionFrame extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(SessionFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(SessionFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(SessionFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | UnsupportedLookAndFeelException | IllegalAccessException |
+                 InstantiationException ex) {
             java.util.logging.Logger.getLogger(SessionFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
 
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new SessionFrame().setVisible(true);
@@ -88,10 +72,4 @@ public class SessionFrame extends javax.swing.JFrame {
             }
         });
     }
-
-    // Variables declaration - do not modify                     
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JTabbedPane jTabbedPane1;
-    // End of variables declaration                   
 }

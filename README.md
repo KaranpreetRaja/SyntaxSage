@@ -8,7 +8,7 @@ SyntaxSage is a program that aims to help users learn and master programming lan
 
 # Planning Documents
 
-## 😊 [Iteration 1 Planning Document](Planning%20Documents/Iteration1.md)
+## 😊 [Iteration 1 & 2 Planning Document](Planning%20Documents/PlanningDocument.md)
 
 ## 📖 [Wiki](https://github.com/KaranpreetRaja/SyntaxSage/wiki)
 

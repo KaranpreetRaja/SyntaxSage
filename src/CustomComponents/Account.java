@@ -44,11 +44,14 @@ public class Account{
         this.creationDate = creationDate;
     }
 
-
     //Static Factory Methods
     public static Account getAccount(int ID) {
         Account accountObject = new Account(ID);
         return accountObject;
+}
+    public static Account createAccount(String accountName, String accountPass, String courseString, String experience,
+            String creationDate, int ID) {
+        return new Account(accountName, accountPass, courseString, experience, creationDate, ID);
     }
 
     public static Account createAccount(String username, String password, String courses) {
@@ -108,7 +111,7 @@ public class Account{
             courseString = courseString + courses.get(j) + ",";
         }
         Account myAccount = createAccount(username, password, courseString);
-        return database.getID(username);
+        return myAccount;
     }
 
     public Account signUp(String username, String password, ArrayList<String> courses, ArrayList<Account> accountList) throws AccountSignUpException {

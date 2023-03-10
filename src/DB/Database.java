@@ -11,7 +11,10 @@ get information based upon given input usually id
 NOTE: There must be a server hosted locally with a Database named syntaxsage. A table with
 
  */
-public class Database {
+
+
+
+public class Database implements DatabaseInterface {
     String username;
     String password;
     String classes;
@@ -38,6 +41,7 @@ public class Database {
     }
 
     //connect to database
+    @Override
     public void connectToDatabase(){
         String url="jdbc:mysql://localhost:3306/project";
         String uname="rajendra";
@@ -56,6 +60,7 @@ public class Database {
         }
 
     }
+    @Override
     public void addData()  {
         try {
             String url = "jdbc:mysql://localhost:3306/project";
@@ -72,6 +77,7 @@ public class Database {
 
     }
 
+    @Override
     public void deleteDataById(int id)  {
         try {
             String url = "jdbc:mysql://localhost:3306/project";
@@ -87,7 +93,9 @@ public class Database {
         }
 
     }
-    public int getID(String Username) throws SQLException {
+
+    @Override
+    public int getID(String username) throws SQLException {
         ResultSet resultSet = null;
         int retID=0;
         try {
@@ -96,7 +104,7 @@ public class Database {
             String passwordForDB = "rajendra";
             Connection connection = DriverManager.getConnection(url, uname, passwordForDB);
             Statement statement = connection.createStatement();
-            String query = String.format("select id  from syntaxsage where username='%s'", Username);
+            String query = String.format("select id  from syntaxsage where username='%s'", username);
              resultSet = statement.executeQuery(query);
              if(resultSet==null) {
                  System.out.println("null");
@@ -108,11 +116,13 @@ public class Database {
                  retID=resultSet.getInt(1);
              }
         } catch (SQLException exception) {
-            System.out.println("SQL Exception in getID(Argument Username) method");
+            System.out.println("SQL Exception in getID(Argument username) method");
         }
         return  retID;
 
     }
+
+    @Override
     public String getUsername(int id) throws SQLException {
         ResultSet resultSet = null;
         String retString="";
@@ -137,9 +147,9 @@ public class Database {
             System.out.println("SQL Exception in getUsername(Argument Username) method");
         }
         return  retString;
-
     }
 
+    @Override
     public String getPassword(int id) throws SQLException {
         ResultSet resultSet = null;
         String retString="";
@@ -161,12 +171,14 @@ public class Database {
                 retString=resultSet.getString(1);
             }
         } catch (SQLException exception) {
-            System.out.println("SQL Exception in getPassword(Argument Username) method");
+            System.out.println("SQL Exception in getPassword(Argument username) method");
         }
         return  retString;
 
     }
-    public String getPassword(String Username) throws SQLException {
+
+    @Override
+    public String getPassword(String username) throws SQLException {
         ResultSet resultSet = null;
         String retString = "";
         try {
@@ -175,7 +187,7 @@ public class Database {
             String passwordForDB = "rajendra";
             Connection connection = DriverManager.getConnection(url, uname, passwordForDB);
             Statement statement = connection.createStatement();
-            String query = String.format("select password  from syntaxsage where username='%s'", Username);
+            String query = String.format("select password  from syntaxsage where username='%s'", username);
             resultSet = statement.executeQuery(query);
             if(resultSet == null) {
                 System.out.println("null");
@@ -193,7 +205,8 @@ public class Database {
 
     }
 
-    public String getAccountInfo(String Username){
+    @Override
+    public String getAccountInfo(String username){
         String retString = "";
         try {
             String url = "jdbc:mysql://localhost:3306/project";
@@ -201,7 +214,7 @@ public class Database {
             String passwordForDB = "rajendra";
             Connection connection = DriverManager.getConnection(url, uname, passwordForDB);
             Statement statement = connection.createStatement();
-            String query = String.format("select *  from syntaxsage where username='%s'", Username);
+            String query = String.format("select *  from syntaxsage where username='%s'", username);
            ResultSet resultSet = statement.executeQuery(query);
             if(resultSet==null) {
                 System.out.println(" ResultSet null");
@@ -213,11 +226,12 @@ public class Database {
                 retString= resultSet.getInt(1) +", "+resultSet.getString(2)+", "+resultSet.getString(3)+", "+resultSet.getString(4)+", "+resultSet.getString(5)+", "+resultSet.getString(6);
             }
         } catch (SQLException exception) {
-            System.out.println("SQL Exception in getID(Argument Username) method");
+            System.out.println("SQL Exception in getID(Argument username) method");
         }
         return retString;
     }
 
+    @Override
     public String getAllUsernames(){
         String retString = "";
         try {
@@ -226,7 +240,7 @@ public class Database {
             String passwordForDB = "rajendra";
             Connection connection = DriverManager.getConnection(url, uname, passwordForDB);
             Statement statement = connection.createStatement();
-            String query = "select username  from syntaxsage";
+            String query = "select username from syntaxsage";
             ResultSet resultSet = statement.executeQuery(query);
             if(resultSet==null) {
                 System.out.println(" ResultSet null");

@@ -4,19 +4,19 @@ import CustomComponents.SelectionButton;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.Collections;
 
 public class MultipleSelect extends JPanel {
 
-    /**
-	 * 
-	 */
 	private static final long serialVersionUID = -7859316644755253568L;
+    private String correctAnswer1;
+    private String correctAnswer2;
+    private boolean correct;
 
 	public MultipleSelect() {
         setLayout(new BorderLayout());
@@ -29,8 +29,39 @@ public class MultipleSelect extends JPanel {
         textArea.setAlignmentX(SwingConstants.CENTER);
         textArea.setAlignmentY(SwingConstants.CENTER);
 
-        StringBuilder text = new StringBuilder();
-        textArea.setText(text.toString());
+        String question = null;
+        String correctAnswer1 = null;
+        String correctAnswer2 = null;
+        ArrayList<String> answers = new ArrayList<>();
+        try {
+            // Replace the following with your database URL, username, and password
+            String url = "jdbc:mysql://140.238.154.147:3306/project";
+            String username = "user";
+            String password = "Eecs2311!";
+
+            Connection connection = DriverManager.getConnection(url, username, password);
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM msquestions ORDER BY RAND() LIMIT 1");
+
+            if (resultSet.next()) {
+                question = resultSet.getString("msquestion");
+                answers.add(resultSet.getString("correct_answer_1"));
+                answers.add(resultSet.getString("correct_answer_2"));
+                answers.add(resultSet.getString("wrong_answer_1"));
+                answers.add(resultSet.getString("wrong_answer_2"));
+                correctAnswer1 = resultSet.getString("correct_answer_1");
+                correctAnswer2 = resultSet.getString("correct_answer_2");
+            }
+
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        // Shuffle the answers
+        Collections.shuffle(answers);
+
+        textArea.setText(question + "\n\n");
         add(textArea, BorderLayout.NORTH);
 
         JPanel buttonPanel = new JPanel();
@@ -41,45 +72,70 @@ public class MultipleSelect extends JPanel {
         Border border = BorderFactory.createEmptyBorder(50, 0, 50, 0);
         buttonPanel.setBorder(border);
 
-        final SelectionButton button1 = new SelectionButton("Option 1");
+        final SelectionButton button1 = new SelectionButton(answers.get(0));
         button1.setFont(font);
         buttonPanel.add(button1);
 
-        final SelectionButton button2 = new SelectionButton("Option 2");
+        final SelectionButton button2 = new SelectionButton(answers.get(1));
         button2.setFont(font);
         buttonPanel.add(button2);
 
-        final SelectionButton button3 = new SelectionButton("Option 3");
+        final SelectionButton button3 = new SelectionButton(answers.get(2));
         button3.setFont(font);
         buttonPanel.add(button3);
 
-        final SelectionButton button4 = new SelectionButton("Option 4");
+        final SelectionButton button4 = new SelectionButton(answers.get(3));
         button4.setFont(font);
         buttonPanel.add(button4);
 
         JButton submitButton = new JButton("Submit");
+        final String finalCorrectAnswer1 = correctAnswer1;
+        final String finalCorrectAnswer2 = correctAnswer2;
         submitButton.setAlignmentX(SwingConstants.CENTER);
         submitButton.setAlignmentY(SwingConstants.CENTER);
         submitButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-			    StringBuilder selectedButtons = new StringBuilder();
-			    if (button1.isSelected()) {
-			        selectedButtons.append("Option 1 ");
-			    }
-			    if (button2.isSelected()) {
-			        selectedButtons.append("Option 2 ");
-			    }
-			    if (button3.isSelected()) {
-			        selectedButtons.append("Option 3 ");
-			    }
-			    if (button4.isSelected()) {
-			        selectedButtons.append("Option 4 ");
-			    }
-			    System.out.println("Selected buttons: " + selectedButtons);
-			}
-		});
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int correctCount = 0;
+                if (button1.isSelected() && button1.getText().equals(finalCorrectAnswer1) || button1.getText().equals(finalCorrectAnswer2)) {
+                    correctCount++;
+                }
+                if (button2.isSelected() && button2.getText().equals(finalCorrectAnswer1) || button2.getText().equals(finalCorrectAnswer2)) {
+                    correctCount++;
+                }
+                if (button3.isSelected() && button3.getText().equals(finalCorrectAnswer1) || button3.getText().equals(finalCorrectAnswer2)) {
+                    correctCount++;
+                }
+                if (button4.isSelected() && button4.getText().equals(finalCorrectAnswer1) || button4.getText().equals(finalCorrectAnswer2)) {
+                    correctCount++;
+                }
+                if (correctCount == 0) {
+                    JOptionPane.showMessageDialog(null, "Incorrect answer. Please try again.", "Incorrect", JOptionPane.WARNING_MESSAGE);
+                } else if (correctCount == 1) {
+                    JOptionPane.showMessageDialog(null, "Almost there! You are partially correct..", "Partially Correct", JOptionPane.ERROR_MESSAGE);
+                } else {
+                    System.out.println("Correct!");
+                    correct = true;
+                    MultipleChoice panel = new MultipleChoice();
+                    JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(MultipleSelect.this);
+                    frame.setContentPane(panel);
+                    frame.revalidate();
+                }
+            }
+        });
         add(submitButton, BorderLayout.SOUTH);
+    }
+
+    public String getCorrectAnswer1() {
+        return correctAnswer1;
+    }
+
+    public String getCorrectAnswer2() {
+        return correctAnswer2;
+    }
+
+    public boolean isCorrect() {
+        return correct;
     }
 
     public static void main(String[] args) {
@@ -89,7 +145,6 @@ public class MultipleSelect extends JPanel {
 
         MultipleSelect panel = new MultipleSelect();
         frame.add(panel);
-
         frame.setVisible(true);
     }
 }
