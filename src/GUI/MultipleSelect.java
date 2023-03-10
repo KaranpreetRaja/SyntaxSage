@@ -14,6 +14,9 @@ import java.util.Collections;
 public class MultipleSelect extends JPanel {
 
 	private static final long serialVersionUID = -7859316644755253568L;
+    private String correctAnswer1;
+    private String correctAnswer2;
+    private boolean correct;
 
 	public MultipleSelect() {
         setLayout(new BorderLayout());
@@ -111,7 +114,8 @@ public class MultipleSelect extends JPanel {
                 } else if (correctCount == 1) {
                     JOptionPane.showMessageDialog(null, "Almost there! You are partially correct..", "Partially Correct", JOptionPane.ERROR_MESSAGE);
                 } else {
-                    System.out.println("Correct");
+                    System.out.println("Correct!");
+                    correct = true;
                     MultipleChoice panel = new MultipleChoice();
                     JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(MultipleSelect.this);
                     frame.setContentPane(panel);
@@ -122,6 +126,18 @@ public class MultipleSelect extends JPanel {
         add(submitButton, BorderLayout.SOUTH);
     }
 
+    public String getCorrectAnswer1() {
+        return correctAnswer1;
+    }
+
+    public String getCorrectAnswer2() {
+        return correctAnswer2;
+    }
+
+    public boolean isCorrect() {
+        return correct;
+    }
+
     public static void main(String[] args) {
         JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -129,7 +145,6 @@ public class MultipleSelect extends JPanel {
 
         MultipleSelect panel = new MultipleSelect();
         frame.add(panel);
-
         frame.setVisible(true);
     }
 }

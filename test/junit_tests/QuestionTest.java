@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import CustomComponents.Question;
 import CustomComponents.Session;
 
-class QuestionTest{
+class QuestionTest {
     String[] options1 = new String[]{"Milk", "Cheese", "Fruit"};
     String[] answers1 = new String[]{"Milk"};
     Question q1 = new Question("Testing1", options1, answers1);
@@ -22,12 +22,18 @@ class QuestionTest{
     @Test
     void isAnswerTest1() {
         Question qTest1 = session.getNextQuestion();
+        assertTrue(qTest1.isAnswer("Prune"));
     }
 
     @Test
     void isAnswerTest2() {
         Question qTest1 = session.getNextQuestion();
-        assertEquals(qTest1.isAnswer("Prune"), true);
-        assertEquals(qTest1.isAnswer("Apple"), false);
+        assertFalse(qTest1.isAnswer("Apple"));
+    }
+
+    @Test
+    void isAnswerTest3() {
+        Question qTest1 = session.getNextQuestion();
+        assertFalse(qTest1.isAnswer("Milk"));
     }
 }

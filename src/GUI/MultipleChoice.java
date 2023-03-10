@@ -16,6 +16,8 @@ public class MultipleChoice extends JPanel {
 
     private static final long serialVersionUID = -7354864831882039913L;
     private MultipleChoiceButton selectedButton;
+    private String correctAnswer;
+    private boolean correct;
 
     public MultipleChoice() {
         setLayout(new BorderLayout());
@@ -148,6 +150,7 @@ public class MultipleChoice extends JPanel {
 
                     if (selectedAnswer.equals(finalCorrectAnswer)) {
                         System.out.println("Correct!");
+                        correct = true;
                         MultipleSelect panel = new MultipleSelect();
                         JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(MultipleChoice.this);
                         frame.setContentPane(panel);
@@ -162,6 +165,14 @@ public class MultipleChoice extends JPanel {
         add(submitButton, BorderLayout.SOUTH);
     }
 
+    public String getCorrectAnswer() {
+        return correctAnswer;
+    }
+
+    public boolean isCorrect() {
+        return correct;
+    }
+
     public static void main(String[] args) {
         JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -169,7 +180,7 @@ public class MultipleChoice extends JPanel {
 
         MultipleChoice panel = new MultipleChoice();
         frame.add(panel);
-
         frame.setVisible(true);
     }
+
 }

@@ -11,7 +11,6 @@ public class SessionFrame extends javax.swing.JFrame {
      */
     public SessionFrame() {
         initComponents();
-        
     }
 
     public void initComponents() {
@@ -46,7 +45,7 @@ public class SessionFrame extends javax.swing.JFrame {
         setLocationRelativeTo(null);
 
         pack();
-        setMinimumSize(new java.awt.Dimension(700, 400));
+        setMinimumSize(new java.awt.Dimension(700, 450));
     }// </editor-fold>                        
 
     /**
