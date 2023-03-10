@@ -113,7 +113,7 @@ public class Account{
         throw new AccountNotFoundException("");
     }
 
-    public Account signUp(String username, String password, ArrayList<String> courses) throws AccountSignUpException {
+    public static Account signUp(String username, String password, ArrayList<String> courses) throws AccountSignUpException {
         //MySQL Database Sign Up
         Database database = new Database();
         database.connectToDatabase();

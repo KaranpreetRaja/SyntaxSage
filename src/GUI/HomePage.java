@@ -28,7 +28,7 @@ public class HomePage extends JPanel {
         JPanel panel1 = new JPanel();
         panel1.setBackground(new Color(255, 128, 128));
 
-        JButton btnToggleDB = new JButton("Real Database");
+        JButton btnToggleDB = new JButton("Real Database (Click to toggle)");
         btnToggleDB.setFont(new Font("Tahoma", Font.PLAIN, 35));
         btnToggleDB.setForeground(new Color(255, 128, 128));
         btnToggleDB.setBackground(new Color(255, 128, 128));
@@ -40,6 +40,8 @@ public class HomePage extends JPanel {
         btnStart.setForeground(new Color(255, 128, 128));
         btnStart.setBackground(new Color(255, 128, 128));
         btnStart.setMaximumSize(new Dimension(400, 60));
+        btnStart.setForeground(Color.WHITE);
+        btnToggleDB.setForeground(Color.WHITE);
         panel1.add(btnStart);
         panel1.add(btnToggleDB);
         frame.add(panel1, BorderLayout.CENTER);
@@ -68,10 +70,10 @@ public class HomePage extends JPanel {
 
             public void actionPerformed(ActionEvent e) {
                 if (isStubDatabase) {
-                    btnToggleDB.setText("Real Database");
+                    btnToggleDB.setText("Real Database (Click to toggle)");
                     isStubDatabase = false;
                 } else {
-                    btnToggleDB.setText("Stub Database");
+                    btnToggleDB.setText("Stub Database (Click to toggle)");
                     isStubDatabase = true;
                 }
             }

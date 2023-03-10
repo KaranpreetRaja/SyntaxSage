@@ -14,13 +14,13 @@ public class AccountNotFoundException extends CustomException {
     }
 }
 
-class AccountSignUpException extends CustomException {
+public class AccountSignUpException extends CustomException {
     public AccountSignUpException(String errorMessage) {
         super(errorMessage);
     }
 }
 
-class AccountUsernameException extends CustomException {
+public class AccountUsernameException extends CustomException {
     public AccountUsernameException(String errorMessage) {
         super(errorMessage);
     }

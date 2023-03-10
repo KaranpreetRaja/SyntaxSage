@@ -3,6 +3,7 @@ package GUI;
 import java.awt.*;
 import javax.swing.*;
 import java.lang.Exception.*;
+import java.sql.SQLException;
 
 import CustomComponents.*;
 
@@ -144,7 +145,7 @@ public class Login extends JFrame {
                     }
                    
                 }
-                catch (AccountNotFoundException e) {
+                catch (AccountNotFoundException | SQLException e1) {
                     JLabel message = new JLabel("Wrong Username or Password");
                     loginFrame.add(message);
                 }
@@ -154,6 +155,7 @@ public class Login extends JFrame {
                 registerBut.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
+                    	System.out.println("Round");
                         SignUpPage registerPage = new SignUpPage(accountList);
                         loginFrame.setVisible(false);
                         registerPage.setVisible(true);

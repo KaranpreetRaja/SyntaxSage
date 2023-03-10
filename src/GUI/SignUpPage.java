@@ -10,7 +10,9 @@ import CustomComponents.*;
 
 public class SignUpPage extends JFrame{
 
-    public SignUpPage(ArrayList<Account> accountList) {
+    private static final long serialVersionUID = -6538973670938329066L;
+
+	public SignUpPage(ArrayList<Account> accountList) {
         // Frame:
         JFrame signUpFrame = new JFrame("Signup Page");
         signUpFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
