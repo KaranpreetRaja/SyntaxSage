@@ -23,10 +23,10 @@ public class CourseDB {
         this.noLessons = noLessons;
     }
     public void connectToDataBase(){
-        String url="jdbc:mysql://localhost:3306/project";
-        String uname="user";
-        String passwordForDB="Eecs2311!";
-        try{
+        String url = "jdbc:mysql://140.238.154.147:3306/project";
+        String uname = "user";
+        String passwordForDB = "Eecs2311!";
+        try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             System.out.println("Driver Found.");
             Connection connection = DriverManager.getConnection(url, uname, passwordForDB);
@@ -42,9 +42,9 @@ public class CourseDB {
     }
     public void addData()  {
         try {
-            String url = "jdbc:mysql://localhost:3306/project";
-            String uname="user";
-            String passwordForDB="Eecs2311!";
+        String url = "jdbc:mysql://140.238.154.147:3306/project";
+        String uname = "user";
+        String passwordForDB = "Eecs2311!";
             Connection connection = DriverManager.getConnection(url, uname, passwordForDB);
             Statement statement = connection.createStatement();
             String query= String.format("insert into  courses values ('%d','%s','%d')",this.courseId,this.courseName,this.noLessons);
@@ -57,9 +57,9 @@ public class CourseDB {
     }
     public void deleteDataByCourseId(int id)  {
         try {
-            String url = "jdbc:mysql://localhost:3306/project";
-            String uname="user";
-            String passwordForDB="Eecs2311!";
+        String url = "jdbc:mysql://140.238.154.147:3306/project";
+        String uname = "user";
+        String passwordForDB = "Eecs2311!";
             Connection connection = DriverManager.getConnection(url, uname, passwordForDB);
             Statement statement = connection.createStatement();
             String query= String.format("delete from  courses where courseId=%d",id);
@@ -72,9 +72,9 @@ public class CourseDB {
     }
     public void deleteDataByCourseName(String courseName)  {
         try {
-            String url = "jdbc:mysql://localhost:3306/project";
-            String uname="user";
-            String passwordForDB="Eecs2311!";
+        String url = "jdbc:mysql://140.238.154.147:3306/project";
+        String uname = "user";
+        String passwordForDB = "Eecs2311!";
             Connection connection = DriverManager.getConnection(url, uname, passwordForDB);
             Statement statement = connection.createStatement();
             String query= String.format("delete from  courses where courseName='%s'",courseName);
@@ -89,9 +89,9 @@ public class CourseDB {
         ResultSet resultSet = null;
         int retID=0;
         try {
-            String url = "jdbc:mysql://localhost:3306/project";
-            String uname="user";
-        String passwordForDB="Eecs2311!";
+        String url = "jdbc:mysql://140.238.154.147:3306/project";
+        String uname = "user";
+        String passwordForDB = "Eecs2311!";
             Connection connection = DriverManager.getConnection(url, uname, passwordForDB);
             Statement statement = connection.createStatement();
             String query = String.format("select courseId  from courses where courseName='%s'", courseName);
@@ -113,9 +113,9 @@ public class CourseDB {
         ResultSet resultSet = null;
         int retID=0;
         try {
-            String url = "jdbc:mysql://localhost:3306/project";
-            String uname="user";
-            String passwordForDB="Eecs2311!";
+        String url = "jdbc:mysql://140.238.154.147:3306/project";
+        String uname = "user";
+        String passwordForDB = "Eecs2311!";
             Connection connection = DriverManager.getConnection(url, uname, passwordForDB);
             Statement statement = connection.createStatement();
             String query = String.format("select noLessons  from courses where courseName='%s'", courseName);
