@@ -9,10 +9,10 @@ import java.util.ArrayList;
 import CustomComponents.*;
 
 public class SignUpPage {
-	public final JFrame signUpFrame = new JFrame("Signup Page");
 
-    public SignUpPage(final ArrayList<Account> accountList) {
+    public SignUpPage(ArrayList<Account> accountList) {
         // Frame:
+        JFrame signUpFrame = new JFrame("Signup Page");
         signUpFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // Panels:
@@ -26,7 +26,7 @@ public class SignUpPage {
 
         // DropDown Menu
         String[] options = { "Python", "Java", "Javascript", "Ruby", "C++" };
-        final JList<String> dropdownMenu = new JList<>(options);
+        JList<String> dropdownMenu = new JList<>(options);
         dropdownMenu.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
         JScrollPane selectCoures = new JScrollPane(dropdownMenu);
         JScrollPane selectCourses = new JScrollPane(dropdownMenu);
@@ -36,8 +36,8 @@ public class SignUpPage {
         JLabel label2 = new JLabel("Select Courses:");
 
         // JTextField
-        final JTextField inputUser = new JTextField("Username");
-        final JTextField inputPassword = new JTextField("Password");
+        JTextField inputUser = new JTextField("Username");
+        JTextField inputPassword = new JTextField("Password");
 
         // Set Up Label
         Dimension labelSize = new Dimension(100, 50);
@@ -83,7 +83,7 @@ public class SignUpPage {
         inputPanel.add(inputUser);
         inputPanel.add(inputPassword);
         inputPanel.setLayout(new BoxLayout(inputPanel, BoxLayout.PAGE_AXIS));
-        
+
         // Event Listener for Inputs
         inputUser.addFocusListener(new FocusListener() {
             @Override
@@ -124,23 +124,25 @@ public class SignUpPage {
                 String username = inputUser.getText();
                 String password = inputPassword.getText();
                 ArrayList<String> courses = (ArrayList<String>) dropdownMenu.getSelectedValuesList();
-                Account accPass = null;
-                int accountID = Account.signUp(username, password, accountList, courses);
-                if (accountID == -1) {
+
+                try {
+                    if (accountList.size() > 0) {
+                        Account myAccount = Account.signUp(username, password, courses, accountList);
+                    }
+                    else {
+                        Account myAccount = Account.signUp(username, password, courses);
+                    }
+                    DashBoard dashboard = new DashBoard(myAccount);
+                    signUpFrame.setVisible(false);
+                    dashboard.setVisible(true);
+                }
+                catch (AccountSignUpException e) {
                     JLabel message = new JLabel("Invalid Registration");
                     signUpFrame.add(message);
-                } else {
-                    accPass = accountList.get(accountID-1);
-
                 }
-                DashBoard db = new DashBoard(accPass);
-                signUpFrame.setVisible(false);
-                db.setVisible(true);
             }
         });
-        
 
     }
-    
 
 }

@@ -1,18 +1,14 @@
 package CustomComponents;
 
-//Imports
 import java.util.ArrayList;
-import java.io.File;
-import java.io.FileWriter;
-import java.util.Scanner;
-import java.util.Objects;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import DB.*;
+import java.io.Scanner;
+import java.io.File;
 
-public class Account {
 
-    // Class Attributes
-    private int ID;
+public class Account{
     private String username;
     private String password;
     private String courses;
@@ -25,56 +21,119 @@ public class Account {
         this.courses = "";
         this.experience = "";
         this.creationDate = "";
-        this.ID = -1;
     }
 
-    public Account(String username, String password, String courses, String experience, String creationDate, int ID) {
+    public Account(int ID) {
+        DataBase database = new DataBase();
+        database.connectToDatabase();
+        String username = database.getUsername(ID);
+        String[5] accountInfo = database.getAccountInfo(username).split(", ");
+
+        this.username = accountInfo[0];
+        this.password = accountInfo[1];
+        this.courses = accountInfo[2];
+        this.experience = accountInfo[3];
+        this.creationDate = accountInfo[4];
+    }
+
+    public Account(String username, String password, String courses, String experience, String creationDate) {
         this.username = username;
         this.password = password;
         this.courses = courses;
         this.experience = experience;
         this.creationDate = creationDate;
-        this.ID = ID;
     }
 
+    //Static Factory Methods
+    public static Account getAccount(int ID) {
+        Account accountObject = new Account(ID);
+        return accountObject;
+}
     public static Account createAccount(String accountName, String accountPass, String courseString, String experience,
             String creationDate, int ID) {
         return new Account(accountName, accountPass, courseString, experience, creationDate, ID);
     }
 
-    public static int signIn(String username, String password, ArrayList<Account> accountList) {
-        for (int i = 0; i < accountList.size(); i++) {
-            if (Objects.equals(accountList.get(i).getUsername(), username)) {
-                if (Objects.equals(accountList.get(i).getPassword(), password)) {
-                    return i+1;
+    public static Account createAccount(String username, String password, String courses) {
+        String accountCreationDate = (LocalDateTime.now()).format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        DataBase database = new DataBase(username, password, courses, "", accountCreationDate);
+        database.connectToDatabase();
+        database.addData();
+        return Account.getAccount(database.getID(username));
+    }
+
+    //Logic Functions
+    public Account signIn(String username, String password) throws AccountNotFoundException {
+        //MySQL Database Sign in
+        DataBase database = new DataBase();
+        database.connectToDatabase();
+        String[] usernameList = database.getAllUsernames().split(", ");
+        for (int i = 0; i < usernameList.length(); i++) {
+            if (username.equals(usernameList[i])) {
+                if (password.equals(database.getPassword(usernameList[i]))) {
+                    return Account.getAccount(database.getID(username));
+                }
+                else {
+                    throw new AccountNotFoundException("");
                 }
             }
         }
-        return -1;
+        throw new AccountNotFoundException("");
     }
 
-    public static int signUp(String username, String password, ArrayList<Account> accountList,
-            ArrayList<String> courses) {
-        for (Account account : accountList) {
-            if (Objects.equals(account.getUsername(), username)) {
-                return -1;
+    public Account signIn(String username, String password, ArrayList<Account> accountList) throws AccountNotFoundException {
+        //Stub Database Sign in
+        for (int i = 0; i < accountList.size(); i++) {
+            if (accountList.get(i).getUsername.equals(username)) {
+                if (accountList.get(i).getPassword.equals(password)) {
+                    return accountList.get(i);
+                }
+                else {
+                    throw new AccountNotFoundException("");
+                }
+            }
+        }
+        throw new AccountNotFoundException("");
+    }
+
+    public Account signUp(String username, String password, ArrayList<String> courses) throws AccountSignUpException {
+        //MySQL Database Sign Up
+        DataBase database = new DataBase();
+        database.connectToDatabase();
+        String[] usernameList = database.getAllUsernames().split(", ");
+        for (int i = 0; i < usernameList.length(); i++) {
+            if (username.equals(usernameList[i])) {
+                throw new AccountSignUpException("");
             }
         }
         String courseString = "";
-        for (String course : courses) {
-            courseString = courseString + course;
+        for (int j = 0; j < courses.size(); j++){
+            courseString = courseString + courses.get(j) + ",";
         }
-        String accountCreationDate = (LocalDateTime.now()).format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-        int ID = accountList.size() + 1;
-        Account newAccount = Account.createAccount(username, password, courseString, "", accountCreationDate, ID);
-        accountList.add(newAccount);
-        return accountList.size();
+        Account myAccount = createAccount(username, password, courseString);
+        return myAccount;
     }
 
-    public int getID() {
-        return this.ID;
+    public Account signUp(String username, String password, ArrayList<String> courses, ArrayList<Account> accountList) throws AccountSignUpException {
+        //Stub Database Sign Up
+        for (int i = 0; i < accountList.size(); i++){
+            if (accountList.get(i).getUsername == username){
+                throw new AccountSignUpException("");
+            }
+        }
+
+        String courseString = "";
+        for (int j = 0; j < courses.size(); j++){
+            courseString = courseString + courses.get(j) + ",";
+        }
+
+        Account myAccount = createAccount(username, password, courseString);
+        accountList.add(myAccount);
+        return myAccount;
     }
 
+
+    //Getters
     public String getUsername() {
         return this.username;
     }
@@ -95,7 +154,17 @@ public class Account {
         return this.creationDate;
     }
 
-    public void setUsername(String newUsername) {
+
+    //Setters
+    public void setUsername(String newUsername) throws AccountUsernameException{
+        DataBase database = new DataBase();
+        database.connectToDatabase();
+        String[] usernameList = database.getAllUsernames().split(", ");
+        for (int i = 0; i < usernameList.length(); i++) {
+            if (username.equals(usernameList[i])) {
+                throw new AccountUsernameException("");
+            }
+        }
         this.username = newUsername;
     }
 
@@ -111,7 +180,26 @@ public class Account {
         this.experience = newExperience;
     }
 
-    public void setCreationDate(String newDate) {
-        this.creationDate = newDate;
+
+    //Initialization Functions
+    public ArrayList<Account> extractAccountList() {
+        try {
+        ArrayList<Account> accountList = new ArrayList<Account>();
+        File accountFile = new File("Account.txt");
+        Scanner accountScanner = new Scanner(accountFile);
+        while (accountScanner.hasNextLine()) {
+            String accountDetails = accountScanner.nextLine();
+            String[] accountDetailArray = accountDetails.split("!");
+            accountList.add(new Account(accountDetailArray[0], accountDetailArray[1], accountDetailArray[2], accountDetailArray[3], accountDetailArray[4]));
+        }
+        accountScanner.close();
+        return accountList;
+        }
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
+            return new ArrayList<Account>();
+        }
     }
+
+
 }
