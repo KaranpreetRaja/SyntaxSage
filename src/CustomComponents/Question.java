@@ -1,6 +1,7 @@
 package CustomComponents;
 
-import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class Question {
     private int id;
@@ -9,14 +10,14 @@ public class Question {
     private List<String> options;
     private List<String> answers;
     private boolean isMulChoice;
+    private int noAns;
 
     // Constructor
 
-    public Question(String prompt, List<String>, List<String> answers) {
+    public Question(String prompt, List<String> options, List<String> answers) {
         this.id = CUR_ID;
         CUR_ID++;
         this.prompt = prompt;
-        this.options = options;
         this.answers = answers;
     }
 
@@ -52,20 +53,20 @@ public class Question {
         this.prompt = prompt;
     }
     
-    public String[] getOptions() {
+    public List<String> getOptions() {
         return options;
     }
 
     public void setOptions(String[] options) {
-        this.options = options;
+        this.options = Arrays.asList(options);
     }
 
-    public String[] getAnswers() {
+    public List<String> getAnswers() {
         return answers;
     }
 
     public void setAnswers(String[] answers) {
-        this.answers = answers;
+        this.answers = Arrays.asList(answers);
     }
     
     public boolean isAnswer(String str) {
@@ -81,9 +82,9 @@ public class Question {
     public String getStringOptions() {
         // Return a comma and space separated list of options
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < options.length; i++) {
-            sb.append(options[i]);
-            if (i < options.length - 1) {
+        for (int i = 0; i < options.size(); i++) {
+            sb.append(options.get(i));
+            if (i < options.size() - 1) {
                 sb.append(", ");
             }
         }

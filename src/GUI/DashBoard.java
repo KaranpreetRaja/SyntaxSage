@@ -98,7 +98,7 @@ public class DashBoard extends javax.swing.JFrame {
 
         jLabel3.setText(String.format("Account Creation Date: %s", acc.getCreationDate()));
 
-        jLabel4.setText(String.format("Account ID: %d", acc.getID()));
+        jLabel4.setText(String.format("Account ID: %s", acc.getUsername()));
 
         jLabel5.setText(String.format("Courses: %s", acc.getCourses()));
 
