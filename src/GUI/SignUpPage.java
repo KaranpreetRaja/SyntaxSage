@@ -130,15 +130,19 @@ public class SignUpPage extends JFrame{
                 try {
                     if (accountList.size() > 0) {
                         Account myAccount = Account.signUp(username, password, courses, accountList);
+                        DashBoard dashboard = new DashBoard(myAccount);
+                        signUpFrame.setVisible(false);
+                        dashboard.setVisible(true);
                     }
                     else {
                         Account myAccount = Account.signUp(username, password, courses);
+                        DashBoard dashboard = new DashBoard(myAccount);
+                        signUpFrame.setVisible(false);
+                        dashboard.setVisible(true);
                     }
-                    DashBoard dashboard = new DashBoard(myAccount);
-                    signUpFrame.setVisible(false);
-                    dashboard.setVisible(true);
+                    
                 }
-                catch (AccountSignUpException e) {
+                catch (AccountSignUpException e2) {
                     JLabel message = new JLabel("Invalid Registration");
                     signUpFrame.add(message);
                 }
