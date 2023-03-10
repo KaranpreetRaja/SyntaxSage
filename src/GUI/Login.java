@@ -85,6 +85,9 @@ public class Login extends JFrame {
         if (databaseExists == false){
             Login.accountList = Account.extractAccountList();
         }
+        else {
+            Login.accountList = new ArrayList<Account>();
+        }
 
         // Event Listener for Inputs
         inputUser.addFocusListener(new FocusListener() {
@@ -131,7 +134,7 @@ public class Login extends JFrame {
                         Account myAccount = Account.signIn(username, password);
                     }
                     else {
-                        Account myAccount = Account.signIn(username, password, stubDatabase);
+                        Account myAccount = Account.signIn(username, password, accountList);
                     }
                     DashBoard dashboard = new DashBoard(myAccount);
                         loginFrame.setVisible(false);
