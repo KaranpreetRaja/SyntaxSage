@@ -80,7 +80,7 @@ public class Account{
     }
 
     //Logic Functions
-    public Account signIn(String username, String password) throws AccountNotFoundException, SQLException {
+    public static Account signIn(String username, String password) throws AccountNotFoundException, SQLException {
         //MySQL Database Sign in
         Database database = new Database();
         database.connectToDatabase();
@@ -98,7 +98,7 @@ public class Account{
         throw new AccountNotFoundException("");
     }
 
-    public Account signIn(String username, String password, ArrayList<Account> accountList) throws AccountNotFoundException {
+    public static Account signIn(String username, String password, ArrayList<Account> accountList) throws AccountNotFoundException {
         //Stub Database Sign in
         for (int i = 0; i < accountList.size(); i++) {
             if (accountList.get(i).getUsername().equals(username)) {
@@ -131,7 +131,7 @@ public class Account{
         return myAccount;
     }
 
-    public Account signUp(String username, String password, ArrayList<String> courses, ArrayList<Account> accountList) throws AccountSignUpException {
+    public static Account signUp(String username, String password, ArrayList<String> courses, ArrayList<Account> accountList) throws AccountSignUpException {
         //Stub Database Sign Up
         for (int i = 0; i < accountList.size(); i++){
             if (accountList.get(i).getUsername() == username){

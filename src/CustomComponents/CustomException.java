@@ -8,7 +8,7 @@ public class CustomException extends Exception {
     }
 }
 
-class AccountNotFoundException extends CustomException {
+public class AccountNotFoundException extends CustomException {
     public AccountNotFoundException(String errorMessage) {
         super(errorMessage);
     }

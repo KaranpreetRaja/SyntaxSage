@@ -130,15 +130,19 @@ public class Login extends JFrame {
                 String password = inputPassword.getText();
 
                 try {
-                    if (databaseExists == true) {
+                    if (useRealDB) {
                         Account myAccount = Account.signIn(username, password);
+                        DashBoard dashboard = new DashBoard(myAccount);
+                        loginFrame.setVisible(false);
+                        dashboard.setVisible(true);
                     }
                     else {
                         Account myAccount = Account.signIn(username, password, accountList);
-                    }
-                    DashBoard dashboard = new DashBoard(myAccount);
+                        DashBoard dashboard = new DashBoard(myAccount);
                         loginFrame.setVisible(false);
                         dashboard.setVisible(true);
+                    }
+                   
                 }
                 catch (AccountNotFoundException e) {
                     JLabel message = new JLabel("Wrong Username or Password");
