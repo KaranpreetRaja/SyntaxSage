@@ -58,8 +58,7 @@ public class MultipleSelect extends JPanel {
         // Shuffle the answers
         Collections.shuffle(answers);
 
-        StringBuilder text = new StringBuilder(question + "\n\n");
-        textArea.setText(text.toString());
+        textArea.setText(question + "\n\n");
         add(textArea, BorderLayout.NORTH);
 
         JPanel buttonPanel = new JPanel();
@@ -87,8 +86,8 @@ public class MultipleSelect extends JPanel {
         buttonPanel.add(button4);
 
         JButton submitButton = new JButton("Submit");
-        String finalCorrectAnswer1 = correctAnswer1;
-        String finalCorrectAnswer2 = correctAnswer2;
+        final String finalCorrectAnswer1 = correctAnswer1;
+        final String finalCorrectAnswer2 = correctAnswer2;
         submitButton.setAlignmentX(SwingConstants.CENTER);
         submitButton.setAlignmentY(SwingConstants.CENTER);
         submitButton.addActionListener(new ActionListener() {
@@ -108,9 +107,9 @@ public class MultipleSelect extends JPanel {
                     correctCount++;
                 }
                 if (correctCount == 0) {
-                    System.out.println("Incorrect");
+                    JOptionPane.showMessageDialog(null, "Incorrect answer. Please try again.", "Incorrect", JOptionPane.WARNING_MESSAGE);
                 } else if (correctCount == 1) {
-                    System.out.println("Partially correct");
+                    JOptionPane.showMessageDialog(null, "Almost there! You are partially correct..", "Partially Correct", JOptionPane.ERROR_MESSAGE);
                 } else {
                     System.out.println("Correct");
                     MultipleChoice panel = new MultipleChoice();

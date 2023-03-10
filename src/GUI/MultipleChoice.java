@@ -58,8 +58,7 @@ public class MultipleChoice extends JPanel {
         // Shuffle the answers
         Collections.shuffle(answers);
 
-        StringBuilder text = new StringBuilder(question + "\n\n");
-        textArea.setText(text.toString());
+        textArea.setText(question + "\n\n");
         add(textArea, BorderLayout.NORTH);
 
         JPanel buttonPanel = new JPanel();
@@ -140,7 +139,7 @@ public class MultipleChoice extends JPanel {
         buttonPanel.add(button4);
 
         JButton submitButton = new JButton("Submit");
-        String finalCorrectAnswer = correctAnswer;
+        final String finalCorrectAnswer = correctAnswer;
         submitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -155,7 +154,7 @@ public class MultipleChoice extends JPanel {
                         frame.revalidate();
 
                     } else {
-                        System.out.println("Incorrect");
+                        JOptionPane.showMessageDialog(null, "Incorrect answer. Please try again.", "Incorrect", JOptionPane.ERROR_MESSAGE);
                     }
                 }
             }
