@@ -50,16 +50,12 @@ public class HomePage extends JPanel {
 
         btnStart.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // SOMEONE I DONT KNOW HOW TO SWITCH TO THE LOGIN PAGE
-                // ADD YOUR CODE HERE, I DONT WANT TO MAKE THE SAME MISTAKE WITH THE SIGN UP
-                // PAGE!!!
                 JFrame homeFrame = (JFrame) SwingUtilities.getWindowAncestor(btnStart);
                 homeFrame.setVisible(false);
                 try {
 					Login login = new Login(isStubDatabase);
 					login.setVisible(true);
 				} catch (Exception e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 
