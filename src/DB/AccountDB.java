@@ -44,8 +44,8 @@ public class AccountDB {
     }
     public void connectToDataBase(){
         String url="jdbc:mysql://localhost:3306/project";
-        String uname="rajendra";
-        String passwordForDB="rajendra";
+        String uname="user";
+        String passwordForDB="Eecs2311!";
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
             System.out.println("Driver Found.");
