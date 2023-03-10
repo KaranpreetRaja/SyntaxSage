@@ -14,7 +14,7 @@ public class Question {
 
     // Constructor
 
-    public Question(String prompt, List<String>, List<String> answers) {
+    public Question(String prompt, List<String> options, List<String> answers) {
         this.id = CUR_ID;
         CUR_ID++;
         this.prompt = prompt;
