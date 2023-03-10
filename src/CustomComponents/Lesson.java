@@ -7,25 +7,25 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 public class Lesson {
-	public static int curID = 0;
+    public static int curID = 0;
 
-	private static String fileName = "Lesson_curID.ser";
-
-	private int lessonID;
-	private String name;
-	public int noQuestions;
+    private static String fileName = "Lesson_curID.ser";
+    private final String sessionName;
+    private int lessonID;
+    private String name;
+    public int noQuestions;
     public int curQuestion;
     public Question[] questions;
 	
 	
-	public Lesson(String name, int noQuestions, Question[] questions) {
-		Lesson.loadCurID(fileName);
-		this.lessonID = Lesson.curID;
-		Lesson.curID++;
-	    Lesson.saveCurID(fileName);
+    public Lesson(String sessionName, String name, int noQuestions, Question[] questions) {
+	this.sessionName = sessionName;
+	Lesson.loadCurID(fileName);
+	this.lessonID = Lesson.curID;
+	Lesson.curID++;
+	Lesson.saveCurID(fileName);
 	     
         this.name = name;
-        
         this.noQuestions = noQuestions;
         this.curQuestion = 0;
         this.questions = questions;
