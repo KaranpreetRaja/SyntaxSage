@@ -2,6 +2,7 @@ package GUI;
 
 import java.awt.*;
 import javax.swing.*;
+import java.lang.Exception.*;
 
 import CustomComponents.*;
 
@@ -19,9 +20,9 @@ public class Login extends JFrame {
 	public JFrame loginFrame;
     public static ArrayList<Account> accountList;
 
-    public static void main(String[] args) {
+    public Login(boolean useRealDB) {
         // Frame:
-        final JFrame loginFrame = new JFrame("Login Page");
+        JFrame loginFrame = new JFrame("Login Page");
         loginFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // Panels:
@@ -31,14 +32,14 @@ public class Login extends JFrame {
 
         // Buttons:
         JButton signInBut = new JButton();
-        final JButton registerBut = new JButton();
+        JButton registerBut = new JButton();
 
         // Labels:
         JLabel label = new JLabel("LOG IN");
 
         // JTextField
-        final JTextField inputUser = new JTextField("Username");
-        final JTextField inputPassword = new JTextField("Password");
+        JTextField inputUser = new JTextField("Username");
+        JTextField inputPassword = new JTextField("Password");
 
         // Set Up Label
         Dimension labelSize = new Dimension(100, 50);
@@ -81,18 +82,20 @@ public class Login extends JFrame {
         inputPanel.setLayout(new BoxLayout(inputPanel, BoxLayout.PAGE_AXIS));
 
         // Stub Database
-        Login.accountList = new ArrayList<Account>();
-        Login.accountList.add(Account.createAccount("John", "password", "Java,", "", "2022-12-29", 0));
-        Login.accountList.add(Account.createAccount("Admin", "Admin", "Java,Python,", "", "2020-01-01", 1));
+        if (databaseExists == false){
+            Login.accountList = Account.extractAccountList();
+        }
 
         // Event Listener for Inputs
         inputUser.addFocusListener(new FocusListener() {
+            @Override
             public void focusGained(FocusEvent e) {
                 if (inputUser.getText().equals("Username")) {
                     inputUser.setText("");
                 }
             }
 
+            @Override
             public void focusLost(FocusEvent e) {
                 if (inputUser.getText().isEmpty()) {
                     inputUser.setText("Username");
@@ -118,32 +121,37 @@ public class Login extends JFrame {
 
         // Check Account Details and Sign In
         signInBut.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent e) {
                 String username = inputUser.getText();
                 String password = inputPassword.getText();
-                int check = 0;
-                check = Account.signIn(username, password, accountList);
 
-                if (check == -1) {
+                try {
+                    if (databaseExists == true) {
+                        Account myAccount = Account.signIn(username, password);
+                    }
+                    else {
+                        Account myAccount = Account.signIn(username, password, stubDatabase);
+                    }
+                    DashBoard dashboard = new DashBoard(myAccount);
+                        loginFrame.setVisible(false);
+                        dashboard.setVisible(true);
+                }
+                catch (AccountNotFoundException e) {
                     JLabel message = new JLabel("Wrong Username or Password");
                     loginFrame.add(message);
-                } else {
-                    Account myAccount = accountList.get(1);
-                    DashBoard db = new DashBoard(myAccount);
-                    loginFrame.setVisible(false);
-                    db.setVisible(true);
                 }
 
-            }
-        });
-        
-        // Switch to Register Panel
-        registerBut.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-            	System.out.print("yeet");
-                SignUpPage registerPage = new SignUpPage(accountList);
-                registerPage.signUpFrame.setVisible(true);
+
+                // Switch to Register Panel
+                registerBut.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        SignUpPage registerPage = new SignUpPage(accountList);
+                        loginFrame.setVisible(false);
+                        registerPage.setVisible(true);
+                    }
+                });
             }
         });
     }
@@ -151,4 +159,6 @@ public class Login extends JFrame {
     public JFrame getLoginFrame() {
         return loginFrame;
     }
+
+
 }
