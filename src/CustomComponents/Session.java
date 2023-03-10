@@ -1,30 +1,20 @@
 package CustomComponents;
+
+import java.util.ArrayList;
+
 public class Session {
-    public String sessionName;
-    public int noQuestions;
-    public int curQuestion;
-    public Question[] questions;
+    private Account user;
+    private Lesson lesson;
+    private List<List<String>> allAnswers;
 
-    public Session(String sessionName, int noQuestions, Question[] questions) {
-        this.sessionName = sessionName;
-        this.noQuestions = noQuestions;
-        this.curQuestion = 0;
-        this.questions = questions;
+    public Session(Lesson lesson, Account user) {
+        this.lesson = lesson;
+        this.user = user;
+        this.answers = new ArrayList<String>();
     }
 
-    public Session() {
-        this.sessionName = "Default";
-        this.noQuestions = 0;
-        this.curQuestion = 0;
-        this.questions = new Question[0];
-    }
 
-    public Question getNextQuestion() {
-        if (curQuestion < noQuestions) {
-            curQuestion++;
-            return questions[curQuestion--];
-        }
-        return null;
+    public void setAnswer(int questionNumber, List<String> answers) {
+        
     }
-
 }

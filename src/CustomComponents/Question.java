@@ -1,22 +1,23 @@
 package CustomComponents;
 
+import java.util.ArrayList;
+
 public class Question {
     private int id;
     private static int CUR_ID = 0;
     private String prompt;
-    private String[] options;
-    private String[] answers;
-    public static int noAns = 4;
+    private List<String> options;
+    private List<String> answers;
+    private boolean isMulChoice;
 
     // Constructor
 
-    public Question(String prompt, String[] options, String[] answers) {
+    public Question(String prompt, List<String>, List<String> answers) {
         this.id = CUR_ID;
         CUR_ID++;
         this.prompt = prompt;
         this.options = options;
         this.answers = answers;
-        
     }
 
     public int getId() {
