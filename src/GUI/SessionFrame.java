@@ -22,7 +22,6 @@ public class SessionFrame extends javax.swing.JFrame {
     }
     
     public void initComponents(Account acc) {
-    	System.out.println("New session frame with account");
         JTabbedPane jTabbedPane1 = new JTabbedPane();
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {

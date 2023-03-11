@@ -158,7 +158,6 @@ public class Login extends JFrame {
         registerBut.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-            	System.out.println("Round");
                 SignUpPage registerPage = new SignUpPage(accountList);
                 loginFrame.setVisible(false);
                 registerPage.setVisible(true);

@@ -24,7 +24,7 @@ public class ProgressGUI extends JPanel {
         updateProgressButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-            	if (acc.getExperience() == "Master" && progressValue <=100) {	
+            	if (acc.getExperience().equals("Master") && progressValue <=100) {	
 	                	if (e.getSource() == updateProgressButton) {
 	                		updateProgressButton.setEnabled(false);
 	                        timer.start();

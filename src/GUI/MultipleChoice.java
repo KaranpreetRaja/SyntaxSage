@@ -21,7 +21,6 @@ public class MultipleChoice extends JPanel {
     private boolean correct;
 
     public MultipleChoice(Account acc, int count) {
-        System.out.println("New mc question with account");
         setLayout(new BorderLayout());
         setBorder(new EmptyBorder(10, 50, 10, 50));
 
@@ -152,14 +151,13 @@ public class MultipleChoice extends JPanel {
                     if (selectedAnswer.equals(finalCorrectAnswer) && (count >=5)) {
                         System.out.println("Correct!");
                         correct = true;
-                        if (acc.getExperience() == "Beginner") {
-                            acc.setExperience("Master");
-                        }
+
                         MultipleSelect panel = new MultipleSelect(acc, count+1);
                         JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(MultipleChoice.this);
                         frame.setContentPane(panel);
                         frame.revalidate();
                         frame.dispose();
+                        acc.setExperience("Master");
                         JOptionPane.showMessageDialog(null, "Lesson Completed", "Lesson Completed", JOptionPane.INFORMATION_MESSAGE);
                     }
 
