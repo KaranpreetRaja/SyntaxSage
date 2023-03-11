@@ -1,17 +1,20 @@
 package junit_tests;
 
 import static org.junit.jupiter.api.Assertions.*;
-import java.util.ArrayList;
-
 import CustomComponents.AccountNotFoundException;
-import CustomComponents.AccountSignUpException;
 import org.junit.jupiter.api.Test;
 import CustomComponents.Account;
 
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 
 public class AccountTest {
+
+    // Test setExperience method
+    @Test
+    void testSetExperience() {
+        Account account = new Account("test", "test", "Python", "Beginner", "Mar 10 2023");
+        account.setExperience("Master");
+        assertEquals("Master", account.getExperience());
+    }
 
     // Test new account
     @Test

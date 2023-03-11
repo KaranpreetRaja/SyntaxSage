@@ -1,8 +1,6 @@
 package CustomComponents;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -10,10 +8,10 @@ import java.util.Objects;
 import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.sql.SQLException;
+
 import DB.Database;
 
-public class Account{
+public class Account {
     private String username;
     private String password;
     private String courses;
@@ -29,22 +27,21 @@ public class Account{
     }
 
     public Account(int ID) {
-		try {
-			Database database = new Database();
-	        database.connectToDatabase();
-	        String username;
-			username = database.getUsername(ID);
-			String[] accountInfo = database.getAccountInfo(username).split(", ");
+        try {
+            Database database = new Database();
+            database.connectToDatabase();
+            String username;
+            username = database.getUsername(ID);
+            String[] accountInfo = database.getAccountInfo(username).split(", ");
 
-	        this.username = accountInfo[0];
-	        this.password = accountInfo[1];
-	        this.courses = accountInfo[2];
-	        this.experience = accountInfo[3];
-	        this.creationDate = accountInfo[4];
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+            this.username = accountInfo[0];
+            this.password = accountInfo[1];
+            this.courses = accountInfo[2];
+            this.experience = accountInfo[3];
+            this.creationDate = accountInfo[4];
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public Account(String username, String password, String courses, String experience, String creationDate) {
@@ -58,8 +55,8 @@ public class Account{
     //Static Factory Methods
     public static Account getAccount(int ID) {
         return new Account(ID);
-}
-    
+    }
+
     public static Account createAccount(String accountName, String accountPass, String courseString, String experience, String creationDate, int ID) {
         return new Account(accountName, accountPass, courseString, experience, creationDate);
     }
@@ -70,12 +67,11 @@ public class Account{
         database.connectToDatabase();
         database.addData();
         try {
-			return Account.getAccount(database.getID(username));
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return null;
-		}
+            return Account.getAccount(database.getID(username));
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     //Logic Functions
@@ -159,17 +155,13 @@ public class Account{
         return this.courses;
     }
 
-    public String getExperience() {
-        return this.experience;
-    }
-
     public String getCreationDate() {
         return this.creationDate;
     }
 
 
     //Setters
-    public void setUsername(String newUsername) throws AccountUsernameException{
+    public void setUsername(String newUsername) throws AccountUsernameException {
         Database database = new Database();
         database.connectToDatabase();
         String[] usernameList = database.getAllUsernames().split(", ");
@@ -208,25 +200,48 @@ public class Account{
         }
     }
 
-    //Initialization Functions
-    public static ArrayList<Account> extractAccountList() {
+    public String getExperience() {
         try {
-        ArrayList<Account> accountList = new ArrayList<>();
-        File accountFile = new File("Account.txt");
-        Scanner accountScanner = new Scanner(accountFile);
-        while (accountScanner.hasNextLine()) {
-            String accountDetails = accountScanner.nextLine();
-            String[] accountDetailArray = accountDetails.split("!");
-            accountList.add(new Account(accountDetailArray[0], accountDetailArray[1], accountDetailArray[2], accountDetailArray[3], accountDetailArray[4]));
-        }
-        accountScanner.close();
-        return accountList;
-        }
-        catch (FileNotFoundException e) {
+            String url = "jdbc:mysql://140.238.154.147:3306/project";
+            String sqlUsername = "user";
+            String sqlPassword = "Eecs2311!";
+            Connection connection = DriverManager.getConnection(url, sqlUsername, sqlPassword);
+
+            String query = "SELECT experience FROM account WHERE username = ?";
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1, this.username);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                this.experience = rs.getString("experience");
+            }
+            statement.close();
+
+        } catch (SQLException e) {
             e.printStackTrace();
-            return new ArrayList<>();
         }
+        return this.experience;
     }
 
-
+    public static ArrayList<Account> extractAccountList() {
+        ArrayList<Account> accountList = new ArrayList<>();
+        try {
+            File accountFile = new File("Account.txt");
+            Scanner accountScanner = new Scanner(accountFile);
+            while (accountScanner.hasNextLine()) {
+                String accountDetails = accountScanner.nextLine();
+                String[] accountDetailArray = accountDetails.split("!");
+                if (accountDetailArray.length == 5) { // Make sure there are 5 elements in the array
+                    Account account = new Account(accountDetailArray[0], accountDetailArray[1], accountDetailArray[2], accountDetailArray[3], accountDetailArray[4]);
+                    accountList.add(account);
+                } else {
+                    System.out.println("Invalid account details: " + accountDetails);
+                }
+            }
+            accountScanner.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("Error: Account file not found.");
+            e.printStackTrace();
+        }
+        return accountList;
+    }
 }

@@ -19,9 +19,9 @@ public class MultipleChoice extends JPanel {
     private MultipleChoiceButton selectedButton;
     private String correctAnswer;
     private boolean correct;
-    
+
     public MultipleChoice(Account acc, int count) {
-    	System.out.println("New mc question with account");
+        System.out.println("New mc question with account");
         setLayout(new BorderLayout());
         setBorder(new EmptyBorder(10, 50, 10, 50));
 
@@ -148,12 +148,12 @@ public class MultipleChoice extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 if (selectedButton != null) {
                     String selectedAnswer = selectedButton.getText();
-                    
+
                     if (selectedAnswer.equals(finalCorrectAnswer) && (count >=5)) {
                         System.out.println("Correct!");
                         correct = true;
                         if (acc.getExperience() == "Beginner") {
-                        	acc.setExperience("Master");
+                            acc.setExperience("Master");
                         }
                         MultipleSelect panel = new MultipleSelect(acc, count+1);
                         JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(MultipleChoice.this);
@@ -180,81 +180,6 @@ public class MultipleChoice extends JPanel {
         add(submitButton, BorderLayout.SOUTH);
     }
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     public MultipleChoice() {
         setLayout(new BorderLayout());
         setBorder(new EmptyBorder(10, 50, 10, 50));
@@ -417,5 +342,4 @@ public class MultipleChoice extends JPanel {
         frame.add(panel);
         frame.setVisible(true);
     }
-
 }
