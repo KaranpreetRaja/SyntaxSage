@@ -23,20 +23,25 @@ public class DashBoard extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">
     private void initComponents() {
 
-        jTabbedPane1 = new JTabbedPane();
-        jPanel1 = new javax.swing.JPanel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        JPanel progressPanel = new JPanel(); // Add progressPanel
-        ProgressGUI progressBar = new ProgressGUI(acc); // Add progressBar
-        progressPanel.add(progressBar); // Add progressBar to progressPanel
-        jPanel3 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+    	 jTabbedPane1 = new JTabbedPane();
+         jPanel1 = new javax.swing.JPanel();
+         jComboBox1 = new javax.swing.JComboBox<>();
+         jPanel2 = new javax.swing.JPanel();
+         jLabel1 = new javax.swing.JLabel();
+         jButton1 = new javax.swing.JButton();
+         JPanel progressPanel = new JPanel();
+         ProgressGUI progressBar = new ProgressGUI(acc);
+         progressPanel.add(progressBar);
+         jPanel3 = new javax.swing.JPanel();
+         JLabel badgeLabel = new JLabel("Badges:");
+         BadgeGUI badgeGUI = new BadgeGUI(acc);
+         JPanel badgePanel = new JPanel();
+         badgePanel.add(badgeLabel);
+         badgePanel.add(badgeGUI);
+         jLabel2 = new javax.swing.JLabel();
+         jLabel3 = new javax.swing.JLabel();
+         jLabel4 = new javax.swing.JLabel();
+         jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -118,7 +123,8 @@ public class DashBoard extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addComponent(jLabel2)
                     .addComponent(jLabel4)
-                    .addComponent(jLabel5))
+                    .addComponent(jLabel5)
+                    .addComponent(badgePanel)) // Add badgePanel to jPanel3
                 .addContainerGap(560, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -132,7 +138,9 @@ public class DashBoard extends javax.swing.JFrame {
                 .addComponent(jLabel5)
                 .addGap(21, 21, 21)
                 .addComponent(jLabel3)
-                .addContainerGap(293, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(badgePanel) // Add badgePanel to jPanel3
+                .addContainerGap(229, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Account", jPanel3);
