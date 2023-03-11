@@ -127,6 +127,8 @@ public class MultipleSelect extends JPanel {
     }
 
     public MultipleSelect(Account acc, int count) {
+
+		System.out.println("New ms question with account");
         setLayout(new BorderLayout());
         setBorder(new EmptyBorder(10, 50, 10, 50));
 

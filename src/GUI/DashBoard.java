@@ -156,7 +156,7 @@ public class DashBoard extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
         
-        SessionFrame sf = new SessionFrame();
+        SessionFrame sf = new SessionFrame(acc);
         sf.setVisible(true);
     }                                        
 
