@@ -1,16 +1,17 @@
 package CustomComponents;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import DB.*;
-import DB.Database;
-
+import java.util.Objects;
 import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.sql.SQLException;
-
+import DB.Database;
 
 public class Account{
     private String username;
@@ -56,12 +57,10 @@ public class Account{
 
     //Static Factory Methods
     public static Account getAccount(int ID) {
-        Account accountObject = new Account(ID);
-        return accountObject;
+        return new Account(ID);
 }
     
-    public static Account createAccount(String accountName, String accountPass, String courseString, String experience,
-            String creationDate, int ID) {
+    public static Account createAccount(String accountName, String accountPass, String courseString, String experience, String creationDate, int ID) {
         return new Account(accountName, accountPass, courseString, experience, creationDate);
     }
 
@@ -121,18 +120,17 @@ public class Account{
                 throw new AccountSignUpException("");
             }
         }
-        String courseString = "";
-        for (String cours : courses) {
-            courseString = courseString + cours + ",";
+        StringBuilder courseString = new StringBuilder();
+        for (String course : courses) {
+            courseString.append(course).append(",");
         }
-        Account myAccount = createAccount(username, password, courseString);
-        return myAccount;
+        return createAccount(username, password, courseString.toString());
     }
 
     public static Account signUp(String username, String password, ArrayList<String> courses, ArrayList<Account> accountList) throws AccountSignUpException {
         //Stub Database Sign Up
         for (Account account : accountList) {
-            if (account.getUsername() == username) {
+            if (Objects.equals(account.getUsername(), username)) {
                 throw new AccountSignUpException("");
             }
         }
@@ -192,14 +190,28 @@ public class Account{
     }
 
     public void setExperience(String newExperience) {
-        this.experience = newExperience;
-    }
+        try {
+            String url = "jdbc:mysql://140.238.154.147:3306/project";
+            String sqlUsername = "user";
+            String sqlPassword = "Eecs2311!";
+            Connection connection = DriverManager.getConnection(url, sqlUsername, sqlPassword);
 
+            String query = "UPDATE account SET experience = ? WHERE username = ?";
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1, newExperience);
+            statement.setString(2, this.username);
+            statement.executeUpdate();
+            statement.close();
+            this.experience = newExperience;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
     //Initialization Functions
     public static ArrayList<Account> extractAccountList() {
         try {
-        ArrayList<Account> accountList = new ArrayList<Account>();
+        ArrayList<Account> accountList = new ArrayList<>();
         File accountFile = new File("Account.txt");
         Scanner accountScanner = new Scanner(accountFile);
         while (accountScanner.hasNextLine()) {
@@ -212,7 +224,7 @@ public class Account{
         }
         catch (FileNotFoundException e) {
             e.printStackTrace();
-            return new ArrayList<Account>();
+            return new ArrayList<>();
         }
     }
 
