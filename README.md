@@ -6,7 +6,11 @@ SyntaxSage is a program that aims to help users learn and master programming lan
 
 **In order to run our Java Swing Application, you must run the main function in ** [HomePage.java](https://github.com/KaranpreetRaja/SyntaxSage/blob/main/src/GUI/HomePage.java)
 
-If you Get an error related to classpath, add "com.mysql.jdbc.Driver" to classpath by [Downloading the Jar file](https://dev.mysql.com/downloads/connector/j/) and then right click on the Java Project (Syntax Sage) -> Properties -> Buildpath -> Libraries -> Add External JAR and select “mysql-connector-java-5.1. 14-bin. jar” JAR file
+If you Get an error related to classpath, add "com.mysql.jdbc.Driver" to classpath by downloading the 'mysql-connector-j-8.0.32.jar' JAR file from the repository and then right click on the Java Project (SyntaxSage) -> Properties -> Buildpath -> Libraries -> Add External JAR and select 'mysql-connector-j-8.0.32.jar' JAR file.
+
+If you encounter "Error: Could not find or load main class GUI.HomePage" or "Class not found java.lang.ClassNotFoundException", then go to Java Project (SyntaxSage) -> Properties -> Buildpath -> Libraries and delete the missing Jar file, and add the one above for the previous error.
+
+If you encounter an error where the initial home page is blank on Windows, please resize the window very slightly to allow the home page window to refresh.
 
 # Planning Documents
 
