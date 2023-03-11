@@ -11,10 +11,10 @@ public class Session {
     public Session(Lesson lesson, Account user) {
         this.lesson = lesson;
         this.user = user;
-        this.answers = new ArrayList<String>();
+        this.answers = new ArrayList<>();
     }
 
-
     public void setAnswer(int questionNumber, List<String> answers) {
+
     }
 }
