@@ -21,9 +21,9 @@ public class Login extends JFrame {
 	public JFrame loginFrame;
     public static ArrayList<Account> accountList;
 
-    public Login(boolean useRealDB) {
+    public Login(final boolean useRealDB) {
         // Frame:
-        JFrame loginFrame = new JFrame("Login Page");
+        final JFrame loginFrame = new JFrame("Login Page");
         loginFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // Panels:
@@ -39,8 +39,8 @@ public class Login extends JFrame {
         JLabel label = new JLabel("LOG IN");
 
         // JTextField
-        JTextField inputUser = new JTextField("Username");
-        JTextField inputPassword = new JTextField("Password");
+        final JTextField inputUser = new JTextField("Username");
+        final JTextField inputPassword = new JTextField("Password");
 
         // Set Up Label
         Dimension labelSize = new Dimension(100, 50);

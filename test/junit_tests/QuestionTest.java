@@ -1,39 +1,115 @@
 package junit_tests;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import org.junit.jupiter.api.Test;
-
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import java.util.Arrays;
+import java.util.List;
+import org.junit.Before;
+import org.junit.Test;
 import CustomComponents.Question;
-import CustomComponents.Session;
 
-class QuestionTest {
-    String[] options1 = new String[]{"Milk", "Cheese", "Fruit"};
-    String[] answers1 = new String[]{"Milk"};
-    Question q1 = new Question("Testing1", options1, answers1);
+public class QuestionTest {
 
-    String[] options2 = new String[]{"Apple", "Pear", "Prune"};
-    String[] answers2 = new String[]{"Prune"};
-    Question q2 = new Question("Testing2", options2, answers2);
+    private Question question;
 
-    Question[] questions = new Question[]{q1, q2};
-    Session session = new Session("Test Session", 2, questions);
-
-    @Test
-    void isAnswerTest1() {
-        Question qTest1 = session.getNextQuestion();
-        assertTrue(qTest1.isAnswer("Prune"));
+    @Before
+    public void setUp() {
+        String prompt = "What is the best language of the three?";
+        String[] options = {"Python", "Java", "PHP"};
+        String[] answers = {"Python"};
+        List<String> optionsList = Arrays.asList(options);
+        List<String> answersList = Arrays.asList(answers);
+        question = new Question(prompt, optionsList, answersList);
     }
 
     @Test
-    void isAnswerTest2() {
-        Question qTest1 = session.getNextQuestion();
-        assertFalse(qTest1.isAnswer("Apple"));
+    public void testSetId() {
+        question.setId(1);
+        int expected = 1;
+        int actual = question.getId();
+        assertEquals(expected, actual);
     }
 
     @Test
-    void isAnswerTest3() {
-        Question qTest1 = session.getNextQuestion();
-        assertFalse(qTest1.isAnswer("Milk"));
+    public void testGetCurId() {
+        int expected = 1;
+        int actual = Question.getCurId();
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testSetCurId() {
+        Question.setCurId(10);
+        int expected = 10;
+        int actual = Question.getCurId();
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testGetNoAns() {
+        int expected = 0;
+        int actual = question.getNoAns();
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testSetNoAns() {
+        question.setNoAns(1);
+        int expected = 1;
+        int actual = question.getNoAns();
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testGetPrompt() {
+        String expected = "What is the best language of the three?";
+        String actual = question.getPrompt();
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testSetPrompt() {
+        question.setPrompt("What is the best language?");
+        String expected = "What is the best language?";
+        String actual = question.getPrompt();
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testSetOptions() {
+        String[] newOptions = {"Python", "Java", "PHP"};
+        question.setOptions(newOptions);
+        List<String> expected = Arrays.asList("Python", "Java", "PHP");
+        List<String> actual = question.getOptions();
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testGetAnswers() {
+        List<String> expected = Arrays.asList("Python");
+        List<String> actual = question.getAnswers();
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testSetAnswers() {
+        String[] newAnswers = {"Java"};
+        question.setAnswers(newAnswers);
+        List<String> expected = Arrays.asList("Java");
+        List<String> actual = question.getAnswers();
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testIsAnswerWithCorrectAnswer() {
+        boolean actual = question.isAnswer("Python");
+        assertTrue(actual);
+    }
+
+    @Test
+    public void testIsAnswerWithWrongAnswer() {
+        boolean actual = question.isAnswer("Java");
+        assertFalse(actual);
     }
 }

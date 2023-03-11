@@ -1,5 +1,6 @@
 package DB;
 import java.sql.*;
+
 /* 
 +------------+--------------+------+-----+---------+-------+
 | Field      | Type         | Null | Key | Default | Extra |
@@ -30,8 +31,6 @@ public class CourseDB {
             Class.forName("com.mysql.cj.jdbc.Driver");
             System.out.println("Driver Found.");
             Connection connection = DriverManager.getConnection(url, uname, passwordForDB);
-
-
         }
         catch (ClassNotFoundException e) {
             e.printStackTrace();;
@@ -100,7 +99,9 @@ public class CourseDB {
                 System.out.println("null");
             }
 
-            while(resultSet.next()){
+            while(true){
+                assert resultSet != null;
+                if (!resultSet.next()) break;
                 retID=resultSet.getInt(1);
             }
         } catch (SQLException exception) {
@@ -124,7 +125,9 @@ public class CourseDB {
                 System.out.println("null");
             }
 
-            while(resultSet.next()){
+            while(true){
+                assert resultSet != null;
+                if (!resultSet.next()) break;
                 retID=resultSet.getInt(1);
             }
         } catch (SQLException exception) {

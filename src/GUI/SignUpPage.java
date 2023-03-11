@@ -12,9 +12,9 @@ public class SignUpPage extends JFrame{
 
     private static final long serialVersionUID = -6538973670938329066L;
 
-	public SignUpPage(ArrayList<Account> accountList) {
+	public SignUpPage(final ArrayList<Account> accountList) {
         // Frame:
-        JFrame signUpFrame = new JFrame("Signup Page");
+        final JFrame signUpFrame = new JFrame("Signup Page");
         signUpFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // Panels:
@@ -28,7 +28,7 @@ public class SignUpPage extends JFrame{
 
         // DropDown Menu
         String[] options = { "Python", "Java", "Javascript", "Ruby", "C++" };
-        JList<String> dropdownMenu = new JList<>(options);
+        final JList<String> dropdownMenu = new JList<>(options);
         dropdownMenu.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
         JScrollPane selectCoures = new JScrollPane(dropdownMenu);
         JScrollPane selectCourses = new JScrollPane(dropdownMenu);
@@ -38,8 +38,8 @@ public class SignUpPage extends JFrame{
         JLabel label2 = new JLabel("Select Courses:");
 
         // JTextField
-        JTextField inputUser = new JTextField("Username");
-        JTextField inputPassword = new JTextField("Password");
+        final JTextField inputUser = new JTextField("Username");
+        final JTextField inputPassword = new JTextField("Password");
 
         // Set Up Label
         Dimension labelSize = new Dimension(100, 50);

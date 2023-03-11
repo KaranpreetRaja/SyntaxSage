@@ -7,21 +7,3 @@ public class CustomException extends Exception {
         super(errorMessage);
     }
 }
-
-public class AccountNotFoundException extends CustomException {
-    public AccountNotFoundException(String errorMessage) {
-        super(errorMessage);
-    }
-}
-
-public class AccountSignUpException extends CustomException {
-    public AccountSignUpException(String errorMessage) {
-        super(errorMessage);
-    }
-}
-
-public class AccountUsernameException extends CustomException {
-    public AccountUsernameException(String errorMessage) {
-        super(errorMessage);
-    }
-}

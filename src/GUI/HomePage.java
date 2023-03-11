@@ -28,14 +28,14 @@ public class HomePage extends JPanel {
         JPanel panel1 = new JPanel();
         panel1.setBackground(new Color(255, 128, 128));
 
-        JButton btnToggleDB = new JButton("Real Database (Click to toggle)");
+        final JButton btnToggleDB = new JButton("Real Database (Click to toggle)");
         btnToggleDB.setFont(new Font("Tahoma", Font.PLAIN, 35));
         btnToggleDB.setForeground(new Color(255, 128, 128));
         btnToggleDB.setBackground(new Color(255, 128, 128));
         btnToggleDB.setMaximumSize(new Dimension(400, 60));
         panel1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
-        JButton btnStart = new JButton("Get Started");
+        final JButton btnStart = new JButton("Get Started");
         btnStart.setFont(new Font("Tahoma", Font.PLAIN, 35));
         btnStart.setForeground(new Color(255, 128, 128));
         btnStart.setBackground(new Color(255, 128, 128));

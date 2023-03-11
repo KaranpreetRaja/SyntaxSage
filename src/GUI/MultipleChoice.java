@@ -34,7 +34,6 @@ public class MultipleChoice extends JPanel {
         String correctAnswer = null;
         ArrayList<String> answers = new ArrayList<>();
         try {
-            // Replace the following with your database URL, username, and password
             String url = "jdbc:mysql://140.238.154.147:3306/project";
             String username = "user";
             String password = "Eecs2311!";

@@ -2,51 +2,84 @@ package junit_tests;
 
 import static org.junit.jupiter.api.Assertions.*;
 import java.util.ArrayList;
+
+import CustomComponents.AccountNotFoundException;
+import CustomComponents.AccountSignUpException;
 import org.junit.jupiter.api.Test;
 import CustomComponents.Account;
 
-class AccountTest{
-	private ArrayList<Account> accountList;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
+public class AccountTest {
 
+    // Test new account
     @Test
-    void signUpTest1() {
-    	accountList = new ArrayList<>();
-        ArrayList<String> courses1 = new ArrayList<>();
-        courses1.add("Python,");
-        
-		int accountID = Account.signUp("Milk", "Tea", accountList, courses1);
-        assertEquals(accountID, 1);
+    void testGetUsername() {
+        Account account = new Account("username", "password", "course1,course2", "2 years", "2022-01-01 12:00:00");
+        assertEquals("username", account.getUsername());
     }
 
     @Test
-    void signUpTest2() {
-        accountList = new ArrayList<>();
-        ArrayList<String> courses1 = new ArrayList<>();
-        courses1.add("Python,");
-        int accountID1 = Account.signUp("Milk", "Tea", accountList, courses1);
-        ArrayList<String> courses2 = new ArrayList<>();
-        courses2.add("Python,");
-        courses2.add("Java,");
-        int accountID2 = Account.signUp("Pepsi", "Man", accountList, courses2);
-
-        assertEquals(accountID2, 2);
+    void testGetPassword() {
+        Account account = new Account("username", "password", "course1,course2", "2 years", "2022-01-01 12:00:00");
+        assertEquals("password", account.getPassword());
     }
 
     @Test
-    void signInTest1() {
-    	accountList = new ArrayList<>();
-        ArrayList<String> courses1 = new ArrayList<>();
-        courses1.add("Python,");
-        int accountID1 = Account.signUp("Milk", "Tea", accountList, courses1);
-        int accountIDTest = Account.signIn("Milk", "Tea", accountList);
-        assertEquals(accountID1, accountIDTest);
+    void testGetCourses() {
+        Account account = new Account("username", "password", "course1,course2", "2 years", "2022-01-01 12:00:00");
+        assertEquals("course1,course2", account.getCourses());
     }
 
     @Test
-    void signInTest2() {
-    	accountList = new ArrayList<>();
-        int accountIDTest = Account.signIn("Pepsi", "Man", accountList);
-        assertEquals(accountIDTest, -1);
+    void testGetExperience() {
+        Account account = new Account("username", "password", "course1,course2", "2 years", "2022-01-01 12:00:00");
+        assertEquals("2 years", account.getExperience());
     }
+
+    @Test
+    void testGetCreationDate() {
+        Account account = new Account("username", "password", "course1,course2", "2 years", "2022-01-01 12:00:00");
+        assertEquals("2022-01-01 12:00:00", account.getCreationDate());
+    }
+
+    // Test the signIn method with incorrect password
+    @Test
+    void testSignInFailure() {
+        // Assuming username exists in the database, but the password is incorrect
+        assertThrows(AccountNotFoundException.class, () -> Account.signIn("username", "wrongpassword"));
+    }
+
+    @Test
+    void testCreateAccount1() {
+        Account account = Account.createAccount("username", "password", "course1,course2", "2 years", "2022-01-01 12:00:00", 1);
+        assertEquals("username", account.getUsername());
+    }
+
+    @Test
+    void testCreateAccount2() {
+        Account account = Account.createAccount("username", "password", "course1,course2", "2 years", "2022-01-01 12:00:00", 1);
+        assertEquals("password", account.getPassword());
+    }
+
+    @Test
+    void testCreateAccount3() {
+        Account account = Account.createAccount("username", "password", "course1,course2", "2 years", "2022-01-01 12:00:00", 1);
+        assertEquals("course1,course2", account.getCourses());
+    }
+
+    @Test
+    void testCreateAccount4() {
+        Account account = Account.createAccount("username", "password", "course1,course2", "2 years", "2022-01-01 12:00:00", 1);
+        assertEquals("2 years", account.getExperience());
+    }
+
+    @Test
+    void testCreateAccount5() {
+        Account account = Account.createAccount("username", "password", "course1,course2", "2 years", "2022-01-01 12:00:00", 1);
+        assertEquals("2022-01-01 12:00:00", account.getCreationDate());
+    }
+
+
 }

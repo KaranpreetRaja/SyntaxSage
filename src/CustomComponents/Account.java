@@ -85,12 +85,11 @@ public class Account{
         Database database = new Database();
         database.connectToDatabase();
         String[] usernameList = database.getAllUsernames().split(", ");
-        for (int i = 0; i < usernameList.length; i++) {
-            if (username.equals(usernameList[i])) {
-                if (password.equals(database.getPassword(usernameList[i]))) {
+        for (String s : usernameList) {
+            if (username.equals(s)) {
+                if (password.equals(database.getPassword(s))) {
                     return Account.getAccount(database.getID(username));
-                }
-                else {
+                } else {
                     throw new AccountNotFoundException("");
                 }
             }
@@ -100,12 +99,11 @@ public class Account{
 
     public static Account signIn(String username, String password, ArrayList<Account> accountList) throws AccountNotFoundException {
         //Stub Database Sign in
-        for (int i = 0; i < accountList.size(); i++) {
-            if (accountList.get(i).getUsername().equals(username)) {
-                if (accountList.get(i).getPassword().equals(password)) {
-                    return accountList.get(i);
-                }
-                else {
+        for (Account account : accountList) {
+            if (account.getUsername().equals(username)) {
+                if (account.getPassword().equals(password)) {
+                    return account;
+                } else {
                     throw new AccountNotFoundException("");
                 }
             }
@@ -118,14 +116,14 @@ public class Account{
         Database database = new Database();
         database.connectToDatabase();
         String[] usernameList = database.getAllUsernames().split(", ");
-        for (int i = 0; i < usernameList.length; i++) {
-            if (username.equals(usernameList[i])) {
+        for (String s : usernameList) {
+            if (username.equals(s)) {
                 throw new AccountSignUpException("");
             }
         }
         String courseString = "";
-        for (int j = 0; j < courses.size(); j++){
-            courseString = courseString + courses.get(j) + ",";
+        for (String cours : courses) {
+            courseString = courseString + cours + ",";
         }
         Account myAccount = createAccount(username, password, courseString);
         return myAccount;
@@ -133,18 +131,18 @@ public class Account{
 
     public static Account signUp(String username, String password, ArrayList<String> courses, ArrayList<Account> accountList) throws AccountSignUpException {
         //Stub Database Sign Up
-        for (int i = 0; i < accountList.size(); i++){
-            if (accountList.get(i).getUsername() == username){
+        for (Account account : accountList) {
+            if (account.getUsername() == username) {
                 throw new AccountSignUpException("");
             }
         }
 
-        String courseString = "";
-        for (int j = 0; j < courses.size(); j++){
-            courseString = courseString + courses.get(j) + ",";
+        StringBuilder courseString = new StringBuilder();
+        for (String course : courses) {
+            courseString.append(course).append(",");
         }
 
-        Account myAccount = createAccount(username, password, courseString);
+        Account myAccount = createAccount(username, password, courseString.toString());
         accountList.add(myAccount);
         return myAccount;
     }
@@ -177,8 +175,8 @@ public class Account{
         Database database = new Database();
         database.connectToDatabase();
         String[] usernameList = database.getAllUsernames().split(", ");
-        for (int i = 0; i < usernameList.length; i++) {
-            if (username.equals(usernameList[i])) {
+        for (String s : usernameList) {
+            if (username.equals(s)) {
                 throw new AccountUsernameException("");
             }
         }
