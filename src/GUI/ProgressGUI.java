@@ -42,12 +42,16 @@ public class ProgressGUI extends JPanel {
         		);
 
         JPanel panel = new JPanel(new BorderLayout());
+        
+        // Adding gap before the elements
+        panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        
         panel.add(progressBar, BorderLayout.CENTER);
         panel.add(updateProgressButton, BorderLayout.PAGE_END);
 
         add(panel, BorderLayout.CENTER);
 
-        timer = new Timer(50, this);
+        timer = new Timer(50, updateProgressButton.getActionListeners()[0]);
         timer.setInitialDelay(0);
     }
 
