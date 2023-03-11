@@ -2,9 +2,11 @@ package GUI;
 
 import java.awt.*;
 import javax.swing.*;
-
 import java.awt.event.*;
+import java.sql.*;
 import java.util.ArrayList;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import CustomComponents.*;
 
@@ -119,7 +121,7 @@ public class SignUpPage extends JFrame{
             }
         });
 
-        // Add Account Details and Register User
+// Add Account Details and Register User
         signUpBut.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -128,23 +130,38 @@ public class SignUpPage extends JFrame{
                 ArrayList<String> courses = (ArrayList<String>) dropdownMenu.getSelectedValuesList();
 
                 try {
-                    if (accountList.size() > 0) {
-                        Account myAccount = Account.signUp(username, password, courses, accountList);
+                    // Check if username already exists in database
+                    String url = "jdbc:mysql://140.238.154.147:3306/project";
+                    String sqlUsername = "user";
+                    String sqlPassword = "Eecs2311!";
+                    Connection connection = DriverManager.getConnection(url, sqlUsername, sqlPassword);
+                    PreparedStatement statement = connection.prepareStatement("SELECT * FROM account WHERE username = ?");
+                    statement.setString(1, username);
+                    ResultSet resultSet = statement.executeQuery();
+                    if (resultSet.next()) {
+                        // Username already exists
+                        JLabel message = new JLabel("Username already exists");
+                        signUpFrame.add(message);
+                    } else {
+                        // Username doesn't exist, create new account in database
+                        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM d, yyyy");
+                        String date = LocalDate.now().format(formatter);
+                        statement = connection.prepareStatement("INSERT INTO account (username, password, classes, experience, accountCreateDate) VALUES (?, ?, ?, ?, ?)");
+                        statement.setString(1, username);
+                        statement.setString(2, password);
+                        statement.setString(3, String.join(",", courses));
+                        statement.setString(4, "Beginner");
+                        statement.setString(5, date);
+
+                        statement.executeUpdate();
+                        Account myAccount = new Account(username, password, courses.get(0), "Beginner", date);
                         DashBoard dashboard = new DashBoard(myAccount);
                         signUpFrame.setVisible(false);
                         dashboard.setVisible(true);
                     }
-                    else {
-                        Account myAccount = Account.signUp(username, password, courses);
-                        DashBoard dashboard = new DashBoard(myAccount);
-                        signUpFrame.setVisible(false);
-                        dashboard.setVisible(true);
-                    }
-                    
-                }
-                catch (AccountSignUpException e2) {
-                    JLabel message = new JLabel("Invalid Registration");
-                    signUpFrame.add(message);
+                    connection.close();
+                } catch (SQLException e2) {
+                    e2.printStackTrace();
                 }
             }
         });

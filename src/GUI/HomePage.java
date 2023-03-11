@@ -1,7 +1,6 @@
 package GUI;
 
 import javax.swing.*;
-import javax.swing.border.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,6 +14,7 @@ public class HomePage extends JPanel {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setForeground(new Color(0, 0, 0));
         frame.setBackground(new Color(0, 0, 0));
+        frame.setLocationRelativeTo(null);
         frame.pack();
         frame.setMinimumSize(new Dimension(1300, 600));
         frame.setVisible(true);

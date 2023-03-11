@@ -2,15 +2,9 @@ package GUI;
 
 import java.awt.*;
 import javax.swing.*;
-import java.lang.Exception.*;
-import java.sql.SQLException;
-
-import CustomComponents.*;
-
+import java.sql.*;
 import java.awt.event.*;
-
 import java.util.ArrayList;
-
 import CustomComponents.Account;
 
 public class Login extends JFrame {
@@ -24,6 +18,7 @@ public class Login extends JFrame {
     public Login(final boolean useRealDB) {
         // Frame:
         final JFrame loginFrame = new JFrame("Login Page");
+        setLocationRelativeTo(null);
         loginFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // Panels:
@@ -83,11 +78,11 @@ public class Login extends JFrame {
         inputPanel.setLayout(new BoxLayout(inputPanel, BoxLayout.PAGE_AXIS));
 
         // Stub Database
-        if (useRealDB == false){
+        if (!useRealDB){
             Login.accountList = Account.extractAccountList();
         }
         else {
-            Login.accountList = new ArrayList<Account>();
+            Login.accountList = new ArrayList<>();
         }
 
         // Event Listener for Inputs
@@ -131,25 +126,31 @@ public class Login extends JFrame {
                 String password = inputPassword.getText();
 
                 try {
-                    if (useRealDB) {
-                        Account myAccount = Account.signIn(username, password);
-                        DashBoard dashboard = new DashBoard(myAccount);
-                        loginFrame.setVisible(false);
-                        dashboard.setVisible(true);
-                    }
-                    else {
-                        Account myAccount = Account.signIn(username, password, accountList);
-                        DashBoard dashboard = new DashBoard(myAccount);
-                        loginFrame.setVisible(false);
-                        dashboard.setVisible(true);
-                    }
-                   
-                }
-                catch (AccountNotFoundException | SQLException e1) {
-                    JLabel message = new JLabel("Wrong Username or Password");
-                    loginFrame.add(message);
-                }
+                    String url = "jdbc:mysql://140.238.154.147:3306/project";
+                    String sqlUsername = "user";
+                    String sqlPassword = "Eecs2311!";
 
+                    Connection connection = DriverManager.getConnection(url, sqlUsername, sqlPassword);
+                    Statement statement = connection.createStatement();
+                    String query = "SELECT * FROM account WHERE username = '" + username + "' AND password = '" + password + "'";
+                    ResultSet resultSet = statement.executeQuery(query);
+                    if (resultSet.next()) {
+                        // Account found
+                        String classes = resultSet.getString("classes");
+                        String experience = resultSet.getString("experience");
+                        String accountCreateDate = resultSet.getString("accountCreateDate");
+                        Account myAccount = new Account(username, password, classes, experience, accountCreateDate);
+                        DashBoard dashboard = new DashBoard(myAccount);
+                        loginFrame.setVisible(false);
+                        dashboard.setVisible(true);
+                    } else {
+                        // Account not found
+                        JOptionPane.showMessageDialog(null, "Incorrect username or password.", "Error!", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
+                catch (SQLException e1) {
+                    e1.printStackTrace();
+                }
             }
         });
         
@@ -164,10 +165,4 @@ public class Login extends JFrame {
             }
         });
     }
-
-    public JFrame getLoginFrame() {
-        return loginFrame;
-    }
-
-
 }
