@@ -209,7 +209,7 @@ public class Database {
             while(true){
                 assert resultSet != null;
                 if (!resultSet.next()) break;
-                retString= resultSet.getInt(1) +", "+resultSet.getString(2)+", "+resultSet.getString(3)+", "+resultSet.getString(4)+", "+resultSet.getString(5)+", "+resultSet.getString(6);
+                retString= String.format("%s, %s, %s, %s, %s, %s", resultSet.getInt(1), resultSet.getString(2) , resultSet.getString(3) , resultSet.getString(4), resultSet.getString(5), resultSet.getString(6));
             }
         } catch (SQLException exception) {
             System.out.println("SQL Exception in getID(Argument Username) method");
