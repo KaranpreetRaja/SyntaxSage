@@ -125,4 +125,8 @@ public class Lesson {
 		this.questions = questions;
 	}
 
+	public String getSessionName() {
+		return sessionName;
+	}
+
 }
