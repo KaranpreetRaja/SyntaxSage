@@ -6,6 +6,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class HomePage extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private static boolean isStubDatabase = false;
 
 		public static void main(String[] args) {
@@ -75,4 +79,5 @@ public class HomePage extends JPanel {
             }
         });
     }
+		
 }
