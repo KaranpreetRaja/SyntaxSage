@@ -1,28 +1,49 @@
 package GUI;
 import javax.swing.*;
+
+import CustomComponents.Account;
+
 import java.awt.*;
 import java.awt.event.*;
 
-public class ProgressGUI extends JPanel implements ActionListener {
+public class ProgressGUI extends JPanel {
     private static final long serialVersionUID = 6098546007197585733L;
 	private JProgressBar progressBar;
-    private JButton startButton;
+    private JButton updateProgressButton;
     private Timer timer;
     private int progressValue = 0;
 
-    public ProgressGUI() {
+    public ProgressGUI(Account acc) {
         super(new BorderLayout());
 
         progressBar = new JProgressBar(0, 100);
         progressBar.setValue(0);
         progressBar.setStringPainted(true);
 
-        startButton = new JButton("Start");
-        startButton.addActionListener(this);
+        updateProgressButton = new JButton("Update Progress Bar Value");
+        updateProgressButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            	if (acc.getExperience() == "Master" && progressValue <=100) {	
+	                	if (e.getSource() == updateProgressButton) {
+	                		updateProgressButton.setEnabled(false);
+	                        timer.start();
+	                    } else if (e.getSource() == timer) {
+	                        progressValue++;
+	                        progressBar.setValue(progressValue);
+	                        progressBar.setString(progressValue + "%");
+	                    }
+                	}
+            	if (progressValue == 100) {
+                    timer.stop();
+                    updateProgressButton.setEnabled(true);
+                }
+                }}
+        		);
 
         JPanel panel = new JPanel(new BorderLayout());
         panel.add(progressBar, BorderLayout.CENTER);
-        panel.add(startButton, BorderLayout.PAGE_END);
+        panel.add(updateProgressButton, BorderLayout.PAGE_END);
 
         add(panel, BorderLayout.CENTER);
 
@@ -30,39 +51,4 @@ public class ProgressGUI extends JPanel implements ActionListener {
         timer.setInitialDelay(0);
     }
 
-    public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == startButton) {
-            startButton.setEnabled(false);
-            timer.start();
-        } else if (e.getSource() == timer) {
-            progressValue++;
-            progressBar.setValue(progressValue);
-            progressBar.setString(progressValue + "%");
-
-            if (progressValue == 100) {
-                timer.stop();
-                startButton.setEnabled(true);
-            }
-        }
-    }
-
-    private static void createAndShowGUI() {
-        JFrame frame = new JFrame("ProgressBarDemo");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        JComponent newContentPane = new ProgressGUI();
-        newContentPane.setOpaque(true);
-        frame.setContentPane(newContentPane);
-
-        frame.pack();
-        frame.setVisible(true);
-    }
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                createAndShowGUI();
-            }
-        });
-    }
 }
