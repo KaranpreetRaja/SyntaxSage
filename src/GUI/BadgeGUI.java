@@ -4,7 +4,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import CustomComponents.Account;
 
 public class BadgeGUI extends JPanel {
@@ -12,10 +14,11 @@ public class BadgeGUI extends JPanel {
     private JLabel label;
     private JButton updateBadgesButton;
     private ImageIcon[] badges;
+    private int badgeWidth = 100; // Set the initial width of the badge image
+    private int badgeHeight = 100; // Set the initial height of the badge image
 
     public BadgeGUI(Account acc) {
         super(new BorderLayout());
-        this.acc = acc;
 
         label = new JLabel("Badges");
         label.setHorizontalAlignment(JLabel.CENTER);
@@ -25,9 +28,19 @@ public class BadgeGUI extends JPanel {
 
         if (acc.getExperience().equals("Master")) {
             badges = new ImageIcon[3];
-            badges[0] = new ImageIcon(new File("Assets/PythonBadge-1.png").getAbsolutePath());
-            badges[1] = new ImageIcon(new File("Assets/PythonBadge-2.png").getAbsolutePath());
-            badges[2] = new ImageIcon(new File("Assets/PythonBadge-3.png").getAbsolutePath());
+            try {
+                Image img1 = ImageIO.read(new File("Assets/PythonBadge-1.png"));
+                Image img2 = ImageIO.read(new File("Assets/PythonBadge-2.png"));
+                Image img3 = ImageIO.read(new File("Assets/PythonBadge-3.png"));
+                Image scaledImg1 = img1.getScaledInstance(badgeWidth, badgeHeight, Image.SCALE_SMOOTH);
+                Image scaledImg2 = img2.getScaledInstance(badgeWidth, badgeHeight, Image.SCALE_SMOOTH);
+                Image scaledImg3 = img3.getScaledInstance(badgeWidth, badgeHeight, Image.SCALE_SMOOTH);
+                badges[0] = new ImageIcon(scaledImg1);
+                badges[1] = new ImageIcon(scaledImg2);
+                badges[2] = new ImageIcon(scaledImg3);
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
 
             for (int i = 0; i < badges.length; i++) {
                 JLabel badgeLabel = new JLabel(badges[i]);
@@ -42,10 +55,19 @@ public class BadgeGUI extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 if (acc.getExperience().equals("Master")) {
                     badges = new ImageIcon[3];
-                    badges[0] = new ImageIcon(new File("Assets/PythonBadge-1.png").getAbsolutePath());
-                    badges[1] = new ImageIcon(new File("Assets/PythonBadge-2.png").getAbsolutePath());
-                    badges[2] = new ImageIcon(new File("Assets/PythonBadge-3.png").getAbsolutePath());
-
+                    try {
+                        Image img1 = ImageIO.read(new File("Assets/PythonBadge-1.png"));
+                        Image img2 = ImageIO.read(new File("Assets/PythonBadge-2.png"));
+                        Image img3 = ImageIO.read(new File("Assets/PythonBadge-3.png"));
+                        Image scaledImg1 = img1.getScaledInstance(badgeWidth, badgeHeight, Image.SCALE_SMOOTH);
+                        Image scaledImg2 = img2.getScaledInstance(badgeWidth, badgeHeight, Image.SCALE_SMOOTH);
+                        Image scaledImg3 = img3.getScaledInstance(badgeWidth, badgeHeight, Image.SCALE_SMOOTH);
+                        badges[0] = new ImageIcon(scaledImg1);
+                        badges[1] = new ImageIcon(scaledImg2);
+                        badges[2] = new ImageIcon(scaledImg3);
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
                     for (int i = 0; i < badges.length; i++) {
                         JLabel badgeLabel = new JLabel(badges[i]);
                         badgeLabel.setHorizontalAlignment(JLabel.CENTER);
