@@ -4,7 +4,9 @@ SyntaxSage is a program that aims to help users learn and master programming lan
 
 # Run Our Code
 
-**In order to run our Java Swing Application, you must run** [HomePage.java](https://github.com/KaranpreetRaja/SyntaxSage/blob/main/src/GUI/HomePage.java)
+**In order to run our Java Swing Application, you must run the main function in ** [HomePage.java](https://github.com/KaranpreetRaja/SyntaxSage/blob/main/src/GUI/HomePage.java)
+
+If you Get an error related to classpath, add "com.mysql.jdbc.Driver" to classpath by [Downloading the Jar file](https://dev.mysql.com/downloads/connector/j/) and then right click on the Java Project (Syntax Sage) -> Properties -> Buildpath -> Libraries -> Add External JAR and select “mysql-connector-java-5.1. 14-bin. jar” JAR file
 
 # Planning Documents
 
