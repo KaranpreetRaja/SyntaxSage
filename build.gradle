@@ -1,0 +1,54 @@
+plugins {
+    id 'java'
+}
+
+group 'SyntaxSage'
+version '0.2.1-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.8.1'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.1.1'
+    testImplementation 'org.junit.platform:junit-platform-runner:1.1.1'
+    implementation 'mysql:mysql-connector-java:8.0.31'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+sourceSets {
+    integrationTest {
+        java {
+            srcDir 'test/integration_tests'
+        }
+        resources {
+            srcDir 'test/resources'
+        }
+    }
+    main {
+        java {
+            srcDir 'src'
+        }
+    }
+}
+
+configurations {
+    integrationTestCompile.extendsFrom testCompile
+    integrationTestRuntime.extendsFrom testRuntime
+}
+
+task integrationTest(type: Test) {
+    testClassesDirs = sourceSets.integrationTest.output.classesDirs
+    classpath = sourceSets.integrationTest.runtimeClasspath
+    outputs.upToDateWhen { false }
+}
+
+compileJava {
+    options.compilerArgs << "-source" << "8" << "-target" << "8"
+}
+

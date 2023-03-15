@@ -1,4 +1,4 @@
-package junit_tests;
+package integration_tests;
 
 import static org.junit.jupiter.api.Assertions.*;
 import CustomComponents.AccountNotFoundException;
@@ -40,7 +40,6 @@ public class AccountTest {
         Account account = new Account("username", "password", "course1,course2", "2 years", "2022-01-01 12:00:00");
         assertEquals("2 years", account.getExperience());
     }
-
     @Test
     void testGetCreationDate() {
         Account account = new Account("username", "password", "course1,course2", "2 years", "2022-01-01 12:00:00");

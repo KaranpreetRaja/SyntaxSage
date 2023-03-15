@@ -7,7 +7,6 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-
 import CustomComponents.*;
 
 public class SignUpPage extends JFrame{
@@ -140,8 +139,7 @@ public class SignUpPage extends JFrame{
                     ResultSet resultSet = statement.executeQuery();
                     if (resultSet.next()) {
                         // Username already exists
-                        JLabel message = new JLabel("Username already exists");
-                        signUpFrame.add(message);
+                        JOptionPane.showMessageDialog(null, "User already exists.", "Error!", JOptionPane.ERROR_MESSAGE);
                     } else {
                         // Username doesn't exist, create new account in database
                         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM d, yyyy");
