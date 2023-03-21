@@ -28,6 +28,6 @@
 - Sign Up:
   -
   -
-### Database:
+- Database:
   - Manual Tests for Tables in Custom Components
   - Automation Testing using Gradle and CI/CD using circleci 
