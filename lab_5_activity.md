@@ -6,6 +6,11 @@
 - Badges and Awards:
 - Sign In:
 - Sign Up:
+- Database: Rajendra
+
+
+
+
 
 ## End to End Manual Tests
 - Syntax Testing
@@ -23,3 +28,6 @@
 - Sign Up:
   -
   -
+  Database:
+  - Manual Tests for Tables in Custom Components
+  - Automation Testing using Gradle and CI/CD using circleci 
