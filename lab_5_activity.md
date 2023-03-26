@@ -3,10 +3,9 @@
 ## Implemented User Stories, Main Developers, and Testers
 - Syntax Testing: Mohammad (Tester: Karanpreet)
 - Progress Bar: Karanpreet (Tester: Mohammad)
-- Badges and Awards: 
-- Sign In: Rajendra
-- Sign Up:
-
+- Badges and Awards: Rajendra (Tester: Ryan)
+- Learning Pages: Abdirazak (Tester: Abdirazak)
+- Sign In/Sign Up: Ryan (Tester: Rajendra)
 
 
 
