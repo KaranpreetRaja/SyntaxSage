@@ -4,9 +4,8 @@
 - Syntax Testing: Mohammad
 - Progress Bar: Karanpreet
 - Badges and Awards: Karanpreet
-- Sign In:
+- Sign In: Rajendra
 - Sign Up:
-- Database: Rajendra
 
 
 
@@ -28,7 +27,3 @@
 - Sign In:
 
 - Sign Up:
-
-- Database:
-  - Manual Tests for Tables in Custom Components
-  - Automation Testing using Gradle and CI/CD using circleci 
