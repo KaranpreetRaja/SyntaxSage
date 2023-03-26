@@ -1,9 +1,9 @@
 # Lab 5 Activity
 
-## Implemented User Stories and Main Developers
-- Syntax Testing: Mohammad
-- Progress Bar: Karanpreet
-- Badges and Awards: Karanpreet
+## Implemented User Stories, Main Developers, and Testers
+- Syntax Testing: Mohammad (Tester: Karanpreet)
+- Progress Bar: Karanpreet (Tester: Mohammad)
+- Badges and Awards: 
 - Sign In: Rajendra
 - Sign Up:
 
