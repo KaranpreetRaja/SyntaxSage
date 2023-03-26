@@ -4,8 +4,8 @@
 - Syntax Testing: Mohammad (Tester: Karanpreet)
 - Progress Bar: Karanpreet (Tester: Mohammad)
 - Badges and Awards: Rajendra (Tester: Ryan)
-- Learning Pages: Abdirazak (Tester: Abdirazak)
-- Sign In/Sign Up: Ryan (Tester: Rajendra)
+- Learning Pages: Ryan (Tester: Abdirazak)
+- Sign In/Sign Up: Abdirazak (Tester: Rajendra)
 
 
 
