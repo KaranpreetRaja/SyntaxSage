@@ -14,6 +14,8 @@
 - Syntax Testing
   - Sign in with test account (user: test, pass: test). Launch session. When a multiple select window pops up, try selecting the two correct answers displayed on the window. Click submit button.
   - Sign in with test account (user: test, pass: test). Launch session. When a multiple choice window pops up, try selecting the one correct answer displayed on the window. Click submit button.
+  - Sign in with test account (user: test, pass: test). Launch session. When a multiple select window pops up, try selecting one correct answer displayed on the window. Click submit button. It should say answer is partially correct.
+  - Sign in with test account (user: test, pass: test). Launch session. When a multiple choice window pops up, try selecting an incorrect answer displayed on the window. Click submit button. It should display incorrect answer.
 
 - Progress Bar:
   - Create a new account (to ensure that no lessons have been completed for the account), once on the dashboard, click on the "Update Progress Bar" button. This should yeild in the progress bar staying at 0%.
