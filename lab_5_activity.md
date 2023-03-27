@@ -57,3 +57,12 @@
   - Start Program. Sign in with existing account (Username: Admin, Password: Admin). Verify that clicking the "Sign In" button with invalid credentials displays an error message.
   - Start Program. Sign in with existing account (Username: Admin, Password: Admin). Verify that the dashboard page is displayed with the correct account details when the user logs in successfully.
   - Start Program. Sign in with existing account (Username: Admin, Password: Admin). Verify that the user is able to log out from the dashboard page and is redirected back to the login page.
+  - Test that the frame is properly displayed when the class is instantiated.
+  - Test that the buttons are properly displayed and can be clicked.
+  - Test that the input fields are properly displayed and can be edited.
+  - Test that the dropdown menu is properly displayed and courses can be selected.
+  - Test that the username and password are properly entered and stored.
+  - Test that the username is checked against the database and an error message is displayed if it already exists.
+  - Test that a new account is created in the database if the username is available.
+  - Test that the account is properly stored in the database.
+  - Test that the dashboard is properly displayed after the account is created.
