@@ -49,3 +49,11 @@
   back to the dashboard.
 
 - Sign In/Sign Up:
+- Verify that the login page is displayed when the application is launched.
+Verify that the "Sign In" and "Register" buttons are displayed on the login page.
+Verify that clicking the "Register" button takes the user to the registration page.
+Verify that the user is able to enter their username and password in the input fields.
+Verify that clicking the "Sign In" button with valid credentials takes the user to the dashboard page.
+Verify that clicking the "Sign In" button with invalid credentials displays an error message.
+Verify that the dashboard page is displayed with the correct account details when the user logs in successfully.
+Verify that the user is able to log out from the dashboard page and is redirected back to the login page.
