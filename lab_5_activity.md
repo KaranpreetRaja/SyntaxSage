@@ -26,25 +26,22 @@
 - Badges and Awards:
 
 - Syntax Docs:
-- Resize application to full screen considering there isn't any responsiveness
-added.
-- Verify that the Syntax Doc frame appears. The document will be displayed on
-the left side of the frame covering at least 80 percent of the width.
-- Verify that the navigation bar is located on the left side.
--- Make sure that html, css, javascript, SQL, and python are there.
-- Verify navigation: There are multiple language nav links on the left side, click on
-one of them and you will be given the document for that language on the left
-panel.
-- Verify the scroll bar works.
-- Verify the document is displayed on the left panel for the given language.
-- Scroll down and verify that there is sufficient vital information displayed and its
-content is related to the selected language. (Do this with each language).
--- You can compare this to the information that the designer scraped off of
-w3schools site.
-- Verify the back button located at the top left corner works, you will be brought
-back to the dashboard.
-Note: That is the test for the first component of the user story, however the second
-component (save specified elements & store saved notes) is currently non-functional
-unfortunately due to incomplete code.
+  - Resize application to full screen considering there isn't any responsiveness
+  added.
+  - Verify that the Syntax Doc frame appears. The document will be displayed on
+  the left side of the frame covering at least 80 percent of the width.
+  - Verify that the navigation bar is located on the left side.
+  -- Make sure that html, css, javascript, SQL, and python are there.
+  - Verify navigation: There are multiple language nav links on the left side, click on
+  one of them and you will be given the document for that language on the left
+  panel.
+  - Verify the scroll bar works.
+  - Verify the document is displayed on the left panel for the given language.
+  - Scroll down and verify that there is sufficient vital information displayed and its
+  content is related to the selected language. (Do this with each language).
+  -- You can compare this to the information that the designer scraped off of
+  w3schools site.
+  - Verify the back button located at the top left corner works, you will be brought
+  back to the dashboard.
 
 - Sign In/Sign Up:
