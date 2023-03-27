@@ -4,7 +4,7 @@
 - Syntax Testing: Mohammad (Tester: Karanpreet)
 - Progress Bar: Karanpreet (Tester: Mohammad)
 - Badges and Awards: Rajendra (Tester: Ryan)
-- Learning Pages: Ryan (Tester: Abdirazak)
+- Syntax Docs: Ryan (Tester: Abdirazak)
 - Sign In/Sign Up: Abdirazak (Tester: Rajendra)
 
 
@@ -23,6 +23,6 @@
 
 - Badges and Awards:
 
-- Sign In:
+- Syntax Docs:
 
-- Sign Up:
+- Sign In/Sign Up:
