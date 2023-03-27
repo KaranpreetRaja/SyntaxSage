@@ -24,6 +24,10 @@
   - Log into the same account, and click on the "Update Progress Bar" button. It should increment to the value that it was previously at.
 
 - Badges and Awards:
+  - Start Program. Sign in with existing account (Username: Admin, Password: Admin). Switch tabs to dashboard. Ensure that all achieved badges are displayed (Admin account should have 3 python badges).
+  - Start Program. Switch to Sign up Page. Sign up with a brand new account (Unique Username). Switch tabs to dashboard. Ensure that there are no achieved badges. Click Update Badges. Ensure that no badges show up.
+  - Start Program. Switch to Sign up Page. Sign up with a brand new account (Unique Username). Switch tabs to dashboard. Ensure there are no achieved badges. Click Update Badges. Ensure no badges show up. Switch back to home page. Start Lesson. Complete Lesson. Switch Tabs to dashboard. Click Update Badges. Ensure that All badges show up.
+  - Start Program. Sign in with existing account (Not Admin Account). Switch tabs to dashboard. Ensure there are no achieved badges. Click Update Badges. Ensure no badges show up. Switch back to home page. Start Lesson. Complete Lesson. Switch Tabs to dashboard. Click Update Badges. Ensure that All badges show up.
 
 - Syntax Docs:
   - Resize application to full screen considering there isn't any responsiveness
