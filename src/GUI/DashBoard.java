@@ -201,8 +201,9 @@ public class DashBoard extends javax.swing.JFrame {
     }
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO: add handling code here
+        new GUI.SyntaxDoc("https://quickref.me/html");
     }
+
 
     /**
      * @param args the command line arguments

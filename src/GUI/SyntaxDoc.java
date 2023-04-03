@@ -22,7 +22,7 @@ public class SyntaxDoc extends JFrame {
     public SyntaxDoc(String language) {
         super("SyntaxDoc");
 
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Change to DISPOSE_ON_CLOSE
 
         setMinimumSize(new java.awt.Dimension(700, 450));
 
