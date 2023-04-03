@@ -201,7 +201,7 @@ public class DashBoard extends javax.swing.JFrame {
     }
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
-        new GUI.SyntaxDoc("https://quickref.me/html");
+        new GUI.SyntaxDoc("https://raw.githubusercontent.com/Fechin/reference/main/source/_posts/python.md");
     }
 
 

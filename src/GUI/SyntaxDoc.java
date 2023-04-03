@@ -10,7 +10,7 @@ import org.commonmark.renderer.html.*;
 
 public class SyntaxDoc extends JFrame {
     private static final long serialVersionUID = 1L;
-    private static final String HOME_URL = "https://quickref.me/";
+    private static final String HOME_URL = "https://raw.githubusercontent.com/Fechin/reference/main/source/_posts/python.md";
     private static final String[] LANGUAGES = {"HTML", "CSS", "CPP", "Python", "Java"};
     private static final String[] LANGUAGE_URLS = {
         "https://raw.githubusercontent.com/Fechin/reference/main/source/_posts/html.md",
@@ -101,6 +101,6 @@ public class SyntaxDoc extends JFrame {
 
 
     public static void main(String[] args) {
-        new SyntaxDoc("https://raw.githubusercontent.com/Fechin/reference/main/source/_posts/html.md"); // Pass the correct initial URL
+        new SyntaxDoc("https://raw.githubusercontent.com/Fechin/reference/main/source/_posts/python.md"); // Pass the correct initial URL
     }
 }
