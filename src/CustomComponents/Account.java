@@ -17,6 +17,7 @@ public class Account {
     private String courses;
     private String experience;
     private String creationDate;
+    private String currentCourse;
 
     public Account() {
         this.username = "";
@@ -243,5 +244,22 @@ public class Account {
             e.printStackTrace();
         }
         return accountList;
+    }
+
+    public String currentCourse() throws SQLException {
+        String url = "jdbc:mysql://140.238.154.147:3306/project";
+        String sqlUsername = "user";
+        String sqlPassword = "Eecs2311!";
+        Connection connection = DriverManager.getConnection(url, sqlUsername, sqlPassword);
+        
+        String query = "SELECT classes FROM account WHERE username = ?";
+        PreparedStatement statement = connection.prepareStatement(query);
+        statement.setString(1, this.username);
+        ResultSet rs = statement.executeQuery();
+        while (rs.next()) {
+            this.currentCourse = rs.getString("classes");
+        }
+        statement.close();
+        return this.currentCourse;
     }
 }

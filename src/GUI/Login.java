@@ -35,7 +35,8 @@ public class Login extends JFrame {
 
         // JTextField
         final JTextField inputUser = new JTextField("Username");
-        final JTextField inputPassword = new JTextField("Password");
+        final JPasswordField inputPassword = new JPasswordField("Password");
+        inputPassword.setEchoChar('*');
 
         // Set Up Label
         Dimension labelSize = new Dimension(100, 50);

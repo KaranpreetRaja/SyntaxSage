@@ -11,6 +11,7 @@ import javax.swing.border.EmptyBorder;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Objects;
 
 public class MultipleSelect extends JPanel {
 
@@ -42,6 +43,7 @@ public class MultipleSelect extends JPanel {
             Connection connection = DriverManager.getConnection(url, username, password);
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT * FROM msquestions ORDER BY RAND() LIMIT 1");
+
 
             if (resultSet.next()) {
                 question = resultSet.getString("msquestion");
@@ -146,10 +148,20 @@ public class MultipleSelect extends JPanel {
             String url = "jdbc:mysql://140.238.154.147:3306/project";
             String username = "user";
             String password = "Eecs2311!";
+            String course = acc.currentCourse();
 
             Connection connection = DriverManager.getConnection(url, username, password);
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("SELECT * FROM msquestions ORDER BY RAND() LIMIT 1");
+            ResultSet resultSet;
+            if (Objects.equals(course, "Python")) {
+                resultSet = statement.executeQuery("SELECT * FROM msquestions ORDER BY RAND() LIMIT 1");
+            }
+            else if (Objects.equals(course, "Java")) {
+                resultSet = statement.executeQuery("SELECT * FROM java_msquestions ORDER BY RAND() LIMIT 1");
+            }
+            else {
+                resultSet = statement.executeQuery("SELECT * FROM cpp_msquestions ORDER BY RAND() LIMIT 1");
+            }
 
             if (resultSet.next()) {
                 question = resultSet.getString("msquestion");
