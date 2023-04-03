@@ -31,7 +31,7 @@ public class Login extends JFrame {
         JButton registerBut = new JButton();
 
         // Labels:
-        JLabel label = new JLabel("LOG IN");
+        JLabel label = new JLabel("Log In");
 
         // JTextField
         final JTextField inputUser = new JTextField("Username");
