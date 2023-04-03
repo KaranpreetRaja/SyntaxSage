@@ -205,7 +205,7 @@ public class DashBoard extends javax.swing.JFrame {
             System.out.println(currentUsername + " " + selectedClass);
             System.out.println("Updated the database successfully!");
             System.out.println(acc.currentCourse());
-            jLabel5.setText(String.format("Courses: %s", acc.currentCourse()));
+            jLabel5.setText(String.format("Courses: %s", selectedClass));
 
             // Close the PreparedStatement and Connection objects
             ps.close();
