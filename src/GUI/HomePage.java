@@ -18,6 +18,7 @@ public class HomePage extends JPanel {
         frame.pack();
         frame.setMinimumSize(new Dimension(1300, 600));
         frame.setVisible(true);
+
         JLabel title = new JLabel("Syntax Sage");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
         title.setHorizontalAlignment(SwingConstants.CENTER);
