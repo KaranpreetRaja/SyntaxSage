@@ -201,7 +201,7 @@ public class DashBoard extends javax.swing.JFrame {
                 System.out.println("Updated the database successfully!");
                 System.out.println(acc.currentCourse());
 
-                jLabel1.setText(acc.currentCourse() + " Lesson:");
+                jLabel1.setText(selectedClass + " Lesson:");
                 jLabel5.setText(String.format("Courses: %s", selectedClass));
 
                 ps.close();
