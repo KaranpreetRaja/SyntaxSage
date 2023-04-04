@@ -57,7 +57,7 @@ public class DashBoard extends javax.swing.JFrame {
         jComboBox1.addActionListener(this::jComboBox1ActionPerformed);
         jComboBox1.setSelectedItem(acc.currentCourse());
 
-        jLabel1.setText("Lesson 1");
+        jLabel1.setText(acc.currentCourse() + " Lesson:");
         jButton1.setText("Start Lesson");
         jButton1.addActionListener(this::jButton1ActionPerformed);
 
@@ -188,7 +188,6 @@ public class DashBoard extends javax.swing.JFrame {
             // Get the selected item from the combo box
             String selectedClass = Objects.requireNonNull(jComboBox1.getSelectedItem()).toString();
             if (!Objects.equals(selectedClass, acc.currentCourse())) {
-
                 // Get the current username from the getUsername method
                 String currentUsername = acc.getUsername();
                 Connection con = DriverManager.getConnection("jdbc:mysql://140.238.154.147:3306/project", "user", "Eecs2311!");
@@ -197,9 +196,12 @@ public class DashBoard extends javax.swing.JFrame {
                 ps.setString(1, selectedClass);
                 ps.setString(2, currentUsername);
                 ps.executeUpdate();
+
                 System.out.println(currentUsername + " " + selectedClass);
                 System.out.println("Updated the database successfully!");
                 System.out.println(acc.currentCourse());
+
+                jLabel1.setText(acc.currentCourse() + " Lesson:");
                 jLabel5.setText(String.format("Courses: %s", selectedClass));
 
                 ps.close();
