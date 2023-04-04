@@ -55,8 +55,9 @@ public class DashBoard extends javax.swing.JFrame {
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Python", "Java", "C++"}));
         jComboBox1.addActionListener(this::jComboBox1ActionPerformed);
+        jComboBox1.setSelectedItem(acc.currentCourse());
 
-        jLabel1.setText("Lesson 1: Print");
+        jLabel1.setText("Lesson 1");
         jButton1.setText("Start Lesson");
         jButton1.addActionListener(this::jButton1ActionPerformed);
 
@@ -180,36 +181,30 @@ public class DashBoard extends javax.swing.JFrame {
         );
 
         pack();
-    }// </editor-fold>                        
+    }
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {
         try {
             // Get the selected item from the combo box
             String selectedClass = Objects.requireNonNull(jComboBox1.getSelectedItem()).toString();
+            if (!Objects.equals(selectedClass, acc.currentCourse())) {
 
-            // Get the current username from the getUsername method
-            String currentUsername = acc.getUsername();
+                // Get the current username from the getUsername method
+                String currentUsername = acc.getUsername();
+                Connection con = DriverManager.getConnection("jdbc:mysql://140.238.154.147:3306/project", "user", "Eecs2311!");
+                PreparedStatement ps = con.prepareStatement("UPDATE account SET classes = ? WHERE username = ?");
 
-            // Create a MySQL Connection object
-            Connection con = DriverManager.getConnection("jdbc:mysql://140.238.154.147:3306/project", "user", "Eecs2311!");
+                ps.setString(1, selectedClass);
+                ps.setString(2, currentUsername);
+                ps.executeUpdate();
+                System.out.println(currentUsername + " " + selectedClass);
+                System.out.println("Updated the database successfully!");
+                System.out.println(acc.currentCourse());
+                jLabel5.setText(String.format("Courses: %s", selectedClass));
 
-            // Create a PreparedStatement to update the "classes" column in the "account" table
-            PreparedStatement ps = con.prepareStatement("UPDATE account SET classes = ? WHERE username = ?");
-
-            // Set the parameters of the PreparedStatement
-            ps.setString(1, selectedClass);
-            ps.setString(2, currentUsername);
-
-            // Execute the PreparedStatement to update the database
-            ps.executeUpdate();
-            System.out.println(currentUsername + " " + selectedClass);
-            System.out.println("Updated the database successfully!");
-            System.out.println(acc.currentCourse());
-            jLabel5.setText(String.format("Courses: %s", selectedClass));
-
-            // Close the PreparedStatement and Connection objects
-            ps.close();
-            con.close();
+                ps.close();
+                con.close();
+            }
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
