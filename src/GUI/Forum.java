@@ -65,13 +65,4 @@ public class Forum extends JFrame {
         add(new JScrollPane(answerArea), BorderLayout.SOUTH);
     }
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                Forum frame = new Forum();
-                frame.setVisible(true);
-            }
-        });
-    }
 }
