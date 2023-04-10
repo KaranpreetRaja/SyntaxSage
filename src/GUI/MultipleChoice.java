@@ -159,17 +159,32 @@ public class MultipleChoice extends JPanel {
                 if (selectedButton != null) {
                     String selectedAnswer = selectedButton.getText();
 
-                    if (selectedAnswer.equals(finalCorrectAnswer) && (count >=5)) {
+                    if (selectedAnswer.equals(finalCorrectAnswer) && (count >= 5)) {
                         System.out.println("Correct!");
                         correct = true;
 
-                        MultipleSelect panel = new MultipleSelect(acc, count+1);
+                        MultipleSelect panel = new MultipleSelect(acc, count + 1);
                         JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(MultipleChoice.this);
                         frame.setContentPane(panel);
                         frame.revalidate();
                         frame.dispose();
                         acc.setExperience("Master");
-                        JOptionPane.showMessageDialog(null, "Lesson Completed", "Lesson Completed", JOptionPane.INFORMATION_MESSAGE);
+
+                        JPanel starRatingPanel = new JPanel();
+                        starRatingPanel.setLayout(new BoxLayout(starRatingPanel, BoxLayout.X_AXIS));
+                        ButtonGroup starGroup = new ButtonGroup();
+                        for (int i = 1; i <= 5; i++) {
+                            JToggleButton starButton = new JToggleButton(Integer.toString(i));
+                            starButton.addActionListener(e1 -> {
+                                int rating = Integer.parseInt(starButton.getText());
+                                System.out.println("Rating: " + rating);
+                                // Handle the rating value as desired
+                            });
+                            starGroup.add(starButton);
+                            starRatingPanel.add(starButton);
+                        }
+
+                        JOptionPane.showMessageDialog(null, starRatingPanel, "Lesson Completed - Rate this Lesson", JOptionPane.INFORMATION_MESSAGE);
                     }
 
                     else if (selectedAnswer.equals(finalCorrectAnswer)) {
