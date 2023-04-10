@@ -86,4 +86,23 @@ public class StreakDB {
         }
     return list;
     }
+      public void updateStreaks(int Oldstreaks, int newStreaks ){
+        boolean resultSet=false;
+        ArrayList<String> list= new ArrayList<>();
+
+        try {
+            String url = "jdbc:mysql://localhost:3306/project";
+            String uname = "rajendra";
+            String passwordForDB = "rajendra";
+            Connection connection = DriverManager.getConnection(url, uname, passwordForDB);
+            Statement statement = connection.createStatement();
+            String query= String.format("update streaks set  countOfStreaks = '%d' where  countOfStreaks = '%d'",newStreaks,Oldstreaks);
+            resultSet = statement.execute(query);
+
+        }
+        catch (SQLException exception){
+            System.out.println("SQL Exception in addData() method");
+        }
+
+    }
 }
