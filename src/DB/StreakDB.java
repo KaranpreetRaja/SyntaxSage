@@ -14,8 +14,7 @@ import java.sql.*;
 
  */
 public class StreakDB {
-    int count;
-    String date ;
+
 
 
 
@@ -24,10 +23,7 @@ public class StreakDB {
 
     }
 
-    public StreakDB(int count, String date) {
-        this.count = count;
-        this.date = date;
-    }
+  
 
     //connect to database
     public void connectToDataBase(){
@@ -48,3 +44,19 @@ public class StreakDB {
         }
 
     }
+      public void addData(int count , String date)  {
+        try {
+            String url = "jdbc:mysql://localhost:3306/project";
+            String uname = "rajendra";
+            String passwordForDB = "rajendra";
+            Connection connection = DriverManager.getConnection(url, uname, passwordForDB);
+            Statement statement = connection.createStatement();
+           String query= String.format("insert into  streaks (countOfStreaks,date) values ('%d','%s');",count,date);
+            boolean result = statement.execute(query);
+        }
+        catch (SQLException exception){
+            System.out.println("SQL Exception in addData() method");
+        }
+
+    }
+}
