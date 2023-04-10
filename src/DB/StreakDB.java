@@ -47,8 +47,8 @@ public class StreakDB {
       public void addData(int count , String date)  {
         try {
             String url = "jdbc:mysql://localhost:3306/project";
-            String uname = "rajendra";
-            String passwordForDB = "rajendra";
+           String uname = "user";
+           String passwordForDB = "Eecs2311!";
             Connection connection = DriverManager.getConnection(url, uname, passwordForDB);
             Statement statement = connection.createStatement();
            String query= String.format("insert into  streaks (countOfStreaks,date) values ('%d','%s');",count,date);
@@ -58,5 +58,32 @@ public class StreakDB {
             System.out.println("SQL Exception in addData() method");
         }
 
+    }
+
+      public  ArrayList<Integer> getCountOfStreaks(String date){
+        ResultSet resultSet=null;
+        ArrayList<Integer> list= new ArrayList<>();
+
+        try {
+            String url = "jdbc:mysql://localhost:3306/project";
+             String uname = "user";
+           String passwordForDB = "Eecs2311!";
+            Connection connection = DriverManager.getConnection(url, uname, passwordForDB);
+            Statement statement = connection.createStatement();
+            String query= String.format("select countOfStreaks from streaks where date = '%s'",date);
+            resultSet = statement.executeQuery(query);
+            if(resultSet==null){
+                return list;
+            }
+            else{
+                while(resultSet.next()){
+                    list.add(resultSet.getInt((1)));
+                }
+            }
+        }
+        catch (SQLException exception){
+            System.out.println("SQL Exception in addData() method");
+        }
+    return list;
     }
 }
