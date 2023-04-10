@@ -15,6 +15,9 @@ public class ProgressGUI extends JPanel {
     private static final int PROGRESS_MAX = 100;
     private Account acc; // Add acc as a field of ProgressGUI
 
+    /**
+     * Creates a new ProgressGUI.
+     */
     public ProgressGUI(Account acc) {
         super(new BorderLayout());
         this.acc = acc; // Initialize acc field with parameter value
