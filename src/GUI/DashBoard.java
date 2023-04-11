@@ -50,6 +50,7 @@ public class DashBoard extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -131,6 +132,9 @@ public class DashBoard extends javax.swing.JFrame {
 
         jLabel5.setText(String.format("Courses: %s", acc.currentCourse()));
 
+        acc.setStreaks();
+        jLabel6.setText(String.format("Current Streak: %d", acc.getStreaks()));
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -142,6 +146,7 @@ public class DashBoard extends javax.swing.JFrame {
                                         .addComponent(jLabel2)
                                         .addComponent(jLabel4)
                                         .addComponent(jLabel5)
+                                        .addComponent(jLabel6)
                                         .addComponent(badgePanel)) // Add badgePanel to jPanel3
                                 .addContainerGap(560, Short.MAX_VALUE))
         );
@@ -257,6 +262,14 @@ public class DashBoard extends javax.swing.JFrame {
         Question q1 = new Question("prompt 1", Arrays.asList("Option 1", "Option 2 (ans)", "Option 3", "Option 4 (ans)"), Arrays.asList("Option 2 (ans)", "Option 4 (ans)"));
         Question q2 = new Question("prompt 2", Arrays.asList("Option 1", "Option 2 (ans)", "Option 3 (ans)", "Option 4"), Arrays.asList("Option 2 (ans)", "Option 3 (ans)"));
         Question[] qes = new Question[]{q1, q2};
+    }
+
+    public void showStreaks() {
+        
+    }
+
+    public void updateProfileStreak() {
+        
     }
 
 
