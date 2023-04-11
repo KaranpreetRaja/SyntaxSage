@@ -50,6 +50,7 @@ public class DashBoard extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -94,31 +95,33 @@ public class DashBoard extends javax.swing.JFrame {
         jPanel2.add(progressPanel, gbc);
 
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(0, 0, Short.MAX_VALUE)
-                                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addContainerGap())
-        );
+     // Add GridBagLayout to jPanel1
+        jPanel1.setLayout(new GridBagLayout());
+        GridBagConstraints jPanel1Constraints = new GridBagConstraints();
+
+        // Add jComboBox1 to jPanel1
+        jPanel1Constraints.gridx = 0;
+        jPanel1Constraints.gridy = 0;
+        jPanel1Constraints.anchor = GridBagConstraints.WEST;
+        jPanel1Constraints.insets = new Insets(5, 5, 5, 5);
+        jPanel1.add(jComboBox1, jPanel1Constraints);
+
+        // Add jButton2 to jPanel1
+        jPanel1Constraints.gridx = 1;
+        jPanel1Constraints.gridy = 0;
+        jPanel1Constraints.anchor = GridBagConstraints.EAST;
+        jPanel1Constraints.insets = new Insets(5, 5, 5, 5);
+        jPanel1.add(jButton2, jPanel1Constraints);
+
+        // Add jPanel2 to jPanel1
+        jPanel1Constraints.gridx = 0;
+        jPanel1Constraints.gridy = 1;
+        jPanel1Constraints.gridwidth = 2;
+        jPanel1Constraints.fill = GridBagConstraints.HORIZONTAL;
+        jPanel1Constraints.anchor = GridBagConstraints.NORTH;
+        jPanel1Constraints.insets = new Insets(5, 5, 5, 5);
+        jPanel1.add(jPanel2, jPanel1Constraints);
+
 
 
         jTabbedPane1.addTab("Learning", jPanel1);
@@ -131,37 +134,48 @@ public class DashBoard extends javax.swing.JFrame {
 
         jLabel5.setText(String.format("Courses: %s", acc.currentCourse()));
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-                jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel3)
-                                        .addComponent(jLabel2)
-                                        .addComponent(jLabel4)
-                                        .addComponent(jLabel5)
-                                        .addComponent(badgePanel)) // Add badgePanel to jPanel3
-                                .addContainerGap(560, Short.MAX_VALUE))
-        );
-        jPanel3Layout.setVerticalGroup(
-                jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel4)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel5)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(badgePanel) // Add badgePanel to jPanel3
-                                .addContainerGap(229, Short.MAX_VALUE))
-        );
+        acc.setStreaks();
+        
+        jLabel6 = new javax.swing.JLabel();
+//        jLabel6.setText(String.format("Current Streak: %d", acc.getStreaks()));
+        jLabel6.setText("Current Streak: Test");
 
-        jTabbedPane1.addTab("Account", jPanel3);
+        
+        jLabel6.setVisible(true);
+        
+        jLabel6.setFont(new Font("Arial", Font.BOLD, 14));
+
+        
+        jLabel6.setForeground(Color.RED);
+        
+        jPanel3 = new javax.swing.JPanel();
+        jPanel3.setLayout(new GridBagLayout());
+        jPanel3.setPreferredSize(new Dimension(400, 400)); 
+
+        GridBagConstraints gridBagConstraints = new GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = GridBagConstraints.LINE_START;
+        gridBagConstraints.insets = new Insets(5, 5, 5, 5);
+
+        jPanel3.add(jLabel4, gridBagConstraints);
+        gridBagConstraints.gridy++;
+        jPanel3.add(jLabel2, gridBagConstraints);
+        gridBagConstraints.gridy++;
+        jPanel3.add(jLabel5, gridBagConstraints);
+        gridBagConstraints.gridy++;
+        jPanel3.add(jLabel3, gridBagConstraints);
+        gridBagConstraints.gridy++;
+        jPanel3.add(jLabel6, gridBagConstraints);
+        gridBagConstraints.gridy++;
+        jPanel3.add(badgePanel, gridBagConstraints);
+
+        
+
+        JScrollPane jScrollPane = new JScrollPane(jPanel3);
+        jScrollPane.getVerticalScrollBar().setUnitIncrement(16);
+        jTabbedPane1.addTab("Account", jScrollPane);
+
         
         Forum forum = new Forum();
         jTabbedPane1.addTab("Forum", forum);
@@ -272,6 +286,7 @@ public class DashBoard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
