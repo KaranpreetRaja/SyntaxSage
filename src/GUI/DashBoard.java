@@ -127,6 +127,15 @@ public class DashBoard extends javax.swing.JFrame {
         jPanel1Constraints.anchor = GridBagConstraints.NORTH;
         jPanel1Constraints.insets = new Insets(5, 5, 5, 5);
         jPanel1.add(jPanel2, jPanel1Constraints);
+        
+        // Add jLabelStreak to jPanel1
+        jPanel1Constraints.gridx = 2;
+        jPanel1Constraints.gridy = 0;
+        jPanel1Constraints.weightx = 1;
+        jPanel1Constraints.anchor = GridBagConstraints.EAST;
+        jPanel1Constraints.insets = new Insets(5, 5, 5, 5);
+        jPanel1.add(jLabelStreak, jPanel1Constraints);
+
 
 
 
@@ -172,7 +181,7 @@ public class DashBoard extends javax.swing.JFrame {
         gridBagConstraints.gridy++;
         jPanel3.add(jLabel3, gridBagConstraints);
         gridBagConstraints.gridy++;
- //       jPanel3.add(jLabel6, gridBagConstraints);
+        jPanel3.add(jLabel6, gridBagConstraints);
         jPanel3.add(jLabelStreak, gridBagConstraints);
         gridBagConstraints.gridy++;
         jPanel3.add(badgePanel, gridBagConstraints);
