@@ -161,6 +161,8 @@ public class DashBoard extends javax.swing.JFrame {
                                 .addComponent(jLabel5)
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel3)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel6)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(badgePanel) // Add badgePanel to jPanel3
                                 .addContainerGap(229, Short.MAX_VALUE))
