@@ -65,7 +65,7 @@ public class Account {
 
     public static Account createAccount(String username, String password, String courses) {
         String accountCreationDate = (LocalDateTime.now()).format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-        Database database = new Database(username, password, courses, "", accountCreationDate);
+        Database database = new Database(username, password, courses, "", accountCreationDate, 0, "");
         database.connectToDatabase();
         database.addData();
         try {
@@ -281,7 +281,7 @@ public class Account {
             database.updateLastLogin(this.username, newLoginDate);
         }
         else {
-            this.streaks = oldstreakAmount;
+            this.streaks = streakAmount;
         }
     }
 }
