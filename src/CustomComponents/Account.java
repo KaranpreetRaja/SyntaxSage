@@ -18,6 +18,7 @@ public class Account {
     private String experience;
     private String creationDate;
     private String currentCourse;
+    private int streaks;
 
     public Account() {
         this.username = "";
@@ -160,6 +161,10 @@ public class Account {
         return this.creationDate;
     }
 
+    public int getStreaks() {
+        return this.streaks;
+    }
+
 
     //Setters
     public void setUsername(String newUsername) throws AccountUsernameException {
@@ -261,5 +266,20 @@ public class Account {
         }
         statement.close();
         return this.currentCourse;
+    }
+
+    public void setStreaks() {
+        Database database = new Database();
+        database.connectToDatabase();
+        String previousLoginDate = database.getLastLogin(this.username);
+        int oldStreakAmount = database.getStreak(this.username);
+        String newLoginDate = ((LocalDateTime.now()).format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")).substring(0, 9));
+        if (newLoginDate != previousLoginDate){
+            oldStreakAmount += 1;
+            this.streaks = oldStreakAmount;
+        }
+        else {
+            this.streaks = oldStreakAmount;
+        }
     }
 }
