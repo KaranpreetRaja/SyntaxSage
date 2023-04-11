@@ -18,6 +18,7 @@ public class Account {
     private String experience;
     private String creationDate;
     private String currentCourse;
+    private int streaks;
 
     public Account() {
         this.username = "";
@@ -64,7 +65,7 @@ public class Account {
 
     public static Account createAccount(String username, String password, String courses) {
         String accountCreationDate = (LocalDateTime.now()).format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-        Database database = new Database(username, password, courses, "", accountCreationDate);
+        Database database = new Database(username, password, courses, "", accountCreationDate, 0, "");
         database.connectToDatabase();
         database.addData();
         try {
@@ -158,6 +159,10 @@ public class Account {
 
     public String getCreationDate() {
         return this.creationDate;
+    }
+
+    public int getStreaks() {
+        return this.streaks;
     }
 
 
@@ -261,5 +266,22 @@ public class Account {
         }
         statement.close();
         return this.currentCourse;
+    }
+
+    public void setStreaks() {
+        Database database = new Database();
+        database.connectToDatabase();
+        String previousLoginDate = database.getLastLogin(this.username);
+        int streakAmount = (int) database.getStreak(this.username);
+        String newLoginDate = ((LocalDateTime.now()).format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")).substring(0, 9));
+        if (newLoginDate != previousLoginDate){
+            streakAmount += 1;
+            this.streaks = streakAmount;
+            database.updateStreak(this.username, streakAmount);
+            database.updateLastLogin(this.username, newLoginDate);
+        }
+        else {
+            this.streaks = streakAmount;
+        }
     }
 }
