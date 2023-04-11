@@ -1,4 +1,5 @@
 package GUI;
+import java.io.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,8 +17,39 @@ public class Forum extends JPanel {
         setLayout(new BorderLayout());
 
         initComponents();
+        loadData(); // Load existing data
         addComponentsToPanel();
     }
+    
+    private void saveData() {
+        try {
+            FileOutputStream fos = new FileOutputStream("forum_data.ser");
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(discussionListModel);
+            oos.close();
+            fos.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void loadData() {
+        File file = new File("forum_data.ser");
+        if (file.exists()) {
+            try {
+                FileInputStream fis = new FileInputStream(file);
+                ObjectInputStream ois = new ObjectInputStream(fis);
+                discussionListModel = (DefaultListModel<String>) ois.readObject();
+                discussionList.setModel(discussionListModel);
+                ois.close();
+                fis.close();
+            } catch (IOException | ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+
 
     private void initComponents() {
         discussionListModel = new DefaultListModel<>();
@@ -31,7 +63,9 @@ public class Forum extends JPanel {
                 String question = JOptionPane.showInputDialog("Enter your question:");
                 if (question != null && !question.trim().isEmpty()) {
                     discussionListModel.addElement("Q: " + question);
+                    saveData(); // Save data after a new question is added
                 }
+                
             }
         });
 
@@ -52,10 +86,12 @@ public class Forum extends JPanel {
                     while (lastAnswerIndex < discussionListModel.size() &&
                             !discussionListModel.getElementAt(lastAnswerIndex).startsWith("Q: ")) {
                         lastAnswerIndex++;
+                        
                     }
 
                     // Insert the new answer under the selected question
                     discussionListModel.add(lastAnswerIndex, "    A: " + answer);
+                    saveData(); // Save data after a new answer is added
                 }
             }
         });
