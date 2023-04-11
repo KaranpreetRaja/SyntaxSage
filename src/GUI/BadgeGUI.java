@@ -42,8 +42,8 @@ public class BadgeGUI extends JPanel {
                 ex.printStackTrace();
             }
 
-            for (int i = 0; i < badges.length; i++) {
-                JLabel badgeLabel = new JLabel(badges[i]);
+            for (ImageIcon badge : badges) {
+                JLabel badgeLabel = new JLabel(badge);
                 badgeLabel.setHorizontalAlignment(JLabel.CENTER);
                 badgesPanel.add(badgeLabel);
             }
@@ -68,8 +68,8 @@ public class BadgeGUI extends JPanel {
                     } catch (IOException ex) {
                         ex.printStackTrace();
                     }
-                    for (int i = 0; i < badges.length; i++) {
-                        JLabel badgeLabel = new JLabel(badges[i]);
+                    for (ImageIcon badge : badges) {
+                        JLabel badgeLabel = new JLabel(badge);
                         badgeLabel.setHorizontalAlignment(JLabel.CENTER);
                         badgesPanel.removeAll();
                         badgesPanel.add(badgeLabel);
