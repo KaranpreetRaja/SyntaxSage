@@ -176,6 +176,32 @@ public class AccountDB {
         return  retID;
 
     }
+public String getLastLogin(String username){
+        ResultSet resultSet=null;
+        String str="";
+
+        try {
+            String url = "jdbc:mysql://localhost:3306/project";
+            String uname = "rajendra";
+            String passwordForDB = "rajendra";
+            Connection connection = DriverManager.getConnection(url, uname, passwordForDB);
+            Statement statement = connection.createStatement();
+            String query= String.format("select countOfStreaks from streaks where date = '%s'",date);
+            resultSet = statement.executeQuery(query);
+            if(resultSet==null){
+                return str;
+            }
+            else{
+                while(resultSet.next()){
+                   str=str+Integer.toString(resultSet.getInt(1));
+                }
+            }
+        }
+        catch (SQLException exception){
+            System.out.println("SQL Exception in addData() method");
+        }
+        return str;
+    }
 
 
     
