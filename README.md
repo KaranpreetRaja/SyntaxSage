@@ -4,7 +4,7 @@ SyntaxSage is a program that aims to help users learn and master programming lan
 
 # Run Our Code
 
-Commit ID: 53c3117
+Commit ID: d4fce42
 
 **In order to run our Java Swing Application, you must run the main function in ** [HomePage.java](https://github.com/KaranpreetRaja/SyntaxSage/blob/main/src/GUI/HomePage.java)
 
