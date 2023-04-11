@@ -51,16 +51,23 @@ Karan's Status: Completed course and session java classes, working on resolving 
 Thurs, Mar 9 - Discord Call
 Ensure that all individual components are complete, start working together to integrate all individual components of the system. Check ITR2 rubric to ensure all requirements are met. Planning to test the deliverables and prepare the test scenarios.
 
-Wed, Mar 15 -
+Wed, Mar 15 - Discord Call
+Planned out new architecture together as a group and identified code smells
 
-Mon, Mar 20 -
+Mon, Mar 20 - Bergeron Room 211
+Finished code smells and cross checked each others work
 
 Fri, Mar 24 -
+Planed out new user stories
 
-Wed, Mar 29 -
+Wed, Mar 29 - Lecture meeting
+Prepared for seminar video
 
-Mon, Apr 3 -
+Mon, Apr 3 - Zoom call
+Filmed video for Assignment and did seminar presentation in class and the video.
 
-Wed, Apr 5 -
+Wed, Apr 5 - Discord Call
+Conducted a final review of tasks and resposibilites
 
-Sun, Apr 9 -
+Sun, Apr 9 - Discord Call
+Made final touches and plans to our applicaiton.
