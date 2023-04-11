@@ -272,14 +272,16 @@ public class Account {
         Database database = new Database();
         database.connectToDatabase();
         String previousLoginDate = database.getLastLogin(this.username);
-        int oldStreakAmount = database.getStreak(this.username);
+        int streakAmount = database.getStreak(this.username);
         String newLoginDate = ((LocalDateTime.now()).format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")).substring(0, 9));
         if (newLoginDate != previousLoginDate){
-            oldStreakAmount += 1;
-            this.streaks = oldStreakAmount;
+            streakAmount += 1;
+            this.streaks = streakAmount;
+            database.updateStreak(this.username, streakAmount);
+            database.updateLastLogin(this.username, newLoginDate);
         }
         else {
-            this.streaks = oldStreakAmount;
+            this.streaks = oldstreakAmount;
         }
     }
 }
