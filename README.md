@@ -4,7 +4,7 @@ SyntaxSage is a program that aims to help users learn and master programming lan
 
 # Run Our Code
 
-Commit ID: e560210
+Commit ID: 53c3117
 
 **In order to run our Java Swing Application, you must run the main function in ** [HomePage.java](https://github.com/KaranpreetRaja/SyntaxSage/blob/main/src/GUI/HomePage.java)
 
@@ -13,6 +13,8 @@ If you Get an error related to classpath, add "com.mysql.jdbc.Driver" and "com.a
 If you encounter "Error: Could not find or load main class GUI.HomePage" or "Class not found java.lang.ClassNotFoundException", then go to Java Project (SyntaxSage) -> Properties -> Buildpath -> Libraries and delete the missing Jar file, and add the one above for the previous error.
 
 If you encounter an error where the buttons on the initial home page are not visible on Windows, please resize the window very slightly to allow the home page window to refresh.
+
+If you still encounter errors, the artifact (JAR) for our project is provided in the root of the repository (SyntaxSage.jar). This can be used in place of the conventional method of running the program (clone repo, compile, run).
 
 # Planning Documents
 
