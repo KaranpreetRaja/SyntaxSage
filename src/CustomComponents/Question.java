@@ -9,7 +9,8 @@ public class Question {
     private String prompt;
     private List<String> options;
     private Answer answer;
-    
+    private int noAns;
+
     // Constructor
     public Question(String prompt, List<String> options, List<String> answers) {
         this.id = CUR_ID;
@@ -33,6 +34,14 @@ public class Question {
 
     public static void setCurId(int CUR_ID) {
         Question.CUR_ID = CUR_ID;
+    }
+
+    public int getNoAns() {
+        return this.noAns;
+    }
+
+    public void setNoAns(int noAns) {
+        this.noAns = noAns;
     }
 
     public int getNumberOfAnswers() {
