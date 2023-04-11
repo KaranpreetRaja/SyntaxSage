@@ -176,7 +176,7 @@ public class AccountDB {
         return  retID;
 
     }
-public String getLastLogin(String username){
+    public String getLastLogin(String username){
         ResultSet resultSet=null;
         String str="";
 
@@ -186,23 +186,25 @@ public String getLastLogin(String username){
             String passwordForDB = "rajendra";
             Connection connection = DriverManager.getConnection(url, uname, passwordForDB);
             Statement statement = connection.createStatement();
-            String query= String.format("select countOfStreaks from streaks where date = '%s'",date);
+            String query= String.format("select accountCreateDate from account where username = '%s';",username);
             resultSet = statement.executeQuery(query);
             if(resultSet==null){
                 return str;
             }
             else{
                 while(resultSet.next()){
-                   str=str+Integer.toString(resultSet.getInt(1));
+//                return Integer.toString(resultSet.getInt(1));
+//                System.out.println(resultSet.getInt(1));
+                    return resultSet.getString(1);
+//                    System.out.println(resultSet.getString(1));
                 }
             }
         }
         catch (SQLException exception){
-            System.out.println("SQL Exception in addData() method");
+            System.out.println("SQL Exception in lastlogin() method");
         }
         return str;
     }
-
 
     
    
