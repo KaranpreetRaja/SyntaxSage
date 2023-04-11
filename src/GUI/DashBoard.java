@@ -51,6 +51,12 @@ public class DashBoard extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        
+        jLabelStreak = new javax.swing.JLabel();
+        jLabelStreak.setText(String.format("Current Streak: %d", acc.getStreaks()));
+        jLabelStreak.setFont(new Font("Arial", Font.BOLD, 14));
+        jLabelStreak.setForeground(Color.RED);
+
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -166,7 +172,8 @@ public class DashBoard extends javax.swing.JFrame {
         gridBagConstraints.gridy++;
         jPanel3.add(jLabel3, gridBagConstraints);
         gridBagConstraints.gridy++;
-        jPanel3.add(jLabel6, gridBagConstraints);
+ //       jPanel3.add(jLabel6, gridBagConstraints);
+        jPanel3.add(jLabelStreak, gridBagConstraints);
         gridBagConstraints.gridy++;
         jPanel3.add(badgePanel, gridBagConstraints);
 
@@ -291,5 +298,7 @@ public class DashBoard extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JLabel jLabelStreak;
+
     // End of variables declaration                   
 }
