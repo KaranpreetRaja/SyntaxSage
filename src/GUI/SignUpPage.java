@@ -164,6 +164,11 @@ public class SignUpPage extends JFrame{
             }
         });
 
+        backBut.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                signUpFrame.setVisible(false);
+            }
+        });
     }
-
 }

@@ -7,8 +7,8 @@ import java.awt.event.*;
 
 public class ProgressGUI extends JPanel {
     private static final long serialVersionUID = 6098546007197585733L;
-    private JProgressBar progressBar;
-    private JButton updateProgressButton;
+    public JProgressBar progressBar;
+    public JButton updateProgressButton;
     private Timer timer;
     private int progressValue = 0;
     private static final int PROGRESS_MIN = 0;
