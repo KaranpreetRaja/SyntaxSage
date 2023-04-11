@@ -19,16 +19,16 @@ public class SyntaxDoc extends JFrame {
         "https://raw.githubusercontent.com/Fechin/reference/main/source/_posts/python.md",
         "https://raw.githubusercontent.com/Fechin/reference/main/source/_posts/java.md"
     };
-
     private JEditorPane editorPane;
     private JPanel navPanel;
 
     public SyntaxDoc(String language) {
         super("SyntaxDoc");
-
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Change to DISPOSE_ON_CLOSE
 
-        setMinimumSize(new java.awt.Dimension(700, 450));
+        int WIDTH = 700;
+        int HEIGHT = 450;
+        setMinimumSize(new java.awt.Dimension(WIDTH, HEIGHT));
 
         editorPane = new JEditorPane();
         editorPane.setEditable(false);
@@ -101,6 +101,6 @@ public class SyntaxDoc extends JFrame {
 
 
     public static void main(String[] args) {
-        new SyntaxDoc("https://raw.githubusercontent.com/Fechin/reference/main/source/_posts/python.md"); // Pass the correct initial URL
+        new SyntaxDoc(HOME_URL); // Pass the correct initial URL
     }
 }
