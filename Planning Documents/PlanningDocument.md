@@ -3,9 +3,6 @@
   - Test Syntax: Implement the main functionality of the app, test users knowledge of a given language's syntax by offering multiple types of problems (fill in the blank, drag and drop, etc). Utilize inheritance, have a question ancestor that splits off into different forms of questions. Priority: high. Cost: 8 days.
 - **View Progress: As a user, I want to be able to view how much progress I have completed in the course where I am learning the syntax of a new programming language. Priority: high. Cost: 7 days.**
   - Show Progress Screen: Implement functionality that allows user to view syntax learning progress in Swing-based GUI, avoid clutter and ensure the best visual experience for the user. Priority: high. Cost: 7 days.
-- **Learning Pages: As a user, I want to be able to view a programming language's documentation at a glance to learn more about what a method might do, while I am learning. I also want to be able to highlight certain notes and save them for later, to view them quicker. Priority: medium. Cost: 3 days.**
-  - Display "Learning Pages": Give the user important documentation pertinent to the language they are learning. Show this information in a seperate window. Priority: medium. Cost: 2 days.
-  - Save Notes: Allow the user to save specified elements of the documentation to look at later. Store saved notes in a seperate tab. Priority: low. Cost: 1 day.
 
 # Iteration 2
 - **User Database: As a user, I would need my own account where all my progress and achievements will be tailored to my preferences. I would also like to learn and practice on other devices as well. Priority: medium. Planned Cost: 5 days. Actual Cost: 4 days.**
@@ -22,3 +19,10 @@
 # Iteration 3
 - **Q&A Feature: As a user, I want to engage with the learning community by asking and answering questions related to programming language syntax. Priority: medium. Planned Cost: 1 day. Actual Cost: 2 days.**
   - Q&A Platform: Develop a platform where users can post questions, answer others' questions, and interact through comments. Implement a voting system to promote the best answers. Priority: medium. Planned Cost: 1 day. Actual Cost: 2 days.
+- **Learning Pages: As a user, I want to be able to view a programming language's documentation at a glance to learn more about what a method might do, while I am learning. I also want to be able to highlight certain notes and save them for later, to view them quicker. Priority: medium. Cost: 3 days.**
+  - Display "Learning Pages": Give the user important documentation pertinent to the language they are learning. Show this information in a seperate window. Priority: medium. Cost: 2 days.
+  - Save Notes: Allow the user to save specified elements of the documentation to look at later. Store saved notes in a seperate tab. Priority: low. Cost: 1 day.
+- **Daily Streaks: As a user, I want to be motivated to maintain a consistent learning schedule by keeping track of my daily learning streaks. Priority: low. Cost: 2 days.**
+-Streak Tracking: Implement a daily streak counter that increments when the user completes lessons or practices on consecutive days. Display the streak on the user's profile and offer incentives for maintaining it. Priority: low. Cost: 2 days.
+- **Lesson Rating: As a user, I want to be able to provide feedback on the quality of the lessons I complete, so the platform can improve its content. Priority: low. Cost: 1 day.**
+-Rating System: Add a rating feature to lessons, allowing users to provide feedback on the content's effectiveness and clarity. Collect user ratings and use them to inform future improvements. Priority: low. Cost: 1 day.
