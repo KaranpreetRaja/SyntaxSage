@@ -182,8 +182,8 @@ public class AccountDB {
 
         try {
             String url = "jdbc:mysql://localhost:3306/project";
-            String uname = "user";
-            String passwordForDB = "Eecs2311!";
+            String uname = "rajendra";
+            String passwordForDB = "rajendra";
             Connection connection = DriverManager.getConnection(url, uname, passwordForDB);
             Statement statement = connection.createStatement();
             String query= String.format("select accountCreateDate from account where username = '%s';",username);
@@ -211,8 +211,8 @@ public class AccountDB {
 
         try {
             String url = "jdbc:mysql://localhost:3306/project";
-             String uname = "user";
-            String passwordForDB = "Eecs2311!";
+            String uname = "rajendra";
+            String passwordForDB = "rajendra";
             Connection connection = DriverManager.getConnection(url, uname, passwordForDB);
             Statement statement = connection.createStatement();
             String query= String.format("select streaks from account where username = '%s';",username);
@@ -240,8 +240,8 @@ public class AccountDB {
 
         try {
             String url = "jdbc:mysql://localhost:3306/project";
-           String uname = "user";
-            String passwordForDB = "Eecs2311!";
+            String uname = "rajendra";
+            String passwordForDB = "rajendra";
             Connection connection = DriverManager.getConnection(url, uname, passwordForDB);
             Statement statement = connection.createStatement();
             String query= String.format("update  account set streaks='%d' where username = '%s';",x,username);
@@ -257,8 +257,8 @@ public class AccountDB {
 
         try {
             String url = "jdbc:mysql://localhost:3306/project";
-             String uname = "user";
-            String passwordForDB = "Eecs2311!";
+            String uname = "rajendra";
+            String passwordForDB = "rajendra";
             Connection connection = DriverManager.getConnection(url, uname, passwordForDB);
             Statement statement = connection.createStatement();
             String query= String.format("update  account set date='%s' where username = '%s';",loginDate,username);
