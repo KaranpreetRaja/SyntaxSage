@@ -205,7 +205,35 @@ public class AccountDB {
         }
         return str;
     }
+ public String getStreak(String username){
+        ResultSet resultSet=null;
+        String str="";
 
+        try {
+            String url = "jdbc:mysql://localhost:3306/project";
+            String uname = "rajendra";
+            String passwordForDB = "rajendra";
+            Connection connection = DriverManager.getConnection(url, uname, passwordForDB);
+            Statement statement = connection.createStatement();
+            String query= String.format("select streaks from account where username = '%s';",username);
+            resultSet = statement.executeQuery(query);
+            if(resultSet==null){
+                return str;
+            }
+            else{
+                while(resultSet.next()){
+//                return Integer.toString(resultSet.getInt(1));
+//                System.out.println(resultSet.getInt(1));
+                    int x=resultSet.getInt(1);
+                    return Integer.toString(x);
+                }
+            }
+        }
+        catch (SQLException exception){
+            System.out.println("SQL Exception in lastlogin() method");
+        }
+        return str;
+    }
     
    
 }
