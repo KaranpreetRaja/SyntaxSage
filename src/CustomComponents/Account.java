@@ -272,7 +272,7 @@ public class Account {
         Database database = new Database();
         database.connectToDatabase();
         String previousLoginDate = database.getLastLogin(this.username);
-        int streakAmount = database.getStreak(this.username);
+        int streakAmount = (int) database.getStreak(this.username);
         String newLoginDate = ((LocalDateTime.now()).format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")).substring(0, 9));
         if (newLoginDate != previousLoginDate){
             streakAmount += 1;
