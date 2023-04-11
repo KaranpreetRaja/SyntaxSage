@@ -1,6 +1,9 @@
 package CustomComponents;
 
 import java.sql.*;
+import java.io.*;
+import java.util.HashMap;
+
 import java.util.ArrayList;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -267,22 +270,49 @@ public class Account {
     public int getStreaks() {
         return this.streaks;
     }
-    
-    
+
     public void setStreaks() {
-        Database database = new Database();
-        database.connectToDatabase();
-        String previousLoginDate = database.getLastLogin(this.username);
-        int streakAmount = (int) database.getStreak(this.username);
-        String newLoginDate = ((LocalDateTime.now()).format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")).substring(0, 9));
-        if (newLoginDate != previousLoginDate){
-            streakAmount += 1;
-            this.streaks = streakAmount;
-            database.updateStreak(this.username, streakAmount);
-            database.updateLastLogin(this.username, newLoginDate);
+        String fileName = "streaks.ser";
+        HashMap<String, Object[]> userData = null;
+
+        try {
+            FileInputStream fis = new FileInputStream(fileName);
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            userData = (HashMap<String, Object[]>) ois.readObject();
+            ois.close();
+            fis.close();
+        } catch (FileNotFoundException e) {
+            userData = new HashMap<>();
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
         }
-        else {
-            this.streaks = streakAmount;
+
+        String newLoginDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")).substring(0, 10);
+
+        if (userData.containsKey(this.username)) {
+            String previousLoginDate = (String) userData.get(this.username)[0];
+            int streakAmount = (int) userData.get(this.username)[1];
+
+            if (!newLoginDate.equals(previousLoginDate)) {
+                streakAmount += 1;
+                this.streaks = streakAmount;
+                userData.put(this.username, new Object[]{newLoginDate, streakAmount});
+            } else {
+                this.streaks = streakAmount;
+            }
+        } else {
+            this.streaks = 1;
+            userData.put(this.username, new Object[]{newLoginDate, this.streaks});
+        }
+
+        try {
+            FileOutputStream fos = new FileOutputStream(fileName);
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(userData);
+            oos.close();
+            fos.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }
