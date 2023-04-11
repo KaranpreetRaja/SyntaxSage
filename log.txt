@@ -57,7 +57,7 @@ Planned out new architecture together as a group and identified code smells
 Mon, Mar 20 - Bergeron Room 211
 Finished code smells and cross checked each others work
 
-Fri, Mar 24 -
+Fri, Mar 24 - Bergeron Room 211
 Planed out new user stories
 
 Wed, Mar 29 - Lecture meeting
