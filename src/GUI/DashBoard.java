@@ -162,6 +162,9 @@ public class DashBoard extends javax.swing.JFrame {
         );
 
         jTabbedPane1.addTab("Account", jPanel3);
+        
+        Forum forum = new Forum();
+        jTabbedPane1.addTab("Forum", forum);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

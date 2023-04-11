@@ -5,7 +5,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Forum extends JFrame {
+public class Forum extends JPanel {
 
     private JTextArea questionArea;
     private JTextArea answerArea;
@@ -13,13 +13,10 @@ public class Forum extends JFrame {
     private JButton postAnswerButton;
 
     public Forum() {
-        setTitle("Q&A Discussion Board");
-        setSize(800, 600);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
 
         initComponents();
-        addComponentsToFrame();
+        addComponentsToPanel();
     }
 
     private void initComponents() {
@@ -55,7 +52,7 @@ public class Forum extends JFrame {
         });
     }
 
-    private void addComponentsToFrame() {
+    private void addComponentsToPanel() {
         JPanel buttonPanel = new JPanel();
         buttonPanel.add(postQuestionButton);
         buttonPanel.add(postAnswerButton);
