@@ -23,6 +23,6 @@
   - Display "Learning Pages": Give the user important documentation pertinent to the language they are learning. Show this information in a seperate window. Priority: medium. Cost: 2 days.
   - Save Notes: Allow the user to save specified elements of the documentation to look at later. Store saved notes in a seperate tab. Priority: low. Cost: 1 day.
 - **Daily Streaks: As a user, I want to be motivated to maintain a consistent learning schedule by keeping track of my daily learning streaks. Priority: low. Cost: 2 days.**
--Streak Tracking: Implement a daily streak counter that increments when the user completes lessons or practices on consecutive days. Display the streak on the user's profile and offer incentives for maintaining it. Priority: low. Cost: 2 days.
+- Streak Tracking: Implement a daily streak counter that increments when the user completes lessons or practices on consecutive days. Display the streak on the user's profile and offer incentives for maintaining it. Priority: low. Cost: 2 days.
 - **Lesson Rating: As a user, I want to be able to provide feedback on the quality of the lessons I complete, so the platform can improve its content. Priority: low. Cost: 1 day.**
--Rating System: Add a rating feature to lessons, allowing users to provide feedback on the content's effectiveness and clarity. Collect user ratings and use them to inform future improvements. Priority: low. Cost: 1 day.
+- Rating System: Add a rating feature to lessons, allowing users to provide feedback on the content's effectiveness and clarity. Collect user ratings and use them to inform future improvements. Priority: low. Cost: 1 day.
