@@ -18,3 +18,7 @@
   - Progress Bar: Implement a progress bar on the home screen of the application to supplement the progress section, by giving the user a quick way to view their completion in the course at a glance. Priority: low. Planned Cost: 1 day. Actual Cost: 2 days.
 - **Syntax Testing: As a user, I want to be able to test my knowledge of the syntax of a programming language, with new questions being added with ease. Priority: high. Planned Cost: 6 days. Actual Cost: 5 days.**
   - Test Syntax: Implement the main functionality of the app, test users knowledge of a given language's syntax by offering multiple types of problems (fill in the blank, drag and drop, etc). Pull questions and answers from the database randomly, allowing new questions to be added with ease. Priority: high. Planned Cost: 6 days. Actual Cost: 5 days.
+
+# Iteration 3
+- **Q&A Feature: As a user, I want to engage with the learning community by asking and answering questions related to programming language syntax. Priority: medium. Planned Cost: 1 day. Actual Cost: 2 days.**
+  - Q&A Platform: Develop a platform where users can post questions, answer others' questions, and interact through comments. Implement a voting system to promote the best answers. Priority: medium. Planned Cost: 1 day. Actual Cost: 2 days.

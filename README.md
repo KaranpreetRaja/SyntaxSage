@@ -16,7 +16,7 @@ If you encounter an error where the buttons on the initial home page are not vis
 
 # Planning Documents
 
-## 😊 [Iteration 1 & 2 Planning Document](Planning%20Documents/PlanningDocument.md)
+## 😊 [Iteration 1, 2 & 3 Planning Document](Planning%20Documents/PlanningDocument.md)
 
 ## 📖 [Wiki](https://github.com/KaranpreetRaja/SyntaxSage/wiki)
 
