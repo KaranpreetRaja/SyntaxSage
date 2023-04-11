@@ -8,17 +8,15 @@ public class Question {
     private static int CUR_ID = 0;
     private String prompt;
     private List<String> options;
-    private List<String> answers;
-    private boolean isMulChoice;
-    private int noAns;
-
+    private Answer answer;
+    
     // Constructor
-
     public Question(String prompt, List<String> options, List<String> answers) {
         this.id = CUR_ID;
         CUR_ID++;
         this.prompt = prompt;
-        this.answers = answers;
+        this.options = options;
+        this.answer = new Answer(answers);
     }
 
     public int getId() {
@@ -37,12 +35,8 @@ public class Question {
         Question.CUR_ID = CUR_ID;
     }
 
-    public int getNoAns() {
-        return this.noAns;
-    }
-
-    public void setNoAns(int noAns) {
-        this.noAns = noAns;
+    public int getNumberOfAnswers() {
+        return this.answer.getNumberOfAnswers();
     }
 
     public String getPrompt() {
@@ -52,7 +46,7 @@ public class Question {
     public void setPrompt(String prompt) {
         this.prompt = prompt;
     }
-    
+
     public List<String> getOptions() {
         return options;
     }
@@ -62,21 +56,15 @@ public class Question {
     }
 
     public List<String> getAnswers() {
-        return answers;
+        return answer.getAnswers();
     }
 
     public void setAnswers(String[] answers) {
-        this.answers = Arrays.asList(answers);
+        this.answer.setAnswers(Arrays.asList(answers));
     }
-    
+
     public boolean isAnswer(String str) {
-        // Check if the given string is present in the answers array
-        for (String answer : answers) {
-            if (answer.equals(str)) {
-                return true;
-            }
-        }
-        return false;
+        return answer.isAnswer(str);
     }
 
     public String getStringOptions() {
@@ -90,5 +78,38 @@ public class Question {
         }
         return sb.toString();
     }
-    
+
+    // Answer class to handle answer-related properties and methods
+    private static class Answer {
+        private List<String> answers;
+        private int numberOfAnswers;
+
+        public Answer(List<String> answers) {
+            this.answers = answers;
+            this.numberOfAnswers = answers.size();
+        }
+
+        public List<String> getAnswers() {
+            return this.answers;
+        }
+
+        public void setAnswers(List<String> answers) {
+            this.answers = answers;
+            this.numberOfAnswers = answers.size();
+        }
+
+        public int getNumberOfAnswers() {
+            return this.numberOfAnswers;
+        }
+
+        public boolean isAnswer(String str) {
+            // Check if the given string is present in the answers array
+            for (String answer : answers) {
+                if (answer.equals(str)) {
+                    return true;
+                }
+            }
+            return false;
+        }
+    }
 }
