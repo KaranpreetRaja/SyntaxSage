@@ -234,6 +234,25 @@ public class AccountDB {
         }
         return str;
     }
+
+      public void updateStreak(String username, int x){
+        String str="";
+
+        try {
+            String url = "jdbc:mysql://localhost:3306/project";
+            String uname = "rajendra";
+            String passwordForDB = "rajendra";
+            Connection connection = DriverManager.getConnection(url, uname, passwordForDB);
+            Statement statement = connection.createStatement();
+            String query= String.format("update  account set streaks='%d' where username = '%s';",x,username);
+        boolean    resultSet = statement.execute(query);
+
+        }
+        catch (SQLException exception){
+            System.out.println("SQL Exception in update streak() method");
+        }
+    }
+
     
    
 }
