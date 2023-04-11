@@ -18,6 +18,8 @@ If you encounter an error where the buttons on the initial home page are not vis
 
 ## 😊 [Iteration 1, 2 & 3 Planning Document](Planning%20Documents/PlanningDocument.md)
 
+## 📕 [Refactoring Document](Planning%20Documents/RefactoringDocument.pdf)
+
 ## 📖 [Wiki](https://github.com/KaranpreetRaja/SyntaxSage/wiki)
 
 ## 💻 [Development Guidelines](Planning%20Documents/DevGuidelines.md)
