@@ -20,10 +20,10 @@
 - **Q&A Feature: As a user, I want to engage with the learning community by asking and answering questions related to programming language syntax. Priority: medium. Planned Cost: 1 day. Actual Cost: 2 days.**
   - Q&A Platform: Develop a platform where users can post questions, answer others' questions, and interact through comments. Implement a voting system to promote the best answers. Priority: medium. Planned Cost: 1 day. Actual Cost: 2 days.
 - **Learning Pages: As a user, I want to be able to view a programming language's documentation at a glance to learn more about what a method might do, while I am learning. I also want to be able to highlight certain notes and save them for later, to view them quicker. Priority: medium. Cost: 3 days.**
-  - Display "Learning Pages": Give the user important documentation pertinent to the language they are learning. Show this information in a seperate window. Priority: medium. Cost: 2 days.
-  - Save Notes: Allow the user to save specified elements of the documentation to look at later. Store saved notes in a seperate tab. Priority: low. Cost: 1 day.
+  - Display "Learning Pages": Give the user important documentation pertinent to the language they are learning. Show this information in a separate window. Priority: medium. Cost: 2 days.
+  - Save Notes: Allow the user to save specified elements of the documentation to look at later. Store saved notes in a separate tab. Priority: low. Cost: 1 day.
 - **Daily Streaks: As a user, I want to be motivated to maintain a consistent learning schedule by keeping track of my daily learning streaks. Priority: low. Cost: 2 days.**
-  - Streak Tracking: Implement a daily streak counter that increments when the user completes lessons or practices on consecutive days. Display the streak on the user's profile and offer incentives for maintaining it. Priority: low. Cost: 2 days.
+  - Streak Tracking: Implement a daily streak counter in the database that increments when the user completes lessons or practices on consecutive days. Award the user incentives such as special badges for maintaining it. Priority: low. Cost: 2 days.
 - **Lesson Rating: As a user, I want to be able to provide feedback on the quality of the lessons I complete, so the platform can improve its content. Priority: low. Cost: 1 day.**
   - Rating System: Add a rating feature to lessons, allowing users to provide feedback on the content's effectiveness and clarity. Collect user ratings and use them to inform future improvements. Priority: low. Cost: 1 day.
 - **Syntax Testing: As a user, I want to be able to test my knowledge of the syntax of MULTIPLE programming languages, with new questions being added with ease. Priority: high. Planned Cost: 4 days. Actual Cost: 3 days.**
