@@ -34,4 +34,4 @@ If you still encounter errors, the artifact (JAR) for our project is provided in
 - ## [Mohammed Mahfooz](https://github.com/mahfoozm/)
 - ## [Abdirazak Yusuf](https://github.com/Abdirazak140/)
 - ## [Rajendra Brahmbhatt](https://github.com/Rajendra1308/)
-- ## [Ryan Lyn](https://github.com/EarmuffSlime/)
+- ## [Ryan Lyn](https://github.com/rxlyn/)
